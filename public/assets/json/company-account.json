@@ -1,0 +1,22 @@
+[
+    {
+      "id": 1,
+      "name": "INICAR SESIÓN",
+      "link": "/login"
+    },
+    {
+      "id": 2,
+      "name": "CARRITO",
+      "link": "/cart"
+    },
+    {
+      "id": 3,
+      "name": "CONTACTO",
+      "link": "/contact"
+    },
+    {
+      "id": 4,
+      "name": "COMPRAR",
+      "link": "/buy"
+    }
+]

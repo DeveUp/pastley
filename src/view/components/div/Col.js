@@ -3,10 +3,14 @@ const Col = ({
     lg,
     md,
     sm,
+    df,
     children
 }) => {
+    const type = (query, value, sep=":") => {
+        return `${value ? `${query ? `${query}${sep}` : ''}col-${value}` : ''}`;
+    }
     return (
-        <div className={`${xl ? `grid-xl-${xl}` : ''} ${lg ? `grid-lg-${lg}` : ''} ${md ? `grid-md-${md}` : ''} ${sm ? `grid-sm-${sm}` : ''}`}>
+        <div className={`${type(null, df)} ${type("xl", xl)} ${type("lg", lg)} ${type("md", md)} ${type("sm", sm)}`}>
             {children}
         </div>
     );
