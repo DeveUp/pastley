@@ -1,6 +1,24 @@
-const Footer = () => {
+/**
+ * Component
+ */
+import Widgets from './elements/Widgets';
+
+/**
+ * Start
+ */
+const Footer= ({ 
+    className, 
+    jsonCompany, 
+    isDark 
+}) => {
     return (
-        <div></div>
+        <footer className={className ? className : ''}>
+            <Widgets json={jsonCompany} isDark={isDark}/>
+        </footer>
     );
 };
+
+/**
+ * Export
+ */
 export default Footer;
