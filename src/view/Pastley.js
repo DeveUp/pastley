@@ -8,6 +8,14 @@ import Layout from "./components/layout/Layout";
 import Login from './pages/account/Login';
 
 /**
+ * Style
+ */
+import "primereact/resources/primereact.min.css";
+import "primereact/resources/themes/bootstrap4-light-blue/theme.css";
+import "primeicons/primeicons.css";
+import 'primeflex/primeflex.css';
+
+/**
  * Start
  */
 const Pastley = ()  =>{

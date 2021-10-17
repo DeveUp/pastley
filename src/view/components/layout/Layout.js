@@ -6,6 +6,9 @@ import React from 'react';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
 
+/**
+ * Start
+ */
 const Layout = (props) => {
     return (
         <React.Fragment>
@@ -16,4 +19,7 @@ const Layout = (props) => {
     )
 }
 
+/**
+ * Export
+ */
 export default Layout;
