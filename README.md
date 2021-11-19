@@ -9,30 +9,35 @@
 Sistema ERP que permite gestionar una pastelería automatización en las ventas de los productos y la centralización de los mismos en un catálogo virtual que esté disponible las 24 horas para todo el público y que desde ahí mismo se puedan realizar pedidos con esto se logra reducir los tiempos de ventas y tener una mayor confiabilidad.
 
 
-## Lenguajes y Herramientas Programación
+## Paleta Color
+Acontinuación se muestra la paleta de colores que se uso en el software
+- ![#f03c15](https://via.placeholder.com/15/C06014/000000?text=+) `#C06014`
+- ![#c5f015](https://via.placeholder.com/15/334756/000000?text=+) `#334756`
+- ![#1589F0](https://via.placeholder.com/15/082032/000000?text=+) `#082032`
+- ![#1589F0](https://via.placeholder.com/15/000000/000000?text=+) `#000000`
 
-<p align="left"> 
-    <a href="https://www.docker.com/" target="_blank"> 
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40"/> 
-    </a> 
-    <a href="https://www.java.com" target="_blank"> 
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> 
-    </a> 
-    <a href="https://www.mysql.com/" target="_blank"> 
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> 
-    </a> 
-    <a href="https://spring.io/" target="_blank"> 
-        <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="40" height="40"/> 
-    </a> 
-</p>
-  
-## Actores
+
+## Lenguajes Y herramientas de programación
+![Frontend](https://i.ibb.co/L66ZpHh/Front.png)
+
+   
+## Autores
 
 - [@SerBuitrago](https://github.com/SerBuitrago)
 - [@leynerjoseoa](https://github.com/leynerjoseoa)
-- [@soleimygomez](https://github.com/soleimygomez)
-- [@jhonatanbeltran](https://github.com/jhonatanbeltran)
 
-  
-## Estado
+
+## Contribuyentes
+
+- [@yadirGarcia](https://github.com/yadirGarcia)
+
+**¡Las contribuciones son siempre bienvenidas!**
+
+## Agradecimientos
+
+ Al docente **ING. FREDY HUMBERTO VERA** de microservicios por guiarnos y permitirnos adquirir los conocimientos aplicados en el presente proyecto. 
+
+
+## Licencia
+
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
