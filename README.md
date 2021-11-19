@@ -18,7 +18,8 @@ Acontinuación se muestra la paleta de colores que se uso en el software
 
 
 ## Lenguajes Y herramientas de programación
-![Logo](https://i.ibb.co/Yfqc7JK/Project-Lombok-1.png)
+### Frontend
+![Frontend](https://i.ibb.co/L66ZpHh/Front.png)
 
    
 ## Autores
