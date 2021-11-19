@@ -18,7 +18,6 @@ Acontinuación se muestra la paleta de colores que se uso en el software
 
 
 ## Lenguajes Y herramientas de programación
-### Frontend
 ![Frontend](https://i.ibb.co/L66ZpHh/Front.png)
 
    
