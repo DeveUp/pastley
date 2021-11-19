@@ -1,0 +1,181 @@
+<ui:composition template="../../template/template-role.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="tmp-metadata">
+		<f:event type="preRenderView" listener="#{requestApp.findURL()}" />
+		<f:event type="preRenderView" listener="#{product.findByProduct()}" />
+	</ui:define>
+	<ui:define name="tmp-section">
+		<ui:decorate template="component/header.xhtml">
+			<ui:define name="tmp-section-component-statu--header">
+				<p:menuitem value="Historial" url="all.xhtml" styleClass="lsy-link" />
+			</ui:define>
+			<ui:define name="tmp-section-component-header-subtitle--header">#{product.product.name}</ui:define>
+		</ui:decorate>
+		<h:panelGroup layout="block" styleClass="p-p-4 p-mb-6"
+			rendered="#{product.product != null}">
+			<p:fieldset legend="Registrar" toggleable="true" toggleSpeed="500">
+				<p:tabView styleClass="lsy-update" id="lsy-update">
+					<p:tab title="Información">
+						<h:panelGroup layout="block" styleClass="lsy-update-1"
+							id="lsy-update-1">
+							<h:panelGroup layout="block"
+								styleClass="ui-fluid p-formgrid p-grid">
+								<h:panelGroup layout="block" styleClass="p-field p-col">
+									<p:outputLabel for="nombre-producto" value="Nombre:">
+										<h:outputText value=" *" styleClass="lsy-c-danger" />
+									</p:outputLabel>
+									<p:inputText id="nombre-producto" maxlength="100"
+										value="#{product.product.name}" />
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup layout="block"
+								styleClass="ui-fluid p-formgrid p-grid p-jc-between">
+								<h:panelGroup layout="block"
+									styleClass="p-field p-col-12 p-md-4">
+									<p:outputLabel for="stock-producto" value="Stock:">
+										<h:outputText value=" *" styleClass="lsy-c-danger" />
+									</p:outputLabel>
+									<p:inputNumber id="stock-producto" decimalPlaces="0"
+										minValue="0" value="#{product.product.stock}" />
+								</h:panelGroup>
+								<h:panelGroup layout="block"
+									styleClass="p-field p-col-12 p-md-4">
+									<p:outputLabel for="stockMinimo-producto" value="Stock Minimo:">
+										<h:outputText value=" *" styleClass="lsy-c-danger" />
+									</p:outputLabel>
+									<p:inputNumber id="stockMinimo-producto" decimalPlaces="0"
+										minValue="0" value="#{product.product.stockMin}" />
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup layout="block"
+								styleClass="ui-fluid p-formgrid p-grid p-jc-between p-align-center">
+								<h:panelGroup layout="block"
+									styleClass="p-field p-col-12 p-md-4">
+									<p:outputLabel for="precio-producto" value="Precio:">
+										<h:outputText value=" *" styleClass="lsy-c-danger" />
+									</p:outputLabel>
+									<p:inputText id="precio-producto"
+										value="#{product.product.price}">
+									</p:inputText>
+								</h:panelGroup>
+								<h:panelGroup layout="block" styleClass="p-grid p-md-6">
+									<h:panelGroup layout="block"
+										styleClass="p-field p-col-12 p-md-12 p-lg-6">
+										<p:outputLabel for="iva-producto" value="IVA:">
+											<h:outputText value=" *" styleClass="lsy-c-danger" />
+										</p:outputLabel>
+										<p:inputText id="iva-producto" maxlength="3"
+											value="#{product.product.vat}" />
+									</h:panelGroup>
+									<h:panelGroup layout="block"
+										styleClass="p-field p-col-12 p-md-12 p-lg-6">
+										<p:outputLabel for="descuento-producto" value="Descuento:">
+											<h:outputText value=" *" styleClass="lsy-c-danger" />
+										</p:outputLabel>
+										<p:inputText id="descuento-producto" maxlength="3"
+											value="#{product.product.discount}" />
+									</h:panelGroup>
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup layout="block"
+								styleClass="ui-fluid p-formgrid p-grid">
+								<h:panelGroup layout="block" styleClass="p-field p-col">
+									<p:outputLabel for="dimension-producto"
+										value="Dimensión o Peso:">
+										<h:outputText value=" *" styleClass="lsy-c-danger" />
+									</p:outputLabel>
+									<p:inputText id="dimension-producto" maxlength="100"
+										value="#{product.product.dimension}" />
+								</h:panelGroup>
+							</h:panelGroup>
+						</h:panelGroup>
+					</p:tab>
+					<p:tab title="Imagen">
+						<h:panelGroup layout="block" styleClass="lsy-update-2"
+							id="lsy-update-2">
+							<h:panelGroup layout="block"
+								styleClass="ui-fluid p-formgrid p-grid">
+								<h:panelGroup layout="block" styleClass="p-field p-col">
+									<p:outputLabel for="imagen-producto" value="URL:" />
+									<p:inputText id="imagen-producto" maxlength="100"
+										value="#{product.product.image}">
+										<p:ajax update="lsy-update-2" event="change" />
+									</p:inputText>
+								</h:panelGroup>
+							</h:panelGroup>
+							<p:separator />
+							<h:panelGroup layout="block"
+								styleClass="p-d-flex p-jc-center p-ai-center p-mt-3">
+								<h:panelGroup layout="block"
+									styleClass="lsy-image-container-large">
+									<p:graphicImage library="img" name="header/product.jpg"
+										cache="false"
+										rendered="#{product.product.image == null or fn:length(product.product.image) == 0}" />
+									<p:graphicImage value="#{product.product.image}" cache="false"
+										rendered="#{product.product.image != null and fn:length(product.product.image) gt 0}" />
+								</h:panelGroup>
+							</h:panelGroup>
+						</h:panelGroup>
+					</p:tab>
+					<p:tab title="Categoria">
+						<h:panelGroup layout="block"
+							styleClass="ui-fluid p-formgrid p-grid p-jc-center p-mt-4">
+							<h:panelGroup layout="block"
+								styleClass="p-field p-col-12 p-md-12">
+								<h:outputLabel for="categoria-producto" value="Categoria:">
+									<h:outputText value=" *" styleClass="lsy-c-danger" />
+								</h:outputLabel>
+								<p:selectOneMenu id="categoria-producto"
+									value="#{product.product.category.id}" filter="true"
+									filterMatchMode="startsWith">
+									<f:selectItem itemLabel="Seleccione" itemValue="" />
+									<f:selectItems value="#{selection.category}" />
+								</p:selectOneMenu>
+							</h:panelGroup>
+						</h:panelGroup>
+
+					</p:tab>
+					<p:tab title="Descripción">
+						<h:panelGroup layout="block"
+							styleClass="ui-fluid p-formgrid p-grid">
+							<h:panelGroup layout="block" styleClass="p-field p-col-12 p-md">
+								<p:outputLabel for="descripcion-producto" value="Descripción:" />
+								<p:inputTextarea id="descripcion-producto" maxlength="400"
+									value="#{product.product.description}" />
+							</h:panelGroup>
+						</h:panelGroup>
+						<h:panelGroup layout="block"
+							styleClass="ui-fluid p-formgrid p-grid">
+							<h:panelGroup layout="block" styleClass="p-field p-col-12 p-md">
+								<p:outputLabel for="sabor-producto" value="Sabor:" />
+								<p:inputTextarea id="sabor-producto" maxlength="400"
+									value="#{product.product.flavor}" />
+							</h:panelGroup>
+						</h:panelGroup>
+						<h:panelGroup layout="block"
+							styleClass="ui-fluid p-formgrid p-grid">
+							<h:panelGroup layout="block" styleClass="p-field p-col-12 p-md">
+								<p:outputLabel for="ingredientes-producto" value="Ingredientes:" />
+								<p:inputTextarea id="ingredientes-producto" maxlength="400"
+									value="#{product.product.ingredients}" />
+							</h:panelGroup>
+						</h:panelGroup>
+					</p:tab>
+				</p:tabView>
+				<h:panelGroup layout="block"
+					styleClass="p-d-flex p-jc-center p-ai-center p-mt-5 p-mb-3">
+					<p:commandButton icon="pi pi-plus" value="Actualizar"
+						action="#{product.update()}" update="@(.lsy-alert)"
+						styleClass="lsy-button lsy-bg-c-info" title="Actualizar">
+						<f:param name="id" value="#{product.product.id}" />
+					</p:commandButton>
+				</h:panelGroup>
+			</p:fieldset>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

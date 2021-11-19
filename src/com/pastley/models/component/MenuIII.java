@@ -48,14 +48,22 @@ public class MenuIII implements Serializable {
 				PastleyVariable.PASTLEY_ICON_TYPE_CASHIER, cashier));
 		// Product
 		List<ItemII<String>> product = new ArrayList<>();
-		product.add(new ItemII<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY, null,
+		product.add(new ItemII<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY, "pages/product/all.xhtml",
 				PastleyVariable.PASTLEY_ICON_HISTORY));
-		product.add(new ItemII<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_REGISTER, null,
-				PastleyVariable.PASTLEY_ICON_REGISTER));
-		product.add(new ItemII<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_STATISTICS, null,
+		product.add(new ItemII<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_REGISTER,
+				"pages/product/register.xhtml", PastleyVariable.PASTLEY_ICON_REGISTER));
+		product.add(new ItemII<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_STATISTICS, "pages/product/index.xhtml",
 				PastleyVariable.PASTLEY_ICON_STATISTICS));
 		this.items.add(new ItemII<>(null, false, PastleyVariable.PASTLEY_MENU_TYPE_PRODUCT, null,
 				PastleyVariable.PASTLEY_ICON_TYPE_PRODUCT, product));
+		// Category
+		List<ItemII<String>> category = new ArrayList<>();
+		category.add(new ItemII<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY, "pages/category/all.xhtml",
+				PastleyVariable.PASTLEY_ICON_HISTORY));
+		category.add(new ItemII<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_STATISTICS, "pages/category/index.xhtml",
+				PastleyVariable.PASTLEY_ICON_STATISTICS));
+		this.items.add(new ItemII<>(null, false, PastleyVariable.PASTLEY_MENU_TYPE_CATEGORY, null,
+				PastleyVariable.PASTLEY_ICON_TYPE_CATEGORY, category));
 	}
 
 	public void fillCompany() {

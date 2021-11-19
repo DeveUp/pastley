@@ -59,6 +59,7 @@ public class PastleyVariable {
 	public static final String PASTLEY_MENU_TYPE_CASHIER = "Cajero";
 	public static final String PASTLEY_MENU_TYPE_PRODUCT = "Producto";
 	public static final String PASTLEY_MENU_TYPE_PQR = "PQR";
+	public static final String PASTLEY_MENU_TYPE_CATEGORY = "Categoria";
 	public static final String PASTLEY_MENU_TYPE_METHOD_PAY = "Metodo Pago";
 
 	/* ICON */
@@ -75,5 +76,6 @@ public class PastleyVariable {
 	public static final String PASTLEY_ICON_TYPE_PRODUCT = "fas fa-box-open";
 	public static final String PASTLEY_ICON_TYPE_CONTACT = "fas fa-id-card";
 	public static final String PASTLEY_ICON_TYPE_PQR = "fas fa-file-signature";
+	public static final String PASTLEY_ICON_TYPE_CATEGORY = "fas fa-file-signature";
 	public static final String PASTLEY_ICON_TYPE_METHOD_PAY = "fas fa-file-signature";
 }

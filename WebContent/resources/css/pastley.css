@@ -16,7 +16,7 @@
   --lsy-font-size-h6: 1em;
   --lsy-font-family-primary: Mulish, monospace, sans-serif;
   --lsy-font-family-secundary: Share Tech Mono, cursive, monospace;
-  --lsy-background-primary: #FDB135;
+  --lsy-background-primary: #C06014;
   --lsy-color-primary: #FFFFFF;
   --lsy-background-secundary: #2E2E2E;
   --lsy-color-secundary: #FFFFFF;
@@ -644,7 +644,6 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
   display: grid;
   -ms-grid-columns: auto 1fr;
   grid-template-columns: auto 1fr;
-  -ms-grid-rows: (auto)[3];
   grid-template-rows: repeat(3, auto);
       grid-template-areas: "Left   Top      Top" "Left   Center   Center" "Left   Center 	Center";
   position: relative;
@@ -655,15 +654,11 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
   transition: all 1s cubic-bezier(0.69, 0.01, 0.25, 1);
 }
 .lsy-structure-home__top {
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
   -ms-grid-column-span: 2;
   grid-area: Top;
 }
 .lsy-structure-home__left {
-  -ms-grid-row: 1;
   -ms-grid-row-span: 3;
-  -ms-grid-column: 1;
   grid-area: Left;
   width: 300px;
   height: 100vh;

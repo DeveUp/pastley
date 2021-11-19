@@ -1,6 +1,9 @@
 package com.pastley.util;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.faces.context.FacesContext;
 
 public class PastleyValidate {
 	
@@ -12,6 +15,32 @@ public class PastleyValidate {
 	 */
 	public static boolean isChain(String chain) {
 		return chain != null && chain.trim().length() > 0;
+	}
+	
+	/**
+	 * Method that validates if a string contains pure numbers.
+	 * 
+	 * @param str, Represents the string.
+	 * @return Boolean true if it meets false if not.
+	 */
+	public static boolean isNumber(String str) {
+		if (isChain(str)) {
+			char[] array = PastleyVariable.PASTLEY_ARRAY_NUMBER;
+			char[] aux = str.toCharArray();
+			for (char i : aux) {
+				boolean salir = true;
+				for (char j : array) {
+					if (i == j) {
+						salir = false;
+					}
+				}
+				if (salir) {
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
 	}
 	
 	public static boolean isObject(Object object) {
@@ -28,6 +57,12 @@ public class PastleyValidate {
 		} catch (NumberFormatException ex) {
 			return 0;
 		}
+	}
+	
+	public static String getFace(String attribute) {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+		return params.get(attribute);
 	}
 	
 	/**

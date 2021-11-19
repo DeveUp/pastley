@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import org.json.simple.JSONObject;
 
 import com.pastley.util.PastleyDate;
+import com.pastley.util.PastleyValidate;
 
 public class Product implements Serializable{
 
@@ -45,8 +46,22 @@ public class Product implements Serializable{
 	}
 	
 	public Product(JSONObject object) {
-		this.id = Long.parseLong(object.get("id").toString());
-		this.name= object.get("name").toString();
+		this.id = PastleyValidate.isObject(object.get("id")) ? Long.parseLong(object.get("id").toString()) :0L;
+		this.name= PastleyValidate.isObject(object.get("name")) ? object.get("name").toString() : null;
+		this.flavor= PastleyValidate.isObject(object.get("flavor")) ? object.get("flavor").toString() : null;
+		this.vat= PastleyValidate.isObject(object.get("vat")) ? object.get("vat").toString() : null;
+		this.stock= PastleyValidate.isObject(object.get("stock")) ? Integer.parseInt(object.get("stock").toString()) :0;
+		this.stockMin= PastleyValidate.isObject(object.get("stockMin")) ? Integer.parseInt(object.get("stockMin").toString()) :0;
+		this.dimension= PastleyValidate.isObject(object.get("dimension")) ? object.get("dimension").toString() : null;
+		this.image= PastleyValidate.isObject(object.get("image")) ? object.get("image").toString() : null;
+		this.statu= PastleyValidate.isObject(object.get("statu")) ? Boolean.parseBoolean(object.get("statu").toString()) : false;
+		this.description= PastleyValidate.isObject(object.get("description")) ? object.get("description").toString() : null;
+		this.ingredients= PastleyValidate.isObject(object.get("ingredients")) ? object.get("ingredients").toString() : null;
+		this.discount= PastleyValidate.isObject(object.get("discount")) ? object.get("discount").toString() : null;
+		this.price= PastleyValidate.isObject(object.get("price")) ? new BigInteger(object.get("price").toString()) : BigInteger.ZERO;
+		this.dateRegister= PastleyValidate.isObject(object.get("dateRegister")) ? object.get("dateRegister").toString() : null;
+		this.dateUpdate= PastleyValidate.isObject(object.get("dateUpdate")) ? object.get("dateUpdate").toString() : null;
+		this.category= PastleyValidate.isObject(object.get("category")) ? new Category((JSONObject) object.get("category")) : new Category();
 	}
 	
 	public LocalDate getDateWithoutTime() {

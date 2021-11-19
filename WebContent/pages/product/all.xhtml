@@ -43,12 +43,14 @@
 				<!-- Column -->
 				<p:column headerText="Id" footerText="Id" styleClass="p-text-center"
 					filterBy="#{a.id}" sortBy="#{a.id}">
-					<h:outputText value="#{a.id}" />
+					<a href="product.xhtml?id=#{a.id}" class="lsy-link">
+						<h:outputText value="#{a.id}" />
+					</a>
 				</p:column>
 				<p:column headerText="Nombre" footerText="Nombre"
 					styleClass="p-text-center" filterBy="#{a.name}" sortBy="#{a.name}"
 					filterMatchMode="contains">
-					<a href="product.xhtml?id-product=#{a.id}" class="scrjk-link">
+					<a href="product.xhtml?id=#{a.id}" class="lsy-link">
 						<h:outputText value="#{a.name}" />
 					</a>
 				</p:column>
