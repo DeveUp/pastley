@@ -5,8 +5,15 @@ import java.util.Map;
 
 import javax.faces.context.FacesContext;
 
+/**
+ * @project Pastley.
+ * @author Sergio Stives Barrios Buitrago.
+ * @Github https://github.com/SerBuitrago.
+ * @contributors leynerjoseoa.
+ * @version 1.0.0.
+ */
 public class PastleyValidate {
-	
+
 	/**
 	 * Method that allows to validate the strings.
 	 * 
@@ -16,7 +23,7 @@ public class PastleyValidate {
 	public static boolean isChain(String chain) {
 		return chain != null && chain.trim().length() > 0;
 	}
-	
+
 	/**
 	 * Method that validates if a string contains pure numbers.
 	 * 
@@ -42,15 +49,30 @@ public class PastleyValidate {
 		}
 		return false;
 	}
-	
+
+	/**
+	 * Method that allows to validate an object.
+	 * @param object, Represents the object.
+	 * @return Boolean true if it meets false if not.
+	 */
 	public static boolean isObject(Object object) {
 		return object != null;
 	}
-	
+
+	/**
+	 * Method that allows to validate a long.
+	 * @param value, Represents the value.
+	 * @return Boolean true if it meets false if not.
+	 */
 	public static boolean isLong(Long value) {
-		return value != null && value >=0;
+		return value != null && value >= 0;
 	}
-	
+
+	/**
+	 * Method that converts a string to a number.
+	 * @param str, Represents the string.
+	 * @return the value number obtained.
+	 */
 	public static int toInteger(String str) {
 		try {
 			return Integer.valueOf(str);
@@ -58,15 +80,19 @@ public class PastleyValidate {
 			return 0;
 		}
 	}
-	
-	public static String getFace(String attribute) {
+
+	/*
+	 * Method that allows knowing a value of an attribute of the path.
+	 */
+	public static String getAttributePath(String attribute) {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
 		return params.get(attribute);
 	}
-	
+
 	/**
 	 * Method that allows to verify if a list is valid.
+	 * 
 	 * @param <E>,  Represents the data type of the list.
 	 * @param list, Represents the list.
 	 * @return true if it meets false if not.

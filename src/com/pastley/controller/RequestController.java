@@ -1,4 +1,4 @@
-package com.oastley.controller;
+package com.pastley.controller;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -12,15 +12,16 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.pastley.models.dto.ExceptionDTO;
+import com.pastley.models.dto.JSONConvert;
 import com.pastley.util.PastleyValidate;
-import com.pastley.util.PastleyVariable;
+import com.pastley.util.PastleyVariableApi;;
 
-public class RequestController<A> implements Serializable {
+public class RequestController <A> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String PROPERTY_TYPE = PastleyVariable.PASTLEY_API_PROPERTY_TYPE_JSON;
-	private String PROPERTY_ACCEPT = PastleyVariable.PASTLEY_API_PROPERTY_ACCEPT_JSON;
+	private String PROPERTY_TYPE = PastleyVariableApi.PASTLEY_API_PROPERTY_TYPE_JSON;
+	private String PROPERTY_ACCEPT = PastleyVariableApi.PASTLEY_API_PROPERTY_ACCEPT_JSON;
 
 	public HttpURLConnection requestToHead(String path, String method, JSONObject send) throws ExceptionDTO {
 		try {
@@ -43,18 +44,18 @@ public class RequestController<A> implements Serializable {
 	}
 	
 	public A post(String path, JSONObject send) throws ExceptionDTO {
-		return request(path, PastleyVariable.PASTLEY_API_METHOD_POST, send);
+		return request(path, PastleyVariableApi.PASTLEY_API_METHOD_POST, send);
 	}
 
 	public A get(String path, JSONObject send) throws ExceptionDTO {
-		return request(path, PastleyVariable.PASTLEY_API_METHOD_GET, send);
+		return request(path, PastleyVariableApi.PASTLEY_API_METHOD_GET, send);
 	}
 
 	public A put(String path, JSONObject send) throws ExceptionDTO {
-		return request(path, PastleyVariable.PASTLEY_API_METHOD_PUT, send);
+		return request(path, PastleyVariableApi.PASTLEY_API_METHOD_PUT, send);
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "static-access" })
 	private A request(String path, String method, JSONObject send) throws ExceptionDTO {
 		HttpURLConnection http = requestToHead(path, method, send);
 		try {
@@ -70,8 +71,7 @@ public class RequestController<A> implements Serializable {
 				if(!PastleyValidate.isChain(response)) 
 					return null;
 				JSONObject object= (JSONObject) parser.parse(response);
-				System.out.println(object);
-				throw new ExceptionDTO((JSONObject) parser.parse(response)); 
+				throw new JSONConvert().exception(object, null); 
 			}
 		}catch (Exception e) {
 			throw new ExceptionDTO(e);

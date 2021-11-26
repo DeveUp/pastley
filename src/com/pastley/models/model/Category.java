@@ -4,10 +4,15 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.time.LocalDate;
 
-import org.json.simple.JSONObject;
-
 import com.pastley.util.PastleyDate;
 
+/**
+ * @project Pastley.
+ * @author Sergio Stives Barrios Buitrago.
+ * @Github https://github.com/SerBuitrago.
+ * @contributors leynerjoseoa.
+ * @version 1.0.0.
+ */
 public class Category implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -17,22 +22,6 @@ public class Category implements Serializable {
     private boolean statu;
 	private String dateRegister;
 	private String dateUpdate;
-	
-	public Category() {
-	}
-	
-	public Category(Long id, String name) {
-		this.id = id;
-		this.name = name;
-	}
-	
-	public Category(JSONObject object) {
-		this.id = Long.parseLong(String.valueOf(object.get("id")));
-		this.name = object.get("name").toString();
-		this.statu = Boolean.parseBoolean(object.get("statu").toString());
-		this.dateRegister = object.get("dateRegister").toString();
-		this.dateUpdate = object.get("dateUpdate") != null ? object.get("dateUpdate").toString() : null;
-	}
 
 	public LocalDate getDateWithoutTime() {
 		PastleyDate date = new PastleyDate();
@@ -42,6 +31,34 @@ public class Category implements Serializable {
 			return LocalDate.now();
 		}
 	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Category other = (Category) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
 
 	@Override
 	public String toString() {

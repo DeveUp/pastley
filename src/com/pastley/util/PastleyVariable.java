@@ -1,5 +1,12 @@
 package com.pastley.util;
 
+/**
+ * @project Pastley.
+ * @author Sergio Stives Barrios Buitrago.
+ * @Github https://github.com/SerBuitrago.
+ * @contributors leynerjoseoa.
+ * @version 1.0.0.
+ */
 public class PastleyVariable {
 
 	/* APP */
@@ -15,33 +22,6 @@ public class PastleyVariable {
 	public static final String PASTLEY_DATE_FORMAT_DATE = "yyyy/MM/dd";
 	public static final String PASTLEY_DATE_FORMAT_HOUR = "HH:mm:ss";
 	public static final String PASTLEY_DATE_TIME_FORMAT = PASTLEY_DATE_FORMAT_DATE + " " + PASTLEY_DATE_FORMAT_HOUR;
-
-	/* API */
-	public static final String PASTLEY_API_PROPERTY_ACCEPT_JSON = "application/json";
-	public static final String PASTLEY_API_PROPERTY_TYPE_JSON = "application/json; charset=utf8";
-	
-	public static final String PASTLEY_API_METHOD_GET = "get";
-	public static final String PASTLEY_API_METHOD_PUT = "put";
-	public static final String PASTLEY_API_METHOD_POST = "post";
-	public static final String PASTLEY_API_GATEWAY_PORT = "8080";
-	public static final String PASTLEY_API_GATEWAY_HOST = "localhost";
-	public static final String PASTLEY_API_GATEWAY_PATH = "http://" + PASTLEY_API_GATEWAY_HOST + ":"
-			+ PASTLEY_API_GATEWAY_PORT + "/";
-
-	/* REQUEST */
-	public static final String PASTLEY_API_REQUEST_CREATE = "";
-	public static final String PASTLEY_API_REQUEST_UPDATE_STATU = "update/statu";
-	public static final String PASTLEY_API_REQUEST_ALL_GET_STATU = "all/find/statu/";
-	
-	/* API MICROSERVICE SALE */
-	public static final String PASTLEY_API_MICROSERVICE_PRODUCT_SERVICE_PRODUCT = PASTLEY_API_GATEWAY_PATH+"product";
-	public static final String PASTLEY_API_MICROSERVICE_PRODUCT_SERVICE_CATEGORY = PASTLEY_API_GATEWAY_PATH+"category";
-	
-	/* API MICROSERVICE SALE */
-	public static final String PASTLEY_API_MICROSERVICE_SALE_SERVICE_SALE = PASTLEY_API_GATEWAY_PATH+"sale";
-	public static final String PASTLEY_API_MICROSERVICE_SALE_SERVICE_METHOD = PASTLEY_API_GATEWAY_PATH+"method";
-	public static final String PASTLEY_API_MICROSERVICE_SALE_SERVICE_CART= PASTLEY_API_GATEWAY_PATH+"cart";
-	public static final String PASTLEY_API_MICROSERVICE_SALE_SERVICE_SALE_DETAIL = PASTLEY_API_GATEWAY_PATH+"sale-detail";
 
 	/* NAME MENU */
 	public static final String PASTLEY_MENU_NAME_HISTORY = "Historial";

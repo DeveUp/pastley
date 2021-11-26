@@ -2,10 +2,13 @@ package com.pastley.models.dto;
 
 import java.io.Serializable;
 
-import org.json.simple.JSONObject;
-
-import com.pastley.util.PastleyValidate;
-
+/**
+ * @project Pastley.
+ * @author Sergio Stives Barrios Buitrago.
+ * @Github https://github.com/SerBuitrago.
+ * @contributors leynerjoseoa.
+ * @version 1.0.0.
+ */
 public class ExceptionDTO extends Exception implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -14,6 +17,9 @@ public class ExceptionDTO extends Exception implements Serializable {
 	private String path;
 	private String message;
 	private int statu;
+	
+	public ExceptionDTO() {
+	}
 
 	public ExceptionDTO(Exception e) {
 		if (e != null) {
@@ -22,25 +28,6 @@ public class ExceptionDTO extends Exception implements Serializable {
 			this.message = e.getMessage();
 			this.statu = 404;
 		}
-	}
-
-	public ExceptionDTO(JSONObject object) {
-		if (object != null) {
-			this.exception = PastleyValidate.isObject(object.get("exception")) ? String.valueOf(object.get("exception"))
-					: "N/A";
-			this.path = PastleyValidate.isObject(object.get("path")) ? String.valueOf(object.get("path")) : "N/A";
-			this.message = PastleyValidate.isObject(object.get("message")) ? String.valueOf(object.get("message"))
-					: "N/A";
-			this.statu = PastleyValidate.isObject(object.get("message"))
-					? Integer.parseInt(String.valueOf(object.get("message")))
-					: 500;
-		}
-	}
-
-	@Override
-	public String toString() {
-		return "ExceptionDTO [exception=" + exception + ", path=" + path + ", message=" + message + ", statu=" + statu
-				+ "]";
 	}
 
 	public String getException() {
