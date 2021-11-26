@@ -1,7 +1,10 @@
 package com.pastley.models.dto;
 
+import com.pastley.models.model.Buy;
+import com.pastley.models.model.BuyDetail;
 import com.pastley.models.model.Category;
 import com.pastley.models.model.Product;
+import com.pastley.models.model.Provider;
 
 /**
  * @project Pastley.
@@ -21,5 +24,20 @@ public class InitDTO {
 		if(category)
 			product.setCategory(category());
 		return product;
+	}
+	
+	public static Provider provider() {
+		return new Provider();
+	}
+	
+	public static Buy buy(boolean provider) {
+		Buy buy = new Buy();
+		if(provider)
+			buy.setProvider(provider());
+		return buy;
+	}
+	public static BuyDetail buyDetail() {
+		BuyDetail buyDetail = new BuyDetail();
+		return buyDetail;
 	}
 }

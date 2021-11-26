@@ -13,7 +13,7 @@ import com.pastley.util.PastleyDate;
  * @contributors leynerjoseoa.
  * @version 1.0.0.
  */
-public class Category implements Serializable {
+public class Category implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 

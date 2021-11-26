@@ -4,8 +4,12 @@ import java.math.BigInteger;
 
 import org.json.simple.JSONObject;
 
+import com.pastley.models.model.Buy;
+import com.pastley.models.model.BuyDetail;
 import com.pastley.models.model.Category;
 import com.pastley.models.model.Product;
+import com.pastley.models.model.Provider;
+import com.pastley.models.model.ProviderProduct;
 import com.pastley.util.PastleyValidate;
 
 /**
@@ -40,6 +44,55 @@ public class JSONConvert {
 		return category;
 	}
 	
+	public static Provider provider(JSONObject object, Provider value) {
+		if(!PastleyValidate.isObject(object))
+			return value;
+		Provider provider = new Provider();
+		provider.setId(validateLong(object.get("id"), 0L));
+		provider.setName(validateString(object.get("name"), null));
+		provider.setDescription(validateString(object.get("description"), null));
+		provider.setStatu(validateBoolean(object.get("statu"), false));
+		provider.setDateRegister(validateString(object.get("dateRegister"), null));
+		provider.setDateUpdate(validateString(object.get("dateUpdate"), null));
+		return provider;
+	}
+	
+	public static Buy buy(JSONObject object, Buy value) {
+		if(!PastleyValidate.isObject(object))
+			return value;
+		Buy buy = new Buy();
+		buy.setId(validateLong(object.get("id"), 0L));
+		buy.setProvider(provider((JSONObject) object.get("provider"), new Provider()));
+		buy.setIva(validateString(object.get("iva"), null));
+		buy.setTotalNet(validateBigInteger(object.get("validateBigInteger"), null));
+		buy.setTotalGross(validateBigInteger(object.get("totalGross"), null));
+		buy.setStatu(validateBoolean(object.get("statu"), false));
+		buy.setDateRegister(validateString(object.get("dateRegister"), null));
+		buy.setDateUpdate(validateString(object.get("dateUpdate"), null));
+		return buy;
+	}
+	
+	public static BuyDetail buyDetail(JSONObject object, BuyDetail value) {
+		if(!PastleyValidate.isObject(object))
+			return value;
+		BuyDetail buyDetail = new BuyDetail();
+		buyDetail.setId(validateLong(object.get("id"), 0L));
+		buyDetail.setIdProduct(validateLong(object.get("idProduct"), null));
+		buyDetail.setDiscount(validateString(object.get("discount"), null));
+		buyDetail.setVat(validateString(object.get("vat"), null));
+		buyDetail.setCount(validateInt(object.get("count"), 0));
+		buyDetail.setPrice(validateBigInteger(object.get("price"), BigInteger.ZERO));
+		buyDetail.setDescription(validateString(object.get("description"), null));
+		buyDetail.setSubtotalNet(validateBigInteger(object.get("subtotalNet"), BigInteger.ZERO));
+		buyDetail.setSubtotalGross(validateBigInteger(object.get("subtotalGross"), BigInteger.ZERO));
+		buyDetail.setOtherPriceVat(validateBigInteger(object.get("otherPriceVat"), BigInteger.ZERO));
+		buyDetail.setOtherPriceAddPriceVat(validateBigInteger(object.get("otherPriceAddPriceVat"), BigInteger.ZERO));
+		buyDetail.setOtherPriceDisount(validateBigInteger(object.get("otherPriceDisount"), BigInteger.ZERO));
+		buyDetail.setOtherPriceSubPriceDisount(validateBigInteger(object.get("otherPriceSubPriceDisount"), BigInteger.ZERO));
+		buyDetail.setOtherSubtotalPriceDisount(validateBigInteger(object.get("otherSubtotalPriceDisount"), BigInteger.ZERO));
+		return buyDetail;
+	}
+	
 	public static Product product(JSONObject object, Product value) {
 		if(!PastleyValidate.isObject(object))
 			return value;
@@ -63,6 +116,14 @@ public class JSONConvert {
 		return product;
 	}
 	
+	public static ProviderProduct product(JSONObject object, ProviderProduct value) {
+		if(!PastleyValidate.isObject(object))
+			return value;
+		ProviderProduct providerProduct = new ProviderProduct();
+		providerProduct.setProduct(validateLong(object.get("product"), 0L));
+		providerProduct.setProvider(validateLong(object.get("provider"), 0L));
+		return providerProduct;
+	}
 	
 	private static Long validateLong(Object object, Long value) {
 		return PastleyValidate.isObject(object) ? Long.parseLong(String.valueOf(object)) : value;

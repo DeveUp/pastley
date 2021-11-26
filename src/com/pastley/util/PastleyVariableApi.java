@@ -39,4 +39,5 @@ public class PastleyVariableApi {
 	/* API MICROSERVICE BUY */
 	public static final String PASTLEY_API_MICROSERVICE_BUY_SERVICE_BUY = PASTLEY_API_GATEWAY_PATH+"buy";
 	public static final String PASTLEY_API_MICROSERVICE_BUY_SERVICE_PROVIDER = PASTLEY_API_GATEWAY_PATH+"provider";
+	public static final String PASTLEY_API_MICROSERVICE_BUY_SERVICE_BUYDETAIL = PASTLEY_API_GATEWAY_PATH+"buy-detail";
 }
