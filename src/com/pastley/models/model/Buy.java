@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.pastley.util.PastleyDate;
+import com.pastley.util.PastleyValidate;
 
 import java.io.Serializable;
 
@@ -24,6 +25,11 @@ public class Buy implements Serializable {
 	private String dateUpdate;
 	
 	private List<BuyDetail> details;
+	
+	public Buy() {
+		totalNet = BigInteger.ZERO;
+		totalGross = BigInteger.ZERO;
+	}
 	
 	public LocalDate getDateWithoutTime() {
 		PastleyDate date = new PastleyDate();
@@ -49,6 +55,26 @@ public class Buy implements Serializable {
 			return false;
 		Buy other = (Buy) obj;
 		return Objects.equals(id, other.id);
+	}
+	
+	public void calculate() {
+		totalNet = BigInteger.ZERO;
+		totalGross = BigInteger.ZERO;
+		calculateTotal();
+	}
+
+	public BigInteger calculateTotal() {
+		if (!PastleyValidate.isList(details))
+			return BigInteger.ZERO;
+		BigInteger value = BigInteger.ZERO;
+		for (BuyDetail bt : details) {
+			bt.calculate();
+			if (PastleyValidate.bigIntegerHigherZero(bt.getSubtotalNet()))
+				totalNet = totalNet.add(bt.getSubtotalNet());
+			if(PastleyValidate.bigIntegerHigherZero(bt.getSubtotalGross()))
+				totalGross = totalGross.add(bt.getSubtotalGross());
+		}
+		return value;
 	}
 
 	public Long getId() {

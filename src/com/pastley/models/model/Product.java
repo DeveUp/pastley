@@ -1,11 +1,13 @@
 package com.pastley.models.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.ParseException;
 import java.time.LocalDate;
 
 import com.pastley.util.PastleyDate;
+import com.pastley.util.PastleyValidate;
 
 /**
  * @project Pastley.
@@ -34,6 +36,18 @@ public class Product implements Serializable{
 	private String dateRegister;
 	private String dateUpdate;
 	private Category category;
+	
+	private BigInteger priceVat;
+	private BigInteger priceDiscount;
+	
+	public Product() {	
+	}
+	
+	public Product(BigInteger price, String discount, String vat) {
+		this.price= price;
+		this.discount = discount;
+		this.vat = vat;
+	}
 	
 	public LocalDate getDateWithoutTime() {
 		PastleyDate date = new PastleyDate();
@@ -69,6 +83,101 @@ public class Product implements Serializable{
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", flavor=" + flavor + ", vat=" + vat + ", stock=" + stock
+				+ ", stockMin=" + stockMin + ", dimension=" + dimension + ", image=" + image + ", statu=" + statu
+				+ ", description=" + description + ", ingredients=" + ingredients + ", discount=" + discount
+				+ ", price=" + price + ", dateRegister=" + dateRegister + ", dateUpdate=" + dateUpdate + ", category="
+				+ category + "]";
+	}
+	
+	public void calculate() {
+		this.calculatePriceIva();
+		this.calculateDiscount();
+
+	}
+
+	/**
+	 * Method that allows calculating the price of vat.
+	 */
+	public void calculatePriceIva() {
+		this.priceVat = calculate(this.vat);
+	}
+
+	/**
+	 * Method that allows the discount price to be calculated.
+	 */
+	public void calculateDiscount() {
+		this.priceDiscount = calculate(this.discount);
+	}
+
+	/**
+	 * Method for calculating the net subtotal.
+	 * 
+	 * @return The value obtained.
+	 */
+	public BigInteger calculateSubTotalNet() {
+		return calculatePriceSubDiscount();
+	}
+
+	/**
+	 * Method for calculating the gross subtotal.
+	 * 
+	 * @return The value obtained.
+	 */
+	public BigInteger calculateSubtotalGross() {
+		if (!PastleyValidate.bigIntegerHigherZero(this.priceVat)) {
+			calculatePriceIva();
+		}
+		return calculateSubTotalNet().add(this.priceVat);
+	}
+
+	/**
+	 * Method that allows adding the value of the VAT to the price of the product.
+	 * 
+	 * @return The value obtained.
+	 */
+	public BigInteger calculatePriceAddPriceIva() {
+		if (!PastleyValidate.bigIntegerHigherZero(this.priceVat)) {
+			calculatePriceIva();
+		}
+		BigInteger price = (PastleyValidate.bigIntegerHigherZero(this.price)) ? this.price.add(this.priceVat)
+				: BigInteger.ZERO;
+		return (PastleyValidate.bigIntegerLessZero(price)) ? BigInteger.ZERO : price;
+	}
+
+	/**
+	 * Method that allows subtracting the value of the discount from the price of
+	 * the product.
+	 * 
+	 * @return The value obtained.
+	 */
+	public BigInteger calculatePriceSubDiscount() {
+		if (!PastleyValidate.bigIntegerHigherZero(this.priceDiscount)) {
+			calculateDiscount();
+		}
+		BigInteger price = (PastleyValidate.bigIntegerHigherZero(this.price)) ? this.price.subtract(this.priceDiscount)
+				: BigInteger.ZERO;
+		return (PastleyValidate.bigIntegerLessZero(price)) ? BigInteger.ZERO : price;
+	}
+
+	/**
+	 * Method that allows you to convert a percentage into a price.
+	 * 
+	 * @param chain, Represents the percentage.
+	 * @return The value obtained.
+	 */
+	private BigInteger calculate(String chain) {
+		if (PastleyValidate.isChain(chain)) {
+			BigDecimal price = new BigDecimal(this.price);
+			int number = (PastleyValidate.isNumber(chain)) ? Integer.parseInt(chain) : 0;
+			price = price.multiply(new BigDecimal((double) (number / 100d)));
+			return price.toBigInteger();
+		}
+		return BigInteger.ZERO;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -91,6 +200,22 @@ public class Product implements Serializable{
 
 	public void setFlavor(String flavor) {
 		this.flavor = flavor;
+	}
+
+	public BigInteger getPriceVat() {
+		return priceVat;
+	}
+
+	public void setPriceVat(BigInteger priceVat) {
+		this.priceVat = priceVat;
+	}
+
+	public BigInteger getPriceDiscount() {
+		return priceDiscount;
+	}
+
+	public void setPriceDiscount(BigInteger priceDiscount) {
+		this.priceDiscount = priceDiscount;
 	}
 
 	public String getVat() {

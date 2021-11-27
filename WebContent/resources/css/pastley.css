@@ -644,6 +644,7 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
   display: grid;
   -ms-grid-columns: auto 1fr;
   grid-template-columns: auto 1fr;
+  -ms-grid-rows: (auto)[3];
   grid-template-rows: repeat(3, auto);
       grid-template-areas: "Left   Top      Top" "Left   Center   Center" "Left   Center 	Center";
   position: relative;
@@ -654,11 +655,15 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
   transition: all 1s cubic-bezier(0.69, 0.01, 0.25, 1);
 }
 .lsy-structure-home__top {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
   -ms-grid-column-span: 2;
   grid-area: Top;
 }
 .lsy-structure-home__left {
+  -ms-grid-row: 1;
   -ms-grid-row-span: 3;
+  -ms-grid-column: 1;
   grid-area: Left;
   width: 300px;
   height: 100vh;
@@ -1770,5 +1775,71 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
   position: relative;
   fill: var(--lsy-background-body);
   stroke: none;
+}
+
+.lsy-interface-buy {
+  background-image: url(../resources/img/background/lsy-03.jpg);
+}
+.lsy-interface-buy-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1em 3em;
+  padding-bottom: 10em;
+}
+.lsy-interface-buy-container-logo {
+  width: 200px;
+  height: 200px;
+  margin: 0em;
+  overflow: hidden;
+}
+.lsy-interface-buy-container-logo img {
+  width: 100%;
+  height: 100%;
+}
+.lsy-interface-buy .lsy-txt-subtitle {
+  font-size: 2em;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  color: var(--lsy-background-primary);
+}
+.lsy-interface-buy .lsy-span {
+  color: var(--lsy-background-primary);
+  font-weight: bolder;
+}
+.lsy-interface-buy .lsy-span .lsy-span {
+  color: var(--lsy-color-primary);
+  font-weight: normal;
+}
+.lsy-interface-buy .lsy-table, .lsy-interface-buy .lsy-table table {
+  width: 100%;
+}
+.lsy-interface-buy .lsy-table table {
+  margin: 1em auto;
+  border-collapse: collapse;
+}
+.lsy-interface-buy .lsy-table table thead tr {
+  background-color: var(--lsy-background-primary);
+  color: var(--lsy-color-primary);
+}
+.lsy-interface-buy .lsy-table table thead tr th {
+  border: 1px solid #CCD1D1;
+  padding: 0.5em 1em;
+}
+.lsy-interface-buy .lsy-table table tbody tr td {
+  border: 1px solid #CCD1D1;
+  text-align: center;
+  padding: 0.3em;
+}
+.lsy-interface-buy .lsy-table table tbody tr td.lsy-table__colspan {
+  text-align: end;
+  padding: 0.2em;
+  padding-right: 1em;
+  background-color: #F5F5F5;
+  color: black;
+  font-weight: 900;
+}
+.lsy-interface-buy .lsy-table table tbody tr td.lsy-table__colspan img {
+  width: 400px;
+  height: 400px;
+  margin: 1em auto;
 }
 /*# sourceMappingURL=pastley.css.map */

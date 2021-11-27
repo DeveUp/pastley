@@ -3,6 +3,7 @@ package com.pastley.models.dto.primefaces;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.primefaces.model.FilterMeta;
 
@@ -13,6 +14,7 @@ public class DataTableDTO<T> extends StatuDTO implements Serializable {
 	private List<T> entity;
 	private List<T> filter;
 	private List<FilterMeta> filterBy;
+	private List<T> select;
 	private boolean globalFilterOnly;
 
 	public DataTableDTO() {
@@ -33,9 +35,21 @@ public class DataTableDTO<T> extends StatuDTO implements Serializable {
 	public void toggleGlobalFilter() {
         setGlobalFilterOnly(!isGlobalFilterOnly());
     }
+	
+	public boolean filterByInteger(Object value, Object filter, Locale locale) {
+		return FilterDTO.filterByInteger(value, filter, locale);
+	}
 
 	public List<T> getEntity() {
 		return entity;
+	}
+
+	public List<T> getSelect() {
+		return select;
+	}
+
+	public void setSelect(List<T> select) {
+		this.select = select;
 	}
 
 	public void setEntity(List<T> entity) {

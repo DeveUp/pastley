@@ -6,11 +6,229 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="tmp-section">
-		<ui:decorate template="component/header.xhtml">
-			<ui:define name="tmp-section-component-statu--header">
-				<p:menuitem value="Historial" url="all.xhtml" styleClass="lsy-link" />
-			</ui:define>
-			<ui:define name="tmp-section-component-header-subtitle--header">Registrar</ui:define>
-		</ui:decorate>
+		<style>
+.lsy-header {
+	display: none;
+}
+</style>
+		<h:panelGroup layout="block" styleClass="lsy-interface-buy"
+			id="lsy-interface-buy">
+			<h:panelGroup layout="block" styleClass="lsy-interface-buy-container">
+
+				<h:panelGroup layout="block">
+					<h2 class="lsy-txt-subtitle p-mb-0">Factura Compra.</h2>
+					<h:panelGroup layout="block"
+						styleClass="lsy-interface-buy-container-logo">
+						<p:graphicImage
+							value="https://raw.githubusercontent.com/DeveUp/pastley-backend/eda7becea603d3fd3809b5bbd909f2081154da33/pastley-logos/02.svg"
+							cache="false" />
+					</h:panelGroup>
+				</h:panelGroup>
+
+				<h:panelGroup layout="block"
+					styleClass="lsy-container-date p-d-flex p-jc-end p-ai-end p-flex-column p-mt-3 p-mb-3"
+					id="lsy-container-date">
+					<h:outputLabel value="Fecha" styleClass="lsy-span" />
+					<h:outputLabel value="#{buy.dateZone}" />
+					<p:poll interval="1" listener="#{buy.findDateZone()}"
+						update="@(.lsy-container-date)" />
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" styleClass="lsy-container-provider"
+					id="lsy-container-provider">
+					<h:panelGroup layout="block"
+						styleClass="p-d-flex p-jc-end p-ai-center">
+						<p:commandButton icon="fas fa-filter"
+							action="#{buy.dialogProvider(1)}" title="Filtrar Proveedor"
+							styleClass="lsy-button lsy-bg-c-info p-m-0"
+							update="@(.lsy-dialog-provider)" />
+					</h:panelGroup>
+					<h2 class="lsy-txt-subtitle p-mt-3">Proveedor</h2>
+					<h:panelGroup layout="block">
+						<h:outputLabel value="Nombre:" styleClass="lsy-span p-mr-2">
+							<h:outputText styleClass="lsy-span lsy-c-fatal"
+								value="#{buy.buy.provider.name}" />
+						</h:outputLabel>
+					</h:panelGroup>
+				</h:panelGroup>
+
+				<p:separator styleClass="p-mt-3 p-mb-3" />
+
+				<h:panelGroup layout="block"
+					styleClass="p-d-flex p-jc-end p-ai-center">
+					<p:commandButton icon="fas fa-plus"
+						action="#{buy.dialogProduct(1)}" title="Agregar Producto"
+						styleClass="lsy-button lsy-bg-c-success p-m-0"
+						update="@(.lsy-dialog-product)" />
+				</h:panelGroup>
+
+
+
+				<h:panelGroup layout="block" styleClass="lsy-table" id="lsy-table">
+					<table>
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nombre</th>
+								<th>Cantidad</th>
+								<th>P/U</th>
+								<th>Descuento</th>
+								<th>Subtotal</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<ui:repeat var="a" value="#{buy.buy.details}">
+								<tr>
+									<td><h:outputText value="#{a.product.id}"></h:outputText></td>
+									<td><h:outputText value="#{a.product.name}"></h:outputText></td>
+									<td><p:spinner id="rotate" value="#{a.count}" min="1"
+											max="999" rotate="true">
+										</p:spinner></td>
+									<td><h:outputText value="#{a.price}">
+											<f:convertNumber currencySymbol="$" type="currency" />
+										</h:outputText></td>
+									<td><h:outputText
+											value="#{a.discount != null ? a.discount : '0'}%"></h:outputText></td>
+									<td><h:panelGroup layout="block"
+											styleClass="p-d-flex p-jc-between p-ai-center">
+											<h:outputText value="#{a.subtotalGross}">
+												<f:convertNumber currencySymbol="$" type="currency" />
+											</h:outputText>
+										</h:panelGroup></td>
+									<td><p:commandButton icon="fa fa-fw fa-times"
+											action="#{buy.remove(a)}"
+											update="@(.lsy-alert), @(.lsy-table)"
+											styleClass="lsy-button lsy-bg-c-danger lsy-button-icon" /></td>
+								</tr>
+							</ui:repeat>
+							<h:panelGroup rendered="#{fn:length(buy.buy.details) le 0}">
+								<tr>
+									<td colspan="6" class="lsy-table__colspan"><h:graphicImage
+											library="svg" name="not-cart.svg" /></td>
+								</tr>
+							</h:panelGroup>
+							<tr>
+								<td colspan="4" class="lsy-table__colspan">Total Bruto</td>
+								<td colspan="2"><h:outputText value="#{buy.buy.totalGross}">
+										<f:convertNumber currencySymbol="$" type="currency" />
+									</h:outputText></td>
+							</tr>
+							<tr>
+								<td colspan="4" class="lsy-table__colspan">Total Neto</td>
+								<td colspan="2"><h:outputText value="#{buy.buy.totalNet}">
+										<f:convertNumber currencySymbol="$" type="currency" />
+									</h:outputText></td>
+							</tr>
+							<tr>
+								<td colspan="4" class="lsy-table__colspan">Registrar</td>
+								<td colspan="2"><p:commandButton value="Registrar"
+										icon="fa fa-plus" title="Registrar Venta"
+										disabled="#{fn:length(buy.buy.details) gt 0 ? 'false' : 'true'}"
+										styleClass="lsy-button lsy-bg-c-success"
+										action="#{sale_view.sale()}" update="@(.lsy-table)" /></td>
+							</tr>
+						</tbody>
+					</table>
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:panelGroup>
+	</ui:define>
+	<ui:define name="tmp-component-dialog">
+		<p:dialog header="Proveedor" widgetVar="lsy-dialog-provider"
+			id="lsy-dialog-provider" resizable="false" showEffect="explode"
+			styleClass="lsy-dialog-provider" modal="true" width="50%">
+			<h:form>
+				<h:panelGroup layout="block">
+					<h:panelGroup layout="block"
+						styleClass="ui-fluid p-formgrid p-grid">
+						<h:panelGroup layout="block" styleClass="p-field p-col-5">
+							<p:outputLabel for="provider-id" value="Id:" />
+							<p:inputText id="provider-id" value="#{buy.buy.provider.id}" />
+						</h:panelGroup>
+						<p:commandButton icon="fas fa-filter"
+							action="#{buy.dialogProvider()}" title="Filtrar"
+							styleClass="lsy-button lsy-bg-c-info"
+							update="@(.lsy-dialog-provider), @(.lsy-table), @(.lsy-alert), @(.lsy-container-provider)" />
+					</h:panelGroup>
+					<h:panelGroup layout="block"
+						styleClass="ui-fluid p-formgrid p-grid">
+						<h:panelGroup layout="block" styleClass="p-field p-col">
+							<p:outputLabel for="provider-name" value="Nombre:" />
+							<p:inputText id="provider-name" disabled="true"
+								value="#{buy.buy.provider.name}" />
+						</h:panelGroup>
+					</h:panelGroup>
+				</h:panelGroup>
+			</h:form>
+		</p:dialog>
+		<p:dialog header="Producto" widgetVar="lsy-dialog-product"
+			id="lsy-dialog-product" resizable="false" showEffect="explode"
+			styleClass="lsy-dialog-product" modal="true" width="80%">
+			<h:form>
+				<h:panelGroup layout="block">
+					<p:dataTable var="a" value="#{table.productEntity}"
+						widgetVar="lsy-table-product" id="lsy-table-product"
+						styleClass="lsy-table-product"
+						emptyMessage="No se encontro ningun producto."
+						filterBy="#{table.product.filterBy}"
+						selection="#{table.buy.select}"
+						filteredValue="#{table.product.filter}" paginator="true" rows="20"
+						globalFilterOnly="#{table.product.globalFilterOnly}"
+						scrollWidth="auto" sortBy="#{a.category.id}" rowKey="#{a.id}"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} 
+							   	   {PreviousPageLink}    {CurrentPageReport} 
+							       {NextPageLink}        {LastPageLink}"
+						rowsPerPageTemplate="5,10,15,20,50,100">
+						<f:facet name="header">
+							<p:outputPanel layout="block"
+								styleClass="p-d-flex p-jc-center p-ac-center p-p-3">
+								<h2>Productos</h2>
+								<h4 class="p-as-end">(#{fn:length(table.productEntity)}
+									resultados)</h4>
+							</p:outputPanel>
+						</f:facet>
+						<p:headerRow field="category.id" expandable="true">
+							<p:column colspan="4">
+								<h:outputText value="#{a.category.name}" />
+							</p:column>
+						</p:headerRow>
+						<p:column selectionMode="multiple" exportable="false"
+							style="width:40px"></p:column>
+						<p:column headerText="Id" footerText="id"
+							styleClass="p-text-center" filterBy="#{a.id}" sortBy="#{a.id}">
+							<h:panelGroup layout="block">
+								<h:outputText value="#{a.id}" />
+							</h:panelGroup>
+						</p:column>
+						<p:column headerText="Nombre" footerText="Nombre"
+							styleClass="p-text-center" filterBy="#{a.name}"
+							sortBy="#{a.name}" filterMatchMode="contains">
+							<h:outputText value="#{a.name}" />
+						</p:column>
+						<p:column headerText="Stock" footerText="Stock"
+							style="width:100px" styleClass="p-text-center"
+							filterBy="#{a.stock}" sortBy="#{a.stock}"
+							filterFunction="#{table.product.filterByInteger}">
+							<h:panelGroup layout="block"
+								styleClass="p-d-flex p-jc-center p-ai-center p-flex-column">
+								<h:outputText value="#{a.stock}"
+									styleClass="lsy-badge lsy-bg-c-success" />
+							</h:panelGroup>
+						</p:column>
+						<f:facet name="footer">
+							<h:panelGroup layout="block"
+								styleClass="p-d-flex p-jc-center p-ai-center">
+								<p:commandButton icon="fa fa-fw fa-plus" value="Validar"
+									title="Validar"
+									action="#{buy.dialogProductAdd(table.buy.select)}"
+									update="@(.lsy-dialog-product), @(.lsy-table), @(.lsy-alert)"
+									styleClass="lsy-button lsy-bg-c-success" />
+							</h:panelGroup>
+						</f:facet>
+					</p:dataTable>
+				</h:panelGroup>
+			</h:form>
+		</p:dialog>
 	</ui:define>
 </ui:composition>
