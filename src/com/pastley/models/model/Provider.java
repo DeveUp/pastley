@@ -31,6 +31,11 @@ public class Provider implements Serializable{
 		return Objects.equals(id, other.id);
 	}
 	
+	@Override
+	public String toString() {
+		return "Provider [id=" + id + ", name=" + name + ", description=" + description + ", statu=" + statu
+				+ ", dateRegister=" + dateRegister + ", dateUpdate=" + dateUpdate + "]";
+	}
 	public Long getId() {
 		return id;
 	}

@@ -1,7 +1,12 @@
 package com.pastley.models.model;
 
 import java.math.BigInteger;
+import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.Objects;
+
+import com.pastley.util.PastleyDate;
+
 import java.io.Serializable;
 
 public class Buy implements Serializable {
@@ -16,6 +21,15 @@ public class Buy implements Serializable {
 	private boolean statu;
 	private String dateRegister;
 	private String dateUpdate;
+	
+	public LocalDate getDateWithoutTime() {
+		PastleyDate date = new PastleyDate();
+		try {
+			return PastleyDate.convertToLocalDate(date.convertToDate(dateRegister));
+		} catch (ParseException e) {
+			return LocalDate.now();
+		}
+	}
 
 	@Override
 	public int hashCode() {

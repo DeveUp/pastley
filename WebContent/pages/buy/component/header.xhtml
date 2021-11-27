@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<h:panelGroup layout="block">
+		<ui:decorate template="../../component/statu.xhtml">
+			<ui:define name="tmp-section-component-statu">
+				<p:menuitem value="Home" url="../index.xhtml" />
+				<p:menuitem value="Producto" url="index.xhtml" styleClass="lsy-link" />
+				<ui:insert name="tmp-section-component-statu--header" />
+			</ui:define>
+		</ui:decorate>
+		<ui:decorate template="../../component/header.xhtml">
+			<ui:define name="tmp-section-component-header-image">
+				<p:graphicImage cache="false" library="img"
+					name="header/buy.jpg" title="Compra" alt="Compra" />
+			</ui:define>
+			<ui:define name="tmp-section-component-header-title"> Compra </ui:define>
+			<ui:define name="tmp-section-component-header-subtitle">
+				<ui:insert name="tmp-section-component-header-subtitle--header" />
+			</ui:define>
+		</ui:decorate>
+	</h:panelGroup>
+</ui:composition>
