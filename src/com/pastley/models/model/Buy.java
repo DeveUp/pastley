@@ -3,6 +3,7 @@ package com.pastley.models.model;
 import java.math.BigInteger;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import com.pastley.util.PastleyDate;
@@ -21,6 +22,8 @@ public class Buy implements Serializable {
 	private boolean statu;
 	private String dateRegister;
 	private String dateUpdate;
+	
+	private List<BuyDetail> details;
 	
 	public LocalDate getDateWithoutTime() {
 		PastleyDate date = new PastleyDate();
@@ -70,6 +73,14 @@ public class Buy implements Serializable {
 
 	public void setIva(String iva) {
 		this.iva = iva;
+	}
+
+	public List<BuyDetail> getDetails() {
+		return details;
+	}
+
+	public void setDetails(List<BuyDetail> details) {
+		this.details = details;
 	}
 
 	public BigInteger getTotalNet() {
