@@ -1,13 +1,16 @@
-package com.pastley.models.dto.primefaces;
+package com.pastley.models.app;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
 import org.primefaces.model.FilterMeta;
+import org.primefaces.model.MatchMode;
 
-public class DataTableDTO<T> extends StatuDTO implements Serializable {
+public class DataTableApp<T> extends StatuApp implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -17,27 +20,37 @@ public class DataTableDTO<T> extends StatuDTO implements Serializable {
 	private List<T> select;
 	private boolean globalFilterOnly;
 
-	public DataTableDTO() {
+	public DataTableApp() {
 		this(new ArrayList<>());
 	}
 
-	public DataTableDTO(List<T> entity) {
+	public DataTableApp(List<T> entity) {
 		this.renderizar = true;
 		this.globalFilterOnly = false;
 		this.entity = entity;
 		this.filter = new ArrayList<>();
-		this.filter();
+		this.initFilter();
 	}
 
-	public void filter() {
+	public void initFilter() {
+		filterBy = new ArrayList<>();
 	}
-	
+
+	public void filterRange() {
+		if (filter == null)
+			initFilter();
+		filterBy.add(FilterMeta.builder().field("dateWithoutTime")
+				.filterValue(
+						new ArrayList<>(Arrays.asList(LocalDate.now().minusDays(28), LocalDate.now().plusDays(28))))
+				.matchMode(MatchMode.RANGE).build());
+	}
+
 	public void toggleGlobalFilter() {
-        setGlobalFilterOnly(!isGlobalFilterOnly());
-    }
-	
+		setGlobalFilterOnly(!isGlobalFilterOnly());
+	}
+
 	public boolean filterByInteger(Object value, Object filter, Locale locale) {
-		return FilterDTO.filterByInteger(value, filter, locale);
+		return FilterApp.filterByInteger(value, filter, locale);
 	}
 
 	public List<T> getEntity() {

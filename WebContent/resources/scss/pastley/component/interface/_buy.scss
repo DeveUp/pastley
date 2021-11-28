@@ -1,34 +1,4 @@
 .lsy-interface-buy{
-	background-image: url(../resources/img/background/lsy-03.jpg);
-	&-container{
-		background-color: rgba(255,255,255, .9);
-		padding: 1em 3em;
-		padding-bottom: 10em;
-		&-logo{
-    		width: 200px;
-    		height: 200px;
-    		margin: 0em;
-    		overflow: hidden;
-			img{
-				width: 100%;
-				height: 100%;
-			}
-		}
-	}
-	.lsy-txt-subtitle{
-    	font-size: 2em;
-    	font-weight: bolder;
-    	letter-spacing: 2px;
-		color: var(#{$VAR-LSY-TXT-VAR-BACKGROUND}-primary);
-	}
-	.lsy-span{
-		color: var(#{$VAR-LSY-TXT-VAR-BACKGROUND}-primary);
-		font-weight: bolder;
-		.lsy-span{
-			color: var(#{$VAR-LSY-TXT-VAR-COLOR}-primary);
-		    font-weight: normal;
-		}
-	}
 	.lsy-table{
 		&, table{
 			width: 100%;

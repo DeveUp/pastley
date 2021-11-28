@@ -1,0 +1,31 @@
+{
+	"items": [
+		{
+			"badge" : {
+				"name": "pro"
+			},
+			"name":  "Mantenimiento",
+			"id": null,
+			"styleClass": null,
+			"title": null,
+			"entity": null,
+			"path": null,
+			"icon": null,
+			"isInfo": true,
+			"items": null
+		},
+		{
+			"badge" : null,
+			"isInfo": true,
+			"name":  "Test",
+			"id": null,
+			"styleClass": null,
+			"title": null,
+			"entity": null,
+			"path": null,
+			"icon": null,
+			"items": null
+		}
+	]
+}
+

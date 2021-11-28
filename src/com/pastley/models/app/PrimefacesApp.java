@@ -1,10 +1,10 @@
-package com.pastley.models.dto.primefaces;
+package com.pastley.models.app;
 
 import java.io.Serializable;
 
 import org.primefaces.PrimeFaces;
 
-public class PrimefacesDTO implements Serializable{
+public class PrimefacesApp implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	

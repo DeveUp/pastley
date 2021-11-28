@@ -1,10 +1,10 @@
-package com.pastley.models.dto.primefaces;
+package com.pastley.models.app;
 
 import java.util.Locale;
 
 import com.pastley.util.PastleyValidate;
 
-public class FilterDTO {
+public class FilterApp {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static boolean filterByInteger(Object value, Object filter, Locale locale) {

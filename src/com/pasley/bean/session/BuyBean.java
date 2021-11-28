@@ -12,11 +12,11 @@ import org.slf4j.LoggerFactory;
 
 import com.pastley.controller.request.BuyRequest;
 import com.pastley.controller.request.ProviderRequest;
-import com.pastley.models.dto.AlertDTO;
+import com.pastley.models.app.AlertApp;
+import com.pastley.models.app.ListApp;
+import com.pastley.models.app.PrimefacesApp;
 import com.pastley.models.dto.ExceptionDTO;
 import com.pastley.models.dto.InitDTO;
-import com.pastley.models.dto.ListDTO;
-import com.pastley.models.dto.primefaces.PrimefacesDTO;
 import com.pastley.models.model.Buy;
 import com.pastley.models.model.BuyDetail;
 import com.pastley.models.model.Product;
@@ -31,7 +31,8 @@ public class BuyBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Buy buy;
-	private AlertDTO alert;
+	
+	private AlertApp alert;
 
 	private String dateZone;
 	private PastleyDate date = new PastleyDate();
@@ -42,7 +43,7 @@ public class BuyBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		buy = InitDTO.buy(true);
-		alert = new AlertDTO();
+		alert = new AlertApp();
 	}
 
 	public void findDateZone() {
@@ -52,12 +53,11 @@ public class BuyBean implements Serializable {
 	}
 
 	public void findByProvider() {
-		alert = new AlertDTO();
+		alert = new AlertApp();
 		if (buy != null && buy.getProvider() != null && PastleyValidate.isLong(buy.getProvider().getId())) {
 			ProviderRequest request = new ProviderRequest();
 			try {
 				buy.setProvider(request.findById(buy.getProvider().getId(), null));
-				System.out.println(buy.getProvider());
 				alert.success("Se ha encontrado el proveedor con el id " + buy.getProvider().getId() + ".");
 			} catch (ExceptionDTO e) {
 				buy.setProvider(InitDTO.provider());
@@ -98,8 +98,8 @@ public class BuyBean implements Serializable {
 	public void remove(BuyDetail detail) {
 		if (detail == null)
 			return;
-		alert = new AlertDTO();
-		ListDTO<BuyDetail> list = new ListDTO<>(buy.getDetails());
+		alert = new AlertApp();
+		ListApp<BuyDetail> list = new ListApp<>(buy.getDetails());
 		if (list.remove(detail)) {
 			buy.setDetails(list.getEntities());
 			buy.calculate();
@@ -111,7 +111,7 @@ public class BuyBean implements Serializable {
 	}
 
 	public void create() {
-		alert = new AlertDTO();
+		alert = new AlertApp();
 		BuyRequest request = new BuyRequest();
 		try {
 			Buy aux = request.create(buy, true);
@@ -133,7 +133,7 @@ public class BuyBean implements Serializable {
 		boolean response = false;
 		if (bd != null) {
 			int count = 1 + bd.getCount();
-			ListDTO<BuyDetail> dto = new ListDTO<>(buy.getDetails());
+			ListApp<BuyDetail> dto = new ListApp<>(buy.getDetails());
 			if (count <= 0) {
 				dto.remove(bd);
 				if (isMessage)
@@ -169,7 +169,7 @@ public class BuyBean implements Serializable {
 	}
 
 	public void dialogProvider(int type) throws InterruptedException {
-		PrimefacesDTO primefaces = new PrimefacesDTO();
+		PrimefacesApp primefaces = new PrimefacesApp();
 		primefaces.dialog(type, "lsy-dialog-provider");
 	}
 
@@ -179,7 +179,7 @@ public class BuyBean implements Serializable {
 	}
 
 	public void dialogProduct(int type) throws InterruptedException {
-		PrimefacesDTO primefaces = new PrimefacesDTO();
+		PrimefacesApp primefaces = new PrimefacesApp();
 		primefaces.dialog(type, "lsy-dialog-product");
 	}
 
@@ -208,11 +208,11 @@ public class BuyBean implements Serializable {
 		return date;
 	}
 
-	public AlertDTO getAlert() {
+	public AlertApp getAlert() {
 		return alert;
 	}
 
-	public void setAlert(AlertDTO alert) {
+	public void setAlert(AlertApp alert) {
 		this.alert = alert;
 	}
 

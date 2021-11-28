@@ -80,6 +80,32 @@ $VAR-LSY-FONT:(
 	),
 );
 
+$VAR-LSY-DIMENSION:(
+	"media":( 
+        "xs":  ("360px",  "360px"),
+        "sm":  ("576px",  "576px"),
+        "md":  ("768px",  "768px"),        
+		"lg":  ("992px",  "992px"),
+		"xl":  ("1200px", "1200px"),
+	    "xxl": ("1400px", "1400px")
+	),
+	"width": (
+		"auto":  "auto",
+		"100vh": "100vh",
+		"80vh":  "80vh",
+		"60vh":  "60vh",
+		"40vh":  "40vh",
+		"20vh":  "20vh",
+		"10vh":  "10vh",
+		"100per": "100%",
+		"80per":  "80%",
+		"60per":  "60%",
+		"40per":  "40%",
+		"20per":  "20%",
+		"10per":  "10%",
+	),
+);
+
 $VAR-LSY-TXT-NULL: "n/a";
 $VAR-LSY-TXT-VAR: "--lsy-";
 $VAR-LSY-TXT-VAR-COLOR: $VAR-LSY-TXT-VAR+"color";

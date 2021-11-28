@@ -4,7 +4,6 @@ import java.math.BigInteger;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
 import com.pastley.util.PastleyDate;
 import com.pastley.util.PastleyValidate;
@@ -22,6 +21,7 @@ public class Buy implements Serializable {
 	private boolean statu;
 	private String dateRegister;
 	private String dateUpdate;
+	private LocalDate dateWithoutTime;
 	
 	private List<BuyDetail> details;
 	
@@ -29,19 +29,13 @@ public class Buy implements Serializable {
 		totalNet = BigInteger.ZERO;
 		totalGross = BigInteger.ZERO;
 	}
-	
-	public LocalDate getDateWithoutTime() {
-		PastleyDate date = new PastleyDate();
-		try {
-			return PastleyDate.convertToLocalDate(date.convertToDate(dateRegister));
-		} catch (ParseException e) {
-			return LocalDate.now();
-		}
-	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 
 	@Override
@@ -53,7 +47,22 @@ public class Buy implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Buy other = (Buy) obj;
-		return Objects.equals(id, other.id);
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
+	public LocalDate getDateWithoutTime() {
+		dateWithoutTime = LocalDate.now();
+		PastleyDate date = new PastleyDate();
+		try {
+			dateWithoutTime = PastleyDate.convertToLocalDate(date.convertToDate(dateRegister));
+		} catch (ParseException e) {
+		}
+		return dateWithoutTime;
 	}
 	
 	public void calculate() {
@@ -74,6 +83,10 @@ public class Buy implements Serializable {
 				totalGross = totalGross.add(bt.getSubtotalGross());
 		}
 		return value;
+	}
+	
+	public void setDateWithoutTime(LocalDate dateWithoutTime) {
+		this.dateWithoutTime = dateWithoutTime;
 	}
 
 	public Long getId() {

@@ -1,4 +1,4 @@
-package com.pastley.models.dto;
+package com.pastley.models.app;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import javax.faces.context.FacesContext;
 
 import com.pastley.util.PastleyValidate;
 
-public class AlertDTO implements Serializable {
+public class AlertApp implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private List<FacesMessage> messages;
@@ -18,7 +18,7 @@ public class AlertDTO implements Serializable {
 	private int count;
 	private int size;
 
-	public AlertDTO() {
+	public AlertApp() {
 		init();
 	}
 
@@ -52,7 +52,7 @@ public class AlertDTO implements Serializable {
 		return false;
 	}
 
-	public boolean add(AlertDTO alert) {
+	public boolean add(AlertApp alert) {
 		return (alert != null) ? add(alert.getMessages()) : false;
 	}
 
