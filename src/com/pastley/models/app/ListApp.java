@@ -1,4 +1,4 @@
-package com.pastley.models.dto;
+package com.pastley.models.app;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.pastley.util.PastleyValidate;
 
-public class ListDTO<T> implements Serializable {
+public class ListApp<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -14,11 +14,11 @@ public class ListDTO<T> implements Serializable {
 	private T entity;
 	private int index;
 
-	public ListDTO() {
+	public ListApp() {
 		this(new ArrayList<>());
 	}
 
-	public ListDTO(List<T> entities) {
+	public ListApp(List<T> entities) {
 		this.entities = entities;
 		this.index = -1;
 	}

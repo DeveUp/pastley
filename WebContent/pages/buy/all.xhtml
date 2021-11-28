@@ -13,54 +13,124 @@
 			<ui:define name="tmp-section-component-header-subtitle--header">Historial</ui:define>
 		</ui:decorate>
 
-		<h:panelGroup layout="block" styleClass="p-p-3">
+		<h:panelGroup layout="block" styleClass="p-p-3 p-mb-6 p-pb-6">
+
+			<h:panelGroup layout="block" styleClass="lsy-table-actions-top"
+				id="lsy-table-actions-top">
+				<p:separator styleClass="p-mt-4" />
+				<h:panelGroup layout="block"
+					styleClass="lsy-table-actions-buttons p-p-3 p-d-flex p-jc-center p-jc-md-start p-flex-wrap">
+					<p:commandButton value="Nuevo" icon="pi pi-plus"
+						action="register?faces-redirect=true"
+						styleClass="lsy-button lsy-bg-c-success lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2" />
+					<p:commandButton icon="fa fa-fw fa-sync" value="Actualizar"
+						title="Actualizar"
+						styleClass="lsy-button lsy-bg-c-info lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-0 p-ml-md-2"
+						onclick="PF('lsy-table').clearFilters()"
+						action="#{buyView.crud.sync()}"
+						update="@(.lsy-table), @(.lsy-alert)" />
+					<p:commandButton icon="fa fa-fw fa-brush" value="Limpiar"
+						title="Limpiar Filtros"
+						styleClass="lsy-button lsy-bg-c-warning lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2"
+						onclick="PF('lsy-table').clearFilters()"
+						action="#{buyView.crud.clearFilter()}"
+						update="@(.lsy-table), @(.lsy-alert)" />
+					<p:commandButton value="#{buyView.crud.messageDeleteCrud}"
+						icon="pi pi-trash"
+						styleClass="lsy-button lsy-bg-c-danger lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2"
+						disabled="#{fn:length(buyView.crud.table.select) gt 0 ? 'false' : 'true'}"
+						update="@(.lsy-table), @(.lsy-alert)">
+						<p:confirm header="Confirmación:"
+							message="¿Quieres eliminar #{fn:length(buyView.crud.table.select)} compras?"
+							icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
+				</h:panelGroup>
+				<p:separator styleClass="p-mb-4" />
+			</h:panelGroup>
+
 			<p:dataTable var="a" value="#{table.buyEntity}" widgetVar="lsy-table"
-				id="lsy-table" styleClass="lsy-table"
-				emptyMessage="No se encontro ninguna compra."
-				filteredValue="#{table.buy.filter}" paginator="true" rows="20"
-				globalFilterOnly="#{table.buy.globalFilterOnly}" scrollWidth="auto"
+				id="lsy-table" styleClass="lsy-table" paginator="true"
+				emptyMessage="No se encontro ninguna compra." rows="20"
+				scrollWidth="auto" rowKey="#{a.id}" rowSelectMode="add"
+				scrollable="true" stripedRows="true"
 				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} 
 							   	   {PreviousPageLink}    {CurrentPageReport} 
 							       {NextPageLink}        {LastPageLink}"
-				rowsPerPageTemplate="5,10,15,20,50,100">
+				rowsPerPageTemplate="5,10,15,20,50,100"
+				globalFilterOnly="#{table.buy.globalFilterOnly}"
+				selection="#{table.buy.select}" filterBy="#{table.buy.filterBy}"
+				filteredValue="#{table.buy.filter}">
 
 				<f:facet name="header">
-					<div class="p-d-flex p-ai-center p-jc-between">
-						<span>Lista de Compra</span>
-						<h:panelGroup layout="block">
-							<p:inputText id="globalFilter" onkeyup="PF('lsy-table').filter()"
-								style="width:10rem" placeholder="Enter keyword" />
-							<p:commandButton value="Global Filter Only"
-								update="@(.lsy-table)"
-								action="#{table.buy.toggleGlobalFilter()}"
-								styleClass="lsy-button lsy-bg-c-info" />
-						</h:panelGroup>
-					</div>
+					<h:panelGroup layout="block"
+						styleClass="p-d-flex p-jc-end p-ac-center">
+						<p:inputText id="globalFilter" onkeyup="PF('lsy-table').filter()"
+							style="width:11rem" placeholder="Buscar" />
+						<p:commandButton icon="fa fa-fw fa-brush" title="Filtrar"
+							update="@(.lsy-table)" action="#{table.buy.toggleGlobalFilter()}"
+							styleClass="lsy-button-icon lsy-bg-c-warning p-ml-2" />
+					</h:panelGroup>
+					<p:outputPanel layout="block"
+						styleClass="p-d-flex p-jc-center p-ac-center p-flex-column p-p-3">
+						<h2 class="lsy-txt-subtitle p-mb-0 p-text-center">Compra</h2>
+						<h5 class="p-text-center">(#{table.buyEntity == null ? '0' :
+							fn:length(table.buyEntity)} resultados).</h5>
+					</p:outputPanel>
 				</f:facet>
 
+				<p:ajax event="rowSelect" listener="#{buyView.update()}"
+					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
+				<p:ajax event="rowUnselect" listener="#{buyView.update()}"
+					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
+				<p:ajax event="rowSelectCheckbox" listener="#{buyView.update()}"
+					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
+				<p:ajax event="rowUnselectCheckbox" listener="#{buyView.update()}"
+					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
+				<p:ajax event="toggleSelect" listener="#{buyView.update()}"
+					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
+
+				<p:column selectionMode="multiple" exportable="false"
+					style="width:40px"></p:column>
 				<p:column headerText="Id" footerText="Id" sortBy="#{a.id}"
-					filterBy="#{a.id}">
+					filterBy="#{a.id}" styleClass="p-text-center">
 					<h:outputText value="#{a.id}" />
 				</p:column>
 
 				<p:column headerText="Proveedor" footerText="Proveedor"
-					sortBy="#{a.provider.name}" filterBy="#{a.provider.name}">
+					sortBy="#{a.provider.name}" filterBy="#{a.provider.name}"
+					styleClass="p-text-center">
 					<h:outputText value="#{a.provider.name}" />
 				</p:column>
 
 				<p:column field="dateWithoutTime" headerText="Fecha"
-					filterMatchMode="between">
+					filterMatchMode="range" styleClass="p-text-center">
 					<f:facet name="filter">
 						<p:datePicker selectionMode="range"
 							onchange="PF('.lsy-table').filter()" />
 					</f:facet>
+					<p:calendar value="#{a.dateRegister}" locale="de"
+						pattern="dd/MM/yyyy hh:mm:ss" disabled="true" />
 				</p:column>
-				
-				<p:column headerText="Total" footerText="Total">
-					<h:outputText value="#{a.totalNet}" />
-					<h:outputText value="#{a.totalGross}" />
+
+				<p:column headerText="Total (Bruto/Neto)"
+					footerText="Total (Bruto/Neto)" styleClass="p-text-center">
+					<h:panelGroup layout="block" styleClass="p-flex p-flex-column">
+						<h:panelGroup layout="block" styleClass="p-d-block">
+							<h:outputLabel value="#{a.totalGross}"
+								styleClass="lsy-badge lsy-bg-c-info">
+								<f:convertNumber currencySymbol="$" type="currency" />
+							</h:outputLabel>
+						</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="p-d-block p-mt-2">
+							<h:outputLabel value="#{a.totalNet}"
+								styleClass="lsy-badge lsy-bg-c-success">
+								<f:convertNumber currencySymbol="$" type="currency" />
+							</h:outputLabel>
+						</h:panelGroup>
+					</h:panelGroup>
+
 				</p:column>
-				
+
 				<p:column headerText="Estado" footerText="Estado"
 					styleClass="p-text-center" field="statu" filterMatchMode="exact">
 					<f:facet name="filter">
@@ -79,6 +149,41 @@
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
+			<h:panelGroup layout="block"
+				styleClass="lsy-table-actions-bottom p-mb-6"
+				id="lsy-table-actions-bottom">
+				<p:separator styleClass="p-mt-4" />
+				<h:panelGroup layout="block"
+					styleClass="lsy-table-actions-buttons p-p-3 p-d-flex p-jc-center p-jc-md-start p-flex-wrap">
+					<p:commandButton value="Nuevo" icon="pi pi-plus"
+						action="register?faces-redirect=true"
+						styleClass="lsy-button lsy-bg-c-success lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2" />
+					<p:commandButton icon="fa fa-fw fa-sync" value="Actualizar"
+						title="Actualizar"
+						styleClass="lsy-button lsy-bg-c-info lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-0 p-ml-md-2"
+						onclick="PF('lsy-table').clearFilters()"
+						action="#{buyView.crud.sync()}"
+						update="@(.lsy-table), @(.lsy-alert)" />
+					<p:commandButton icon="fa fa-fw fa-brush" value="Limpiar"
+						title="Limpiar Filtros"
+						styleClass="lsy-button lsy-bg-c-warning lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2"
+						onclick="PF('lsy-table').clearFilters()"
+						action="#{buyView.crud.clearFilter()}"
+						update="@(.lsy-table), @(.lsy-alert)" />
+					<p:commandButton value="#{buyView.crud.messageDeleteCrud}"
+						icon="pi pi-trash"
+						styleClass="lsy-button lsy-bg-c-danger lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2"
+						disabled="#{fn:length(buyView.crud.table.select) gt 0 ? 'false' : 'true'}"
+						update="@(.lsy-table), @(.lsy-alert)">
+						<p:confirm header="Confirmación:"
+							message="¿Quieres eliminar #{fn:length(buyView.crud.table.select)} compras?"
+							icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
+				</h:panelGroup>
+				<p:separator styleClass="p-mb-4" />
+			</h:panelGroup>
+
 		</h:panelGroup>
+
 	</ui:define>
 </ui:composition>

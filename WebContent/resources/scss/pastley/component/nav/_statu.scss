@@ -12,6 +12,8 @@
 	a{
 		color: var(#{$VAR-LSY-TXT-VAR-COLOR}-primary) !important;
 		font-family: var(#{$VAR-LSY-TXT-VAR-FONT-FAMILY}-primary) !important;
+		font-size: 1em;
+		margin-left: 1em;
 		&.ui-breadcrumb-home-icon{
 			@include mixin-text-shadow();
 		}

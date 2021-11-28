@@ -84,8 +84,6 @@ public class BuyRequest implements Serializable{
 		String aux = path + PastleyVariableApi.PASTLEY_API_REQUEST_CREATE;
 		RequestDTO dto = new RequestDTO();
 		JSONObject object = dto.buy(buy, details);
-		System.out.println(object);
-		System.out.println(aux);
 		buy = JSONConvert.buy(request.post(aux, object), null);
 		return buy;
 	}

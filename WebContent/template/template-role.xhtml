@@ -20,9 +20,9 @@
 
 	<h:form>
 		<h:panelGroup layout="block" styleClass="lsy-alert" id="lsy-alert">
-			<p:growl showDetail="true"/>
+			<p:growl showDetail="true" />
 		</h:panelGroup>
-		
+
 		<h:panelGroup layout="block" styleClass="lsy-structure-home">
 			<ui:insert name="tmp-header">
 				<h:panelGroup layout="block" styleClass="lsy-structure-home__top">
@@ -40,6 +40,16 @@
 			</h:panelGroup>
 		</h:panelGroup>
 	</h:form>
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" width="50%">
+		<h:panelGroup layout="block" styleClass="p-d-flex p-jc-end">
+			<p:commandButton value="Si" type="button"
+				styleClass="ui-confirmdialog-yes lsy-button-icon lsy-bg-c-success"
+				icon="pi pi-check" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no lsy-button-icon lsy-bg-c-danger"
+				icon="pi pi-times" />
+		</h:panelGroup>
+	</p:confirmDialog>
 	<ui:insert name="tmp-component-dialog" />
 	<h:outputScript library="js" name="pastley.js" />
 	<h:outputScript>

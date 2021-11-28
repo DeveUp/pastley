@@ -1,12 +1,13 @@
 @mixin mixin-iterator-root(
     $iterator: (), 
     $tag: "font-size",
-    $character: $VAR-LSY-TXT-CHARACTER-1
+    $character: $VAR-LSY-TXT-CHARACTER-1,
+	$important: "",
 ) {
     @if $tag != $VAR-LSY-TXT-NULL {
         $tag: $tag + $character;
         @each $key, $value in $iterator {
-            #{$tag}#{$key}: #{nth($value, 1)};
+            #{$tag}#{$key}: #{nth($value, 1)} #{$important};
         }
     } 
 }

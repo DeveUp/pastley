@@ -14,8 +14,8 @@ import javax.faces.bean.ViewScoped;
 import com.pastley.controller.request.BuyRequest;
 import com.pastley.controller.request.ProductRequest;
 import com.pastley.controller.request.ProviderRequest;
+import com.pastley.models.app.DataTableApp;
 import com.pastley.models.dto.ExceptionDTO;
-import com.pastley.models.dto.primefaces.DataTableDTO;
 import com.pastley.models.model.Buy;
 import com.pastley.models.model.Product;
 import com.pastley.models.model.Provider;
@@ -28,15 +28,15 @@ public class DataTableBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private DataTableDTO<Buy> buy;
-	private DataTableDTO<Provider> provider;
-	private DataTableDTO<Product> product;
+	private DataTableApp<Buy> buy;
+	private DataTableApp<Provider> provider;
+	private DataTableApp<Product> product;
 	
 	@PostConstruct
 	public void init() {
-		buy = new DataTableDTO<>();
-		product = new DataTableDTO<>();
-		provider = new DataTableDTO<>();
+		buy = new DataTableApp<>();
+		product = new DataTableApp<>();
+		provider = new DataTableApp<>();
 	}
 	
 	public List<Buy> getBuyEntity(){
@@ -46,7 +46,7 @@ public class DataTableBean implements Serializable{
 			return buy.getEntity();
 		BuyRequest request = new BuyRequest();
 		try {
-			buy = new DataTableDTO<>(request.findAll());
+			buy = new DataTableApp<>(request.findAll());
 		} catch (ExceptionDTO e) {
 			LOGGER.error("[getBuyEntity()]", e);
 			buy.setEntity(new ArrayList<>());
@@ -64,7 +64,7 @@ public class DataTableBean implements Serializable{
 		ProductRequest request = new ProductRequest();
 		try {
 			System.out.println(request.findAll());
-			product = new DataTableDTO<>(request.findAll());
+			product = new DataTableApp<>(request.findAll());
 		} catch (ExceptionDTO e) {
 			LOGGER.error("[getProductEntity()]", e);
 			product.setEntity(new ArrayList<>());
@@ -81,7 +81,7 @@ public class DataTableBean implements Serializable{
 			return provider.getEntity();
 		ProviderRequest requestProvider = new ProviderRequest();
 		try {
-			provider = new DataTableDTO<>(requestProvider.findAll());
+			provider = new DataTableApp<>(requestProvider.findAll());
 		} catch (ExceptionDTO e) {
 			LOGGER.error("[getProviderEntity()]", e);
 			provider.setEntity(new ArrayList<>());
@@ -91,27 +91,27 @@ public class DataTableBean implements Serializable{
 		return provider.getEntity();
 	}
 
-	public DataTableDTO<Buy> getBuy() {
+	public DataTableApp<Buy> getBuy() {
 		return buy;
 	}
 
-	public void setBuy(DataTableDTO<Buy> buy) {
+	public void setBuy(DataTableApp<Buy> buy) {
 		this.buy = buy;
 	}
 
-	public DataTableDTO<Product> getProduct() {
+	public DataTableApp<Product> getProduct() {
 		return product;
 	}
 
-	public void setProduct(DataTableDTO<Product> product) {
+	public void setProduct(DataTableApp<Product> product) {
 		this.product = product;
 	}
 
-	public DataTableDTO<Provider> getProvider() {
+	public DataTableApp<Provider> getProvider() {
 		return provider;
 	}
 
-	public void setProvider(DataTableDTO<Provider> provider) {
+	public void setProvider(DataTableApp<Provider> provider) {
 		this.provider = provider;
 	}
 

@@ -6,19 +6,15 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="tmp-section">
-		<style>
-.lsy-header {
-	display: none;
-}
-</style>
-		<h:panelGroup layout="block" styleClass="lsy-interface-buy"
+		<style> .lsy-header { display: none; } </style>
+		<h:panelGroup layout="block" styleClass="lsy-interface-buy lsy-interface-container"
 			id="lsy-interface-buy">
-			<h:panelGroup layout="block" styleClass="lsy-interface-buy-container">
-
+			<h:panelGroup layout="block" styleClass="lsy-interface-container-padding">
+			
 				<h:panelGroup layout="block">
 					<h2 class="lsy-txt-subtitle p-mb-0">Factura Compra.</h2>
 					<h:panelGroup layout="block"
-						styleClass="lsy-interface-buy-container-logo">
+						styleClass="lsy-interface-container-padding-logo">
 						<p:graphicImage
 							value="https://raw.githubusercontent.com/DeveUp/pastley-backend/eda7becea603d3fd3809b5bbd909f2081154da33/pastley-logos/02.svg"
 							cache="false" />
@@ -45,8 +41,8 @@
 					</h:panelGroup>
 					<h2 class="lsy-txt-subtitle p-mt-3">Proveedor</h2>
 					<h:panelGroup layout="block">
-						<h:outputLabel value="Nombre:" styleClass="lsy-span p-mr-2">
-							<h:outputText styleClass="lsy-span lsy-c-fatal"
+						<h:outputLabel value="Nombre:" styleClass="lsy-span">
+							<h:outputText styleClass="lsy-span lsy-c-fatal p-ml-2"
 								value="#{buy.buy.provider.name}" />
 						</h:outputLabel>
 					</h:panelGroup>
@@ -126,7 +122,8 @@
 										icon="fa fa-plus" title="Registrar Venta"
 										disabled="#{fn:length(buy.buy.details) gt 0 ? 'false' : 'true'}"
 										styleClass="lsy-button lsy-bg-c-success"
-										action="#{buy.create()}" update="@(.lsy-table), @(.lsy-alert), @(.lsy-container-provider)" /></td>
+										action="#{buy.create()}"
+										update="@(.lsy-table), @(.lsy-alert), @(.lsy-container-provider)" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -141,14 +138,14 @@
 			<h:form>
 				<h:panelGroup layout="block">
 					<h:panelGroup layout="block"
-						styleClass="ui-fluid p-formgrid p-grid">
+						styleClass="ui-fluid p-formgrid p-grid p-ai-center p-jc-end">
 						<h:panelGroup layout="block" styleClass="p-field p-col-5">
 							<p:outputLabel for="provider-id" value="Id:" />
 							<p:inputText id="provider-id" value="#{buy.buy.provider.id}" />
 						</h:panelGroup>
 						<p:commandButton icon="fas fa-filter"
 							action="#{buy.dialogProvider()}" title="Filtrar"
-							styleClass="lsy-button lsy-bg-c-info"
+							styleClass="lsy-button-icon lsy-bg-c-info"
 							update="@(.lsy-dialog-provider), @(.lsy-table), @(.lsy-alert), @(.lsy-container-provider)" />
 					</h:panelGroup>
 					<h:panelGroup layout="block"
