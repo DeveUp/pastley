@@ -3,9 +3,11 @@ package com.pastley.models.model;
 import java.math.BigInteger;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import com.pastley.util.PastleyDate;
+import com.pastley.util.PastleyValidate;
 
 import java.io.Serializable;
 
@@ -15,12 +17,18 @@ public class Buy implements Serializable {
 
 	private Long id;
 	private Provider provider;
-	private String iva;
 	private BigInteger totalNet;
 	private BigInteger totalGross;
 	private boolean statu;
 	private String dateRegister;
 	private String dateUpdate;
+	
+	private List<BuyDetail> details;
+	
+	public Buy() {
+		totalNet = BigInteger.ZERO;
+		totalGross = BigInteger.ZERO;
+	}
 	
 	public LocalDate getDateWithoutTime() {
 		PastleyDate date = new PastleyDate();
@@ -47,6 +55,26 @@ public class Buy implements Serializable {
 		Buy other = (Buy) obj;
 		return Objects.equals(id, other.id);
 	}
+	
+	public void calculate() {
+		totalNet = BigInteger.ZERO;
+		totalGross = BigInteger.ZERO;
+		calculateTotal();
+	}
+
+	public BigInteger calculateTotal() {
+		if (!PastleyValidate.isList(details))
+			return BigInteger.ZERO;
+		BigInteger value = BigInteger.ZERO;
+		for (BuyDetail bt : details) {
+			bt.calculate();
+			if (PastleyValidate.bigIntegerHigherZero(bt.getSubtotalNet()))
+				totalNet = totalNet.add(bt.getSubtotalNet());
+			if(PastleyValidate.bigIntegerHigherZero(bt.getSubtotalGross()))
+				totalGross = totalGross.add(bt.getSubtotalGross());
+		}
+		return value;
+	}
 
 	public Long getId() {
 		return id;
@@ -64,12 +92,12 @@ public class Buy implements Serializable {
 		this.provider = provider;
 	}
 
-	public String getIva() {
-		return iva;
+	public List<BuyDetail> getDetails() {
+		return details;
 	}
 
-	public void setIva(String iva) {
-		this.iva = iva;
+	public void setDetails(List<BuyDetail> details) {
+		this.details = details;
 	}
 
 	public BigInteger getTotalNet() {

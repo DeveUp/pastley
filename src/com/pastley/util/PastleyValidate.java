@@ -1,5 +1,6 @@
 package com.pastley.util;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
@@ -99,5 +100,36 @@ public class PastleyValidate {
 	 */
 	public static <E> boolean isList(List<E> list) {
 		return (list != null && list.size() > 0);
+	}
+	
+	/**
+	 * Method that allows verifying if a biginteger is greater than zero.
+	 * 
+	 * @param a, Represents the biginteger.
+	 * @return true if it meets false if not.
+	 */
+	public static boolean bigIntegerHigherZero(BigInteger a) {
+		return (a != null && a.compareTo(BigInteger.ZERO) == 1);
+	}
+
+	/**
+	 * Method that allows verifying if a biginteger is less than zero.
+	 * 
+	 * @param a, Represents the biginteger.
+	 * @return true if it meets false if not.
+	 */
+	public static boolean bigIntegerLessZero(BigInteger a) {
+		return (a != null && a.compareTo(BigInteger.ZERO) == -1);
+	}
+
+	/**
+	 * Method that allows verifying if a biginteger is greater than or equal to
+	 * zero.
+	 * 
+	 * @param a, Represents the biginteger.
+	 * @return true if it meets false if not.
+	 */
+	public static boolean bigIntegerHigherEqualZero(BigInteger a) {
+		return (a != null && a.compareTo(BigInteger.ZERO) >= 0);
 	}
 }

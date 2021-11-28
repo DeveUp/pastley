@@ -10,12 +10,13 @@ import com.pastley.controller.RequestController;
 import com.pastley.models.dto.ExceptionDTO;
 import com.pastley.models.dto.InitDTO;
 import com.pastley.models.dto.JSONConvert;
+import com.pastley.models.dto.RequestDTO;
 import com.pastley.models.model.Buy;
 import com.pastley.util.PastleyValidate;
 import com.pastley.util.PastleyVariableApi;
 
 public class BuyRequest implements Serializable{
-	
+
 	private static final long serialVersionUID = 1L;
 
 	private String path = PastleyVariableApi.PASTLEY_API_MICROSERVICE_BUY_SERVICE_BUY;
@@ -76,6 +77,17 @@ public class BuyRequest implements Serializable{
 		aux = aux.replace("{start}", String.valueOf(start));
 		aux = aux.replace("{end}", String.valueOf(end));
 		return findAll(aux);
+	}
+	
+	public Buy create(Buy buy, boolean details) throws ExceptionDTO{
+		RequestController<JSONObject> request = new RequestController<>();
+		String aux = path + PastleyVariableApi.PASTLEY_API_REQUEST_CREATE;
+		RequestDTO dto = new RequestDTO();
+		JSONObject object = dto.buy(buy, details);
+		System.out.println(object);
+		System.out.println(aux);
+		buy = JSONConvert.buy(request.post(aux, object), null);
+		return buy;
 	}
 	
 	/**

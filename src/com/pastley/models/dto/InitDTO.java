@@ -1,5 +1,7 @@
 package com.pastley.models.dto;
 
+import java.util.ArrayList;
+
 import com.pastley.models.model.Buy;
 import com.pastley.models.model.BuyDetail;
 import com.pastley.models.model.Category;
@@ -32,6 +34,7 @@ public class InitDTO {
 	
 	public static Buy buy(boolean provider) {
 		Buy buy = new Buy();
+		buy.setDetails(new ArrayList<>());
 		if(provider)
 			buy.setProvider(provider());
 		return buy;
