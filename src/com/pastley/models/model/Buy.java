@@ -17,7 +17,6 @@ public class Buy implements Serializable {
 
 	private Long id;
 	private Provider provider;
-	private String iva;
 	private BigInteger totalNet;
 	private BigInteger totalGross;
 	private boolean statu;
@@ -91,14 +90,6 @@ public class Buy implements Serializable {
 
 	public void setProvider(Provider provider) {
 		this.provider = provider;
-	}
-
-	public String getIva() {
-		return iva;
-	}
-
-	public void setIva(String iva) {
-		this.iva = iva;
 	}
 
 	public List<BuyDetail> getDetails() {

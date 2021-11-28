@@ -10,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.pastley.controller.request.BuyRequest;
 import com.pastley.controller.request.ProviderRequest;
 import com.pastley.models.dto.AlertDTO;
 import com.pastley.models.dto.ExceptionDTO;
@@ -94,7 +95,9 @@ public class BuyBean implements Serializable {
 		alert.toPrintln(true);
 	}
 
-	public void remove(BuyDetail detail){
+	public void remove(BuyDetail detail) {
+		if (detail == null)
+			return;
 		alert = new AlertDTO();
 		ListDTO<BuyDetail> list = new ListDTO<>(buy.getDetails());
 		if (list.remove(detail)) {
@@ -103,6 +106,23 @@ public class BuyBean implements Serializable {
 			alert.success("Se ha eliminado el producto con id " + detail.getIdProduct() + ".");
 		} else {
 			alert.warn("No se ha eliminado el producto con id " + detail.getIdProduct() + ".");
+		}
+		alert.toPrintln(true);
+	}
+
+	public void create() {
+		alert = new AlertDTO();
+		BuyRequest request = new BuyRequest();
+		try {
+			Buy aux = request.create(buy, true);
+			if (aux != null) {
+				alert.success("Se ha registrado la compra con el id " + aux.getId() + ".");
+				buy = InitDTO.buy(true);
+			}else
+				alert.error("No se ha registrado la compra.");
+		} catch (ExceptionDTO e) {
+			LOGGER.error("[create()]", e);
+			alert.error("No se ha registrado la compra, " + e.getMessage() + ".");
 		}
 		alert.toPrintln(true);
 	}

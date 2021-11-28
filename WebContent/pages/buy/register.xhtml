@@ -126,7 +126,7 @@
 										icon="fa fa-plus" title="Registrar Venta"
 										disabled="#{fn:length(buy.buy.details) gt 0 ? 'false' : 'true'}"
 										styleClass="lsy-button lsy-bg-c-success"
-										action="#{sale_view.sale()}" update="@(.lsy-table)" /></td>
+										action="#{buy.create()}" update="@(.lsy-table), @(.lsy-alert), @(.lsy-container-provider)" /></td>
 							</tr>
 						</tbody>
 					</table>

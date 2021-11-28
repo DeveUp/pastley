@@ -63,7 +63,6 @@ public class JSONConvert {
 		Buy buy = new Buy();
 		buy.setId(validateLong(object.get("id"), 0L));
 		buy.setProvider(provider((JSONObject) object.get("provider"), new Provider()));
-		buy.setIva(validateString(object.get("iva"), null));
 		buy.setTotalNet(validateBigInteger(object.get("validateBigInteger"), null));
 		buy.setTotalGross(validateBigInteger(object.get("totalGross"), null));
 		buy.setStatu(validateBoolean(object.get("statu"), false));

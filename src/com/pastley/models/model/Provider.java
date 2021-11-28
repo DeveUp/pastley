@@ -1,7 +1,10 @@
 package com.pastley.models.model;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.text.ParseException;
+import java.time.LocalDate;
+
+import com.pastley.util.PastleyDate;
 
 public class Provider implements Serializable{
 	
@@ -14,11 +17,23 @@ public class Provider implements Serializable{
 	private String dateRegister;
 	private String dateUpdate;
 	
+	public LocalDate getDateWithoutTime() {
+		PastleyDate date = new PastleyDate();
+		try {
+			return PastleyDate.convertToLocalDate(date.convertToDate(dateRegister));
+		} catch (ParseException e) {
+			return LocalDate.now();
+		}
+	}
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -28,9 +43,14 @@ public class Provider implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Provider other = (Provider) obj;
-		return Objects.equals(id, other.id);
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Provider [id=" + id + ", name=" + name + ", description=" + description + ", statu=" + statu

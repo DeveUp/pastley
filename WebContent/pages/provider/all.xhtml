@@ -1,0 +1,85 @@
+<ui:composition template="../../template/template-role.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="tmp-section">
+		<ui:decorate template="component/header.xhtml">
+			<ui:define name="tmp-section-component-statu--header">
+				<p:menuitem value="Historial" url="all.xhtml" styleClass="lsy-link" />
+			</ui:define>
+			<ui:define name="tmp-section-component-header-subtitle--header">Historial</ui:define>
+		</ui:decorate>
+
+		<h:panelGroup layout="block" styleClass="p-p-3">
+			<p:dataTable var="a" value="#{table.providerEntity}"
+				widgetVar="lsy-table" id="lsy-table" styleClass="lsy-table"
+				emptyMessage="No se encontro ningun proveedor."
+				filteredValue="#{table.provider.filter}" paginator="true" rows="20"
+				globalFilterOnly="#{table.provider.globalFilterOnly}"
+				scrollWidth="auto"
+				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} 
+							   	   {PreviousPageLink}    {CurrentPageReport} 
+							       {NextPageLink}        {LastPageLink}"
+				rowsPerPageTemplate="5,10,15,20,50,100">
+
+				<f:facet name="header">
+					<div class="p-d-flex p-ai-center p-jc-between">
+						<span>Lista de Proveedores</span>
+						<h:panelGroup layout="block">
+							<p:inputText id="globalFilter" onkeyup="PF('lsy-table').filter()"
+								style="width:10rem" placeholder="Enter keyword" />
+							<p:commandButton value="Global Filter Only"
+								update="@(.lsy-table)"
+								action="#{table.provider.toggleGlobalFilter()}"
+								styleClass="lsy-button lsy-bg-c-info" />
+						</h:panelGroup>
+					</div>
+				</f:facet>
+
+				<p:column headerText="Id" footerText="Id" sortBy="#{a.id}"
+					filterBy="#{a.id}">
+					<h:outputText value="#{a.id}" />
+				</p:column>
+
+				<p:column headerText="Nombre" footerText="Nombre" sortBy="#{a.name}"
+					filterBy="#{a.name}">
+					<h:outputText value="#{a.name}" />
+				</p:column>
+
+				<p:column headerText="Descripcion" footerText="Descripcion"
+					sortBy="#{a.description}" filterBy="#{a.description}">
+					<h:outputText value="#{a.description}" />
+				</p:column>
+
+				<p:column field="dateWithoutTime" headerText="Fecha"
+					filterMatchMode="between">
+					<f:facet name="filter">
+						<p:datePicker selectionMode="range"
+							onchange="PF('.lsy-table').filter()" />
+					</f:facet>
+				</p:column>
+
+				<p:column headerText="Estado" footerText="Estado"
+					styleClass="p-text-center" field="statu" filterMatchMode="exact">
+					<f:facet name="filter">
+						<p:selectOneMenu onchange="PF('lsy-table').filter()">
+							<f:selectItem itemLabel="Todos" itemValue="#{null}"
+								noSelectionOption="true" />
+							<f:selectItem itemLabel="Activo" itemValue="true" />
+							<f:selectItem itemLabel="Bloqueado" itemValue="false" />
+						</p:selectOneMenu>
+					</f:facet>
+					<p:commandButton value="#{a.statu ? 'Activo' : 'Bloqueado'}"
+						styleClass="lsy-button
+						#{a.statu ? 'lsy-bg-c-success' :  'lsy-bg-c-danger'}"
+						action="#{category.update(a.id)}"
+						update="lsy-table, @(.lsy-alert)">
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>
