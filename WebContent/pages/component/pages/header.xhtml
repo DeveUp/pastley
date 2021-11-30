@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<body>
+	<ui:composition>
+		<h:panelGroup layout="block" styleClass="lsy-header">
+			<ui:insert name="tmp-section-component-header-image" />
+			<h:panelGroup layout="block" styleClass="lsy-header__title">
+				<h1 class="lsy-txt-title">
+					<ui:insert name="tmp-section-component-header-title" />
+				</h1>
+				<h2 class="lsy-txt-subtitle">
+					<ui:insert name="tmp-section-component-header-subtitle" />
+				</h2>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="lsy-header__svg">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+  					<path d="M0,128L30,106.7C60,85,120,43,180,64C240,85,300,171,360,192C420,213,480,171,540,176C600,181,660,235,720,234.7C780,235,840,181,900,154.7C960,128,1020,128,1080,106.7C1140,85,1200,43,1260,32C1320,21,1380,43,1410,53.3L1440,64L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path>
+				</svg>
+			</h:panelGroup>
+		</h:panelGroup>
+	</ui:composition>
+</body>
+</html>

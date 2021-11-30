@@ -18,14 +18,16 @@
 <h:body>
 
 	<h:panelGroup layout="block" styleClass="lsy-loading-container" id="lsy-loading-container">
-		<ui:include src="../pages/component/loading.xhtml"/>
-		<ui:include src="../pages/component/loading-remove.xhtml"/>
+		<ui:include src="../pages/component/loader/loading.xhtml"/>
+		<ui:include src="../pages/component/loader/loading-remove.xhtml"/>
 	</h:panelGroup>
 
 	<h:form>
 		<ui:insert name="tmp-header">
 			<ui:include src="home/header.xhtml" />
 		</ui:insert>
+		
+		<ui:include src="../pages/component/home/banner.xhtml" />
 
 		<ui:insert name="tmp-section" />
 
