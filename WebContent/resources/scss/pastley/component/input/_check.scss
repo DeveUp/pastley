@@ -1,0 +1,76 @@
+.lsy-input__check{
+	font-size: 1em;
+    font-weight: 400;
+    list-style: none;
+    padding: 7px 0 7px 23px;
+	font-family: var(#{$VAR-LSY-TXT-VAR-FONT-FAMILY}-primary) !important;
+	a{
+		color: var(#{$VAR-LSY-TXT-VAR-COLOR}-body);
+      	text-decoration: none;
+      	cursor: pointer;
+      	transition: all 300ms ease-out;
+	}
+	&-span{
+		float: left;
+        width: 11px;
+        height: 11px;
+        margin-left: -23px;
+		top: 50%;
+		transform: translateY(50%);
+        border: 1px solid #e0e0e0;
+        position: relative;
+		cursor: pointer;
+		&-x,
+		&-y{
+			border: none;
+          	margin: 0;
+          	float: none;
+          	position: absolute;
+          	top: 0;
+          	left: 0;
+		}
+		&-x{
+			display: block;
+        	width: 0;
+        	height: 2px;
+        	background: var(#{$VAR-LSY-TXT-VAR-BACKGROUND}-primary);
+        	top: 6px;
+        	left: 2px;
+        	transform: rotate(45deg);
+			&.#{$VAR-LSY-CLASS-ACTIVE}{
+				width: 4px;
+          		transition: all 100ms ease-in;
+			}
+		}
+		&-y{
+			display: block;
+        	width: 0px;
+        	height: 2px;
+        	background: var(#{$VAR-LSY-TXT-VAR-BACKGROUND}-primary);
+        	top: 4px;
+        	left: 3px;
+        	transform: rotate(135deg);
+			&.#{$VAR-LSY-CLASS-ACTIVE}{
+				width: 8px;
+          		transition: all 100ms ease-out;
+			}
+		}
+	}
+	&.#{$VAR-LSY-CLASS-ACTIVE}{
+		.lsy-input__check-span{
+			&-x{
+				width: 4px;
+          		transition: all 100ms ease-in;
+			}
+			&-y{
+				width: 8px;
+          		transition: all 100ms ease-out;
+			}
+		}
+	}
+}
+
+.lsy-input__checklist{
+	padding: 1em;
+}
+

@@ -66,13 +66,12 @@
     	transition: all .5s linear;
 	}
 	&-description {
-    	top: 70%;
+    	top: 73%;
     	height: 200px;
     	background: var(#{$VAR-LSY-TXT-VAR-BACKGROUND}-body);
     	padding: 0.5em; 
-		overflow-y: auto;
+		overflow: hidden;
 		padding-bottom: 1em;
-		@include mixin-scroll();
 		&-title{
 			.lsy-txt-title {
 				margin-bottom: .5em;
@@ -156,6 +155,8 @@
 		.lsy-card__product-description{
 			transition: all .4s linear;
       		top: 50%;
+			overflow-y: auto;
+			@include mixin-scroll();
 		}
 		.lsy-card__product-button{
 			height: 50%;
@@ -193,6 +194,7 @@
       		right: 0px;
       		height: 70%;
       		overflow-y: auto;
+			@include mixin-scroll();
 		}
 		.lsy-card__product-button{
 			width: 300px;
@@ -209,6 +211,9 @@
 			button,
 			.lsy-button{
 				width: 100%;
+				&::before{
+					opacity: 1;
+				}
 			}
 			&-open{
 				display: none;

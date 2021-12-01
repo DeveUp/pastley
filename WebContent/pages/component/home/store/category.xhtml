@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:panelGroup layout="block">
+		<h1 class="lsy-txt-title">Categorias</h1>
+		<h:panelGroup layout="block" styleClass="lsy-input__checklist">
+			<ul>
+				<li class="lsy-input__check lsy-option-active">
+					<p:commandLink>
+						<h:outputLabel styleClass="lsy-input__check-span">
+							<h:outputText styleClass="lsy-input__check-span-x" />
+							<h:outputText styleClass="lsy-input__check-span-y" />
+						</h:outputLabel>
+						<h:outputText value="Bebidas" />
+					</p:commandLink>
+				</li>
+				<li class="lsy-input__check">
+					<p:commandLink>
+						<h:outputLabel styleClass="lsy-input__check-span">
+							<h:outputText styleClass="lsy-input__check-span-x" />
+							<h:outputText styleClass="lsy-input__check-span-y" />
+						</h:outputLabel>
+						<h:outputText value="Panes" />
+					</p:commandLink>
+				</li>
+			</ul>
+		</h:panelGroup>
+	</h:panelGroup>
+</ui:composition>
