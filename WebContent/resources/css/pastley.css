@@ -649,6 +649,81 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
   color: var(--lsy-background-fatal);
 }
 
+.lsy-input__check {
+  font-size: 1em;
+  font-weight: 400;
+  list-style: none;
+  padding: 7px 0 7px 23px;
+  font-family: var(--lsy-font-family-primary) !important;
+}
+.lsy-input__check a {
+  color: var(--lsy-color-body);
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+}
+.lsy-input__check-span {
+  float: left;
+  width: 11px;
+  height: 11px;
+  margin-left: -23px;
+  top: 50%;
+  -webkit-transform: translateY(50%);
+          transform: translateY(50%);
+  border: 1px solid #e0e0e0;
+  position: relative;
+  cursor: pointer;
+}
+.lsy-input__check-span-x, .lsy-input__check-span-y {
+  border: none;
+  margin: 0;
+  float: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.lsy-input__check-span-x {
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--lsy-background-primary);
+  top: 6px;
+  left: 2px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.lsy-input__check-span-x.lsy-option-active {
+  width: 4px;
+  -webkit-transition: all 100ms ease-in;
+  transition: all 100ms ease-in;
+}
+.lsy-input__check-span-y {
+  display: block;
+  width: 0px;
+  height: 2px;
+  background: var(--lsy-background-primary);
+  top: 4px;
+  left: 3px;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+.lsy-input__check-span-y.lsy-option-active {
+  width: 8px;
+  -webkit-transition: all 100ms ease-out;
+  transition: all 100ms ease-out;
+}
+.lsy-input__check.lsy-option-active .lsy-input__check-span-x {
+  width: 4px;
+  -webkit-transition: all 100ms ease-in;
+  transition: all 100ms ease-in;
+}
+.lsy-input__check.lsy-option-active .lsy-input__check-span-y {
+  width: 8px;
+  -webkit-transition: all 100ms ease-out;
+  transition: all 100ms ease-out;
+}
+
 .lsy-image-logo {
   width: 50px;
   height: 50px;
@@ -3212,7 +3287,7 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
 }
 
 .lsy-interface-container {
-  background-image: url(../resources/img/background/lsy-03.jpg);
+  background-image: url(https://github.com/DeveUp/pastley/blob/master/WebContent/resources/img/background/lsy-03.jpg?raw=true);
 }
 .lsy-interface-container-padding {
   background-color: rgba(255, 255, 255, 0.9);
@@ -3294,6 +3369,10 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+.lsy-interface-banner.lsy-interface-container-padding,
+.lsy-interface-banner .lsy-interface-container-padding {
+  padding-bottom: 5em !important;
 }
 .lsy-interface-banner__info {
   -ms-grid-row: 1;

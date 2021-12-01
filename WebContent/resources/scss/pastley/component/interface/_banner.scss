@@ -10,6 +10,11 @@
   	grid-template-areas: "Video Information"
                          "Video Information"
                          "Video Information";
+
+	&.lsy-interface-container-padding,
+	.lsy-interface-container-padding{
+		padding-bottom: 5em !important;
+	}
     align-items: center;
     &__info{
 	   grid-area: Information;

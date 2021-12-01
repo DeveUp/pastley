@@ -4,7 +4,8 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-	<h:panelGroup layout="block" styleClass="lsy-interface-banner">
+	<h:panelGroup layout="block" styleClass="lsy-interface-container">
+	<h:panelGroup layout="block" styleClass="lsy-interface-banner lsy-interface-container-padding">
 		<h:panelGroup layout="block" styleClass="lsy-interface-banner__info">
 			<h1 class="lsy-txt-title">Pastley</h1>
 			<h:panelGroup layout="block">
@@ -31,5 +32,6 @@
 			<p:video value="/resources/video/bread-02.mp4" controls="true"
 				player="mp4" styleClass="lsy-interface-banner__video" />
 		</h:panelGroup>
+	</h:panelGroup>
 	</h:panelGroup>
 </ui:composition>
