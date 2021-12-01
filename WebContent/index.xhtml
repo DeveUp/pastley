@@ -6,5 +6,12 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="tmp-section">
+		<ui:include src="pages/component/home/banner.xhtml" />
+		<ui:include src="pages/component/home/store.xhtml" />
+	</ui:define>
+	<ui:define name="tmp-js">
+		<h:outputScript>
+			pastleyCardProduct(".lsy-card__product");
+		</h:outputScript>
 	</ui:define>
 </ui:composition>
