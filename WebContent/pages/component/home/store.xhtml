@@ -5,97 +5,24 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 	<h:panelGroup layout="block" styleClass="lsy-interface-store">
-		<div id="wrapper">
-			<div class="cart-icon-top"></div>
-
-			<div class="cart-icon-bottom"></div>
-
-			<div id="checkout">CHECKOUT</div>
-
-			<div id="info">
-				<p class="i1">Add to cart interaction prototype by Virgil Pana</p>
-				<p>
-					Follow me on <a href="https://dribbble.com/virgilpana"
-						style="color: #ea4c89" target="_blank">Dribbble</a> | <a
-						style="color: #2aa9e0" href="https://twitter.com/virgil_pana"
-						target="_blank">Twitter</a>
-				</p>
-			</div>
-
-			<div id="header">
-				<ul>
-					<li><a href="">Home</a></li>
-					<li><a href="">BRANDS</a></li>
-					<li><a href="">DESIGNERS</a></li>
-					<li><a href="">CONTACT</a></li>
-				</ul>
-			</div>
-
-			<div id="sidebar">
-				<h3>CART</h3>
+		<h:panelGroup layout="block" styleClass="lsy-interface-store__top">
+			<h:outputText styleClass="lsy-span" value="Showing 1–9 of 48 results"/>
+			<h:panelGroup layout="block" styleClass="lsy-interface-store__top-button">
+				<p:commandButton styleClass="lsy-button-icon" icon="fa fa-grip-vertical"/>
+				<p:commandButton styleClass="lsy-button-icon p-ml-2" icon="fa fa-grip-horizontal"/>
+			</h:panelGroup>
+		</h:panelGroup>
+		<h:panelGroup layout="block" styleClass="lsy-interface-store__left">
+			<h:panelGroup layout="block">
+				<h1 class="lsy-txt-title">Carrito</h1>
 				<div id="cart">
 					<span class="empty">No items in cart.</span>
 				</div>
-				
-				<ui:include src="store/category.xhtml"></ui:include>
-
-
-
-				<h3>COLORS</h3>
-				<div class="checklist colors">
-					<ul>
-						<li><a href=""><span></span>Beige</a></li>
-						<li><a href=""><span style="background: #222"></span>Black</a></li>
-						<li><a href=""><span style="background: #6e8cd5"></span>Blue</a></li>
-						<li><a href=""><span style="background: #f56060"></span>Brown</a></li>
-						<li><a href=""><span style="background: #44c28d"></span>Green</a></li>
-					</ul>
-
-					<ul>
-						<li><a href=""><span style="background: #999"></span>Grey</a></li>
-						<li><a href=""><span style="background: #f79858"></span>Orange</a></li>
-						<li><a href=""><span style="background: #b27ef8"></span>Purple</a></li>
-						<li><a href=""><span style="background: #f56060"></span>Red</a></li>
-						<li><a href=""><span
-								style="background: #fff; border: 1px solid #e8e9eb; width: 13px; height: 13px;"></span>White</a></li>
-					</ul>
-				</div>
-
-				<h3>SIZES</h3>
-				<div class="checklist sizes">
-					<ul>
-						<li><a href=""><span></span>XS</a></li>
-						<li><a href=""><span></span>S</a></li>
-						<li><a href=""><span></span>M</a></li>
-					</ul>
-
-					<ul>
-						<li><a href=""><span></span>L</a></li>
-						<li><a href=""><span></span>XL</a></li>
-						<li><a href=""><span></span>XXL</a></li>
-					</ul>
-				</div>
-
-				<h3>PRICE RANGE</h3>
-				<img
-					src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/price-range.png"
-					alt="" />
-			</div>
-
-			<div id="grid-selector">
-				<div id="grid-menu">
-					View:
-					<ul>
-						<li class="largeGrid"><a href=""></a></li>
-						<li class="smallGrid"><a class="active" href=""></a></li>
-					</ul>
-				</div>
-
-				Showing 1–9 of 48 results
-			</div>
-			
+			</h:panelGroup>
+			<ui:include src="store/category.xhtml"></ui:include>
+		</h:panelGroup>
+		<h:panelGroup layout="block" styleClass="lsy-interface-store__center">
 			<ui:include src="store/card.xhtml"></ui:include>
-
-		</div>
+		</h:panelGroup>
 	</h:panelGroup>
 </ui:composition>
