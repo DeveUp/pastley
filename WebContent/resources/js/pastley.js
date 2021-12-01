@@ -1,5 +1,33 @@
+// Class
 const LSY_CLASS_ACTIVE = "lsy-option-active";
 const LSY_CLASS_HOVER = "lsy-option-hover";
+// Object
+const LSY_OBJECT_FLIP = {
+    "a": "lsy-animation-flip-10",
+    "b": "lsy-animation-flip90",
+    "c": "lsy-animation-flip190",
+    "d": "lsy-animation-flip180",
+}
+
+const pastleyAnimationFlip = (element, fuctionExecute, flip = LSY_OBJECT_FLIP) => { 
+	element.classList.add(flip.a); 
+	setTimeout(function () {  
+		element.classList.remove(flip.a); 
+		element.classList.add(flip.b); 
+	}, 50);  
+	setTimeout(function () { 
+		element.classList.remove(flip.b); 
+		element.classList.add(flip.c); 
+		setTimeout(function () { 
+			element.classList.remove(flip.c); 
+			element.classList.add(flip.d);  
+			setTimeout(function () { 
+				element.classList.remove(flip.d); 
+				fuctionExecute(); 
+			}, 200); 
+		}, 100);  
+	}, 150); 
+}
 
 const pastleyMenuHome = (id) => {
 	let drop = document.querySelector(`${id} .lsy-menu-home-link__drop`);
@@ -142,13 +170,15 @@ const pastleyCardProduct = (id) => {
 				buttonOpen.addEventListener("click", (e) => {
 					e.preventDefault();
 					if(!ae.classList.contains(`${cardLarge}`)){
-						ae.classList.add(`${cardView}`);
-						if(buttons != null){
-							buttons.removeAttribute("style");
-						}
-						if(description != null){
-							description.removeAttribute("style");
-						}
+						pastleyAnimationFlip(ae, () =>{
+							ae.classList.add(`${cardView}`);
+							if(buttons != null){
+								buttons.removeAttribute("style");
+							}
+							if(description != null){
+								description.removeAttribute("style");
+							}
+						});
 					}
 				});
 			}
@@ -156,8 +186,10 @@ const pastleyCardProduct = (id) => {
 				buttonClose.addEventListener("click", (e) => {
 					e.preventDefault();
 					if(!ae.classList.contains(`${cardLarge}`)){
-						ae.classList.remove(`${cardView}`);
-						ae.classList.remove(`${LSY_CLASS_HOVER}`);
+						pastleyAnimationFlip(ae, () =>{
+							ae.classList.remove(`${cardView}`);
+							ae.classList.remove(`${LSY_CLASS_HOVER}`);
+						});
 					}
 				});
 			}

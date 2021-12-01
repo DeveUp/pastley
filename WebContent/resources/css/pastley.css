@@ -403,6 +403,34 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
             transform: translate(16px, -16px);
   }
 }
+.lsy-animation-flip-10 {
+  -webkit-transform: rotateY(-10deg);
+  transform: rotateY(-10deg);
+  -webkit-transition: 50ms ease-out;
+  transition: 50ms ease-out;
+}
+
+.lsy-animation-flip90 {
+  -webkit-transform: rotateY(90deg);
+  transform: rotateY(90deg);
+  -webkit-transition: 100ms ease-out;
+  transition: 100ms ease-out;
+}
+
+.lsy-animation-flip190 {
+  -webkit-transform: rotateY(190deg);
+  transform: rotateY(190deg);
+  -webkit-transition: 100ms ease-out;
+  transition: 100ms ease-out;
+}
+
+.lsy-animation-flip180 {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  -webkit-transition: 150ms ease-out;
+  transition: 150ms ease-out;
+}
+
 .lsy-bg-c-info {
   background-color: var(--lsy-background-info) !important;
   color: var(--lsy-color-info) !important;
