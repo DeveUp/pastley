@@ -4,6 +4,9 @@
 	height: auto;
 	width: 100%;
 	overflow: hidden;
+	.lsy-span{
+		color: inherit;
+	}
 	&__row{
 		display: flex;
     	align-items: stretch;
@@ -16,6 +19,9 @@
         display: flex;
         flex-flow: column wrap;
         justify-content: center;
+		&-padding{
+			padding: 10%;
+		}
 	}
 	&__content{
 		position: relative;
@@ -38,6 +44,12 @@
 			&.#{$VAR-LSY-CLASS-ACTIVE}{
 				opacity: 1;
         		visibility: visible;
+				.lsy-txt-title{
+					animation: animation-generic-sonar .5s reverse; 
+				}
+				p{
+					opacity: 1;
+				}
 			}
 			.lsy-txt-title{
 				margin-bottom: 3vh;
@@ -53,6 +65,8 @@
         		overflow: hidden;
 				font-size: 1em;
 				text-align: justify;
+				opacity: 0;
+				transition: opacity 2s linear;
         		font-family: var(#{$VAR-LSY-TXT-VAR-FONT-FAMILY}-primary);
 				& ~ p{
 					margin-top: 1em;				
@@ -101,6 +115,8 @@
     		font-size: 1.2em;
     		padding: 0;
     		overflow: hidden;
+			z-index: 2;
+			transition: all .5s linear;
 			@include mixin-text-shadow((
 				var(#{$VAR-LSY-TXT-VAR-COLOR}-primary),
 				var(#{$VAR-LSY-TXT-VAR-BACKGROUND}-primary)
@@ -118,7 +134,7 @@
       		position: relative;
       		overflow: visible;
      	 	border-bottom: 7px solid var(#{$VAR-LSY-TXT-VAR-BACKGROUND}-primary);
-      		background: var(#{$VAR-LSY-TXT-VAR-COLOR}-primary);
+      		@extend .lsy-interface-container;
       		transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 			cursor: pointer;
 			&-link{
@@ -129,6 +145,7 @@
       			position: absolute;
       			width: 280%;
       			height: 100%;
+				z-index: 3;
       			left: calc(-280% + 90px);
       			background: rgba(32, 35, 42, 0.75);
       			transform: scaleX(0);
@@ -139,11 +156,15 @@
         		border-bottom: none; 
 			}
 			&.#{$VAR-LSY-CLASS-ACTIVE}{
-				background-color: var(#{$VAR-LSY-TXT-VAR-COLOR}-disabled);
+				&::after{
+					transition: all .5s linear;
+					background-color: var(#{$VAR-LSY-TXT-VAR-BACKGROUND}-primary);
+					opacity: .9;
+				}
 				.lsy-interface-know__nav-txt{
 					@include mixin-text-shadow(( 
-						var(#{$VAR-LSY-TXT-VAR-COLOR}-disabled),
-						var(#{$VAR-LSY-TXT-VAR-BACKGROUND}-disabled)
+						var(#{$VAR-LSY-TXT-VAR-BACKGROUND}-primary),
+						var(#{$VAR-LSY-TXT-VAR-COLOR}-primary)
 					));
 				}
 			}
@@ -226,7 +247,7 @@
 				}
 				.lsy-interface-know__col{
 					&:first-of-type{
-						padding: 1em !important;
+						padding: 10% !important;
 					}
 					&:last-of-type{
 						margin-top: .5em;
