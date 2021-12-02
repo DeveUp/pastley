@@ -9,6 +9,14 @@ const LSY_OBJECT_FLIP = {
     "d": "lsy-animation-flip180",
 }
 
+const pastleyGenericClassRemove = (elements, className = LSY_CLASS_ACTIVE) => {
+	if(elements != null){
+		elements.forEach(e => {
+			e.classList.remove(`${className}`);
+		});
+	}
+}
+
 const pastleyAnimationFlip = (element, fuctionExecute, flip = LSY_OBJECT_FLIP) => { 
 	element.classList.add(flip.a); 
 	setTimeout(function () {  
@@ -135,6 +143,29 @@ const pastleyMenuLeft = (id) =>{
 					}
 				});
 			});
+		}
+	}
+}
+
+const pastleyKnowUs = (id) => {
+	let know = document.querySelector(`${id}`);
+	if(know != null){
+		const add = (position, info, items) => {
+			pastleyGenericClassRemove(info);
+			pastleyGenericClassRemove(items);
+			items[position].classList.add(`${LSY_CLASS_ACTIVE}`);
+			info[position].classList.add(`${LSY_CLASS_ACTIVE}`);
+		}
+		let info = know.querySelectorAll(`.lsy-interface-know__content-info`);
+		let navItem = know.querySelectorAll(`.lsy-interface-know__nav-item`);
+		if(navItem != null){
+			navItem.forEach((e, i) => {
+				e.addEventListener("click", (ev) => {
+					ev.preventDefault();
+					add(i, info, navItem);
+				});
+			});
+			add(0, info, navItem);
 		}
 	}
 }

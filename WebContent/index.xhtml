@@ -8,10 +8,13 @@
 	<ui:define name="tmp-section">
 		<ui:include src="pages/component/home/banner.xhtml" />
 		<ui:include src="pages/component/home/store.xhtml" />
+		<ui:include src="pages/component/home/know.xhtml" />
+		<ui:include src="pages/component/home/contact.xhtml" /> 
 	</ui:define>
 	<ui:define name="tmp-js">
 		<h:outputScript>
 			pastleyCardProduct(".lsy-card__product");
+			pastleyKnowUs(".lsy-interface-know");
 		</h:outputScript>
 	</ui:define>
 </ui:composition>
