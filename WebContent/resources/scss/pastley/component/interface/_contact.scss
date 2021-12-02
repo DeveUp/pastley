@@ -1,0 +1,85 @@
+.lsy-interface-contact{
+	&__wrap,
+	&{
+		display: flex;
+		justify-content: center;
+  		align-content: center;
+  		align-items: center;
+  		flex-direction: row;
+		position: relative;
+		width: 100%;
+		min-height: 100vh;
+  		height: auto;
+		overflow: hidden;
+		.lsy-interface-container-padding{
+			padding: 0 !important;
+		}
+	}
+	&__info,
+	&__form{
+		position: relative;
+		width: 50%;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+  		align-content: center;
+  		align-items: center;
+		flex-direction: column;
+		padding: 2em;
+	}
+	&__info{
+		&-image{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			z-index: 1;
+			filter: brightness(0.5);
+		}
+		& > .lsy-txt-title,
+		& > a,
+		& > .lsy-button{
+			position: relative;
+			z-index: 2;
+		}
+		& > a{
+			margin-bottom: 1em;
+			img{
+				width: 150px;
+				height: 150px;
+			}
+		}
+	}
+	.lsy-txt-title{
+		@include mixin-text-shadow();
+		letter-spacing: 5px;
+    	font-size: 4em;
+	}
+	@media screen and (max-width: 1000px) {
+		&__wrap,
+		&{
+			flex-direction: column;
+			min-height: auto;
+  			height: auto;
+		}
+		&__info,
+		&__form{
+			min-height: auto;
+  			height: auto;
+			width: 100%;
+		}
+		&__info{
+			& > a{
+				img{
+					width: 100px;
+					height: 100px;
+				}
+			}
+		}
+		.lsy-txt-title{
+			font-size: 2.5em;
+		}
+	}
+}

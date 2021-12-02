@@ -2036,7 +2036,6 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
   -webkit-box-shadow: 0px 5px 31px -1px rgba(52, 51, 47, 0.15);
           box-shadow: 0px 5px 31px -1px rgba(52, 51, 47, 0.15);
   overflow: hidden;
-  border-radius: 1em;
 }
 .lsy-card__product-close {
   position: absolute;
@@ -3692,6 +3691,104 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
     -ms-grid-row-span: 1;
     -ms-grid-column: 1;
     -ms-grid-column-span: 3;
+  }
+}
+
+.lsy-interface-contact__wrap, .lsy-interface-contact {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  overflow: hidden;
+}
+.lsy-interface-contact__wrap .lsy-interface-container-padding, .lsy-interface-contact .lsy-interface-container-padding {
+  padding: 0 !important;
+}
+.lsy-interface-contact__info, .lsy-interface-contact__form {
+  position: relative;
+  width: 50%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 2em;
+}
+.lsy-interface-contact__info-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: 1;
+  -webkit-filter: brightness(0.5);
+          filter: brightness(0.5);
+}
+.lsy-interface-contact__info > .lsy-txt-title, .lsy-interface-contact__info > a, .lsy-interface-contact__info > .lsy-button {
+  position: relative;
+  z-index: 2;
+}
+.lsy-interface-contact__info > a {
+  margin-bottom: 1em;
+}
+.lsy-interface-contact__info > a img {
+  width: 150px;
+  height: 150px;
+}
+.lsy-interface-contact .lsy-txt-title {
+  text-shadow: var(--lsy-color-primary) 1px 0px 0px, var(--lsy-color-primary) 0.540302px 0.841471px 0px, var(--lsy-color-primary) -0.416147px 0.909297px 0px, var(--lsy-color-primary) -0.989992px 0.14112px 0px, var(--lsy-color-primary) -0.653644px -0.756802px 0px, var(--lsy-color-primary) 0.283662px -0.958924px 0px, var(--lsy-color-primary) 0.96017px -0.279415px 0px;
+  color: var(--lsy-background-primary);
+  letter-spacing: 5px;
+  font-size: 4em;
+}
+@media screen and (max-width: 1000px) {
+  .lsy-interface-contact__wrap, .lsy-interface-contact {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    min-height: auto;
+    height: auto;
+  }
+  .lsy-interface-contact__info, .lsy-interface-contact__form {
+    min-height: auto;
+    height: auto;
+    width: 100%;
+  }
+  .lsy-interface-contact__info > a img {
+    width: 100px;
+    height: 100px;
+  }
+  .lsy-interface-contact .lsy-txt-title {
+    font-size: 2.5em;
   }
 }
 /*# sourceMappingURL=pastley.css.map */
