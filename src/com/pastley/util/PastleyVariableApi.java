@@ -22,11 +22,12 @@ public class PastleyVariableApi {
 	public static final String PASTLEY_API_REQUEST_FIND_NAME = "/find/name/{name}";
 	public static final String PASTLEY_API_REQUEST_ALL = "/";
 	public static final String PASTLEY_API_REQUEST_ALL_FIND_STATU = "/all/find/statu/{statu}";
+	public static final String PASTLEY_API_REQUEST_ALL_FIND_SUPPLIES = "/all/find/supplies/{supplies}";
 	public static final String PASTLEY_API_REQUEST_RANGE_ALL_FIND_DATE_REGISTER = "/range/all/find/date/register/{start}/{end}";
 	public static final String PASTLEY_API_REQUEST_CREATE = "/";
 	public static final String PASTLEY_API_REQUEST_UPDATE_STATU = "/update/statu/{id}";
 	
-	/* API MICROSERVICE SALE */
+	/* API MICROSERVICE PRODUCT */
 	public static final String PASTLEY_API_MICROSERVICE_PRODUCT_SERVICE_PRODUCT = PASTLEY_API_GATEWAY_PATH+"product";
 	public static final String PASTLEY_API_MICROSERVICE_PRODUCT_SERVICE_CATEGORY = PASTLEY_API_GATEWAY_PATH+"category";
 	
@@ -40,4 +41,16 @@ public class PastleyVariableApi {
 	public static final String PASTLEY_API_MICROSERVICE_BUY_SERVICE_BUY = PASTLEY_API_GATEWAY_PATH+"buy";
 	public static final String PASTLEY_API_MICROSERVICE_BUY_SERVICE_PROVIDER = PASTLEY_API_GATEWAY_PATH+"provider";
 	public static final String PASTLEY_API_MICROSERVICE_BUY_SERVICE_BUYDETAIL = PASTLEY_API_GATEWAY_PATH+"buy-detail";
+	
+	/* API MICROSERVICE USER */
+	public static final String PASTLEY_API_MICROSERVICE_USER_SERVICE_PERSON = PASTLEY_API_GATEWAY_PATH+"person";
+	public static final String PASTLEY_API_MICROSERVICE_USER_SERVICE_USER = PASTLEY_API_GATEWAY_PATH+"user";
+	public static final String PASTLEY_API_MICROSERVICE_USER_SERVICE_ROLE = PASTLEY_API_GATEWAY_PATH+"role";
+	public static final String PASTLEY_API_MICROSERVICE_USER_SERVICE_TYPE_DOCUMENT = PASTLEY_API_GATEWAY_PATH+"TypeDocument";
+	
+	/* API MICROSERVICE CONTACT */
+	public static final String PASTLEY_API_MICROSERVICE_CONTACT_SERVICE_TYPEPQR = PASTLEY_API_GATEWAY_PATH+"TypePQR";
+	public static final String PASTLEY_API_MICROSERVICE_CONTACT_SERVICE_CONTACT = PASTLEY_API_GATEWAY_PATH+"Contact";
+	public static final String PASTLEY_API_MICROSERVICE_CONTACT_SERVICE_CONTACT_RESPONSE = PASTLEY_API_GATEWAY_PATH+"ContactResponse";
+	public static final String PASTLEY_API_MICROSERVICE_CONTACT_SERVICE_COMPANY = PASTLEY_API_GATEWAY_PATH+"company";
 }
