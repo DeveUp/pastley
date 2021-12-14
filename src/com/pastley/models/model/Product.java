@@ -117,7 +117,7 @@ public class Product implements Serializable{
 	 * 
 	 * @return The value obtained.
 	 */
-	public BigInteger calculateSubTotalNet() {
+	public BigInteger getCalculateSubTotalNet() {
 		return calculatePriceSubDiscount();
 	}
 
@@ -126,11 +126,11 @@ public class Product implements Serializable{
 	 * 
 	 * @return The value obtained.
 	 */
-	public BigInteger calculateSubtotalGross() {
+	public BigInteger getCalculateSubtotalGross() {
 		if (!PastleyValidate.bigIntegerHigherZero(this.priceVat)) {
 			calculatePriceIva();
 		}
-		return calculateSubTotalNet().add(this.priceVat);
+		return getCalculateSubTotalNet().add(this.priceVat);
 	}
 
 	/**

@@ -73,7 +73,7 @@ public class BuyDetail implements Serializable {
 	 */
 	public BigInteger calculateSubtotalGross(Product pm) {
 		pm = (pm != null) ? pm : new Product(this.price, this.discount, this.vat);
-		this.subtotalGross = pm.calculateSubtotalGross().multiply(new BigInteger(String.valueOf(this.count)));
+		this.subtotalGross = pm.getCalculateSubtotalGross().multiply(new BigInteger(String.valueOf(this.count)));
 		return this.subtotalGross;
 	}
 	
@@ -83,7 +83,7 @@ public class BuyDetail implements Serializable {
 	 */
 	public BigInteger calculateSubtotalNet(Product pm) {
 		pm = (pm != null) ? pm : new Product(this.price, this.discount, this.vat);
-		this.subtotalNet = pm.calculateSubTotalNet().multiply(new BigInteger(String.valueOf(this.count)));
+		this.subtotalNet = pm.getCalculateSubTotalNet().multiply(new BigInteger(String.valueOf(this.count)));
 		return this.subtotalNet;
 	}
 	

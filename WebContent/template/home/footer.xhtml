@@ -12,18 +12,16 @@
 					styleClass="lsy-container p-lg-6 p-md-6 p-col-12">
 					<h1 class="lsy-txt-title p-text-lg-left p-text-center">Sobre
 						Nosotros</h1>
-					<p class="lsy-txt-paragraph">Lorem Ipsum is simply dummy text
-						of the printing and typesetting industry. Lorem Ipsum has been the
-						industry's standard dummy text ever since the 1500s, when an
-						unknown printer took a galley of type and scrambled it to make a
-						type specimen book.</p>
+					<p class="lsy-txt-paragraph">
+						<h:outputText value="#{company.company.aboutUs}"/>
+					</p>
 				</h:panelGroup>
 				<h:panelGroup layout="block"
 					styleClass="lsy-container p-lg-3 p-md-6 p-col-12">
 					<h1 class="lsy-txt-title p-text-lg-left p-text-center">Categorias</h1>
 					<ul>
-						<ui:repeat var="a" value="#{home.footer.categories}">
-							<li><p:commandLink value="#{a.entity.name}"
+						<ui:repeat var="a" value="#{menu.categories}">
+							<li><p:commandLink value="#{a.name}"
 									styleClass="lsy-link" /></li>
 						</ui:repeat>
 					</ul>
@@ -46,7 +44,7 @@
 					styleClass="lsy-container p-md-6 p-col-12 p-d-flex p-jc-start p-ai-center">
 					<h:outputText
 						styleClass="lsy-container p-text-lg-left p-text-center"
-						value="Todos los derechos reservados Pastley" />
+						value="Todos los derechos reservados #{company.company.name}." />
 				</h:panelGroup>
 				<h:panelGroup layout="block"
 					styleClass="lsy-container p-md-6 p-col-12">

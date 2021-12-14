@@ -13,11 +13,12 @@
 					library="img" name="header/form-contact.jpg" title="Fondo"
 					cache="false" />
 				<p:commandLink action="/index?faces-redirect=true">
-					<p:graphicImage
-						value="https://raw.githubusercontent.com/DeveUp/pastley-backend/1f492ccab7ccd76c06ae18d2eed852477e0bf602/pastley-logos/01.svg"
-						title="Logo" cache="false" />
+					<p:graphicImage value="#{company.company.logo}" title="Logo"
+						cache="false" />
 				</p:commandLink>
-				<h1 class="lsy-txt-title">Pastley</h1>
+				<h1 class="lsy-txt-title">
+					<h:outputText value="#{company.company.name}" />
+				</h1>
 			</h:panelGroup>
 			<h:panelGroup layout="block" styleClass="lsy-interface-contact__form">
 				<h1 class="lsy-txt-title">Contacto</h1>
