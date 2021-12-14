@@ -12,11 +12,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.pastley.controller.request.BuyRequest;
+import com.pastley.controller.request.CategoryRequest;
 import com.pastley.controller.request.ProductRequest;
 import com.pastley.controller.request.ProviderRequest;
 import com.pastley.models.app.DataTableApp;
 import com.pastley.models.dto.ExceptionDTO;
 import com.pastley.models.model.Buy;
+import com.pastley.models.model.Category;
 import com.pastley.models.model.Product;
 import com.pastley.models.model.Provider;
 
@@ -31,12 +33,31 @@ public class DataTableBean implements Serializable{
 	private DataTableApp<Buy> buy;
 	private DataTableApp<Provider> provider;
 	private DataTableApp<Product> product;
+	private DataTableApp<Category> category;
 	
 	@PostConstruct
 	public void init() {
 		buy = new DataTableApp<>();
 		product = new DataTableApp<>();
 		provider = new DataTableApp<>();
+		category = new DataTableApp<>();
+	}
+	
+	public List<Category> getCategoryEntity(){
+		if(category == null)
+			return new ArrayList<>();
+		if(!category.isRenderizar())
+			return category.getEntity();
+		CategoryRequest request = new CategoryRequest();
+		try {
+			category = new DataTableApp<>(request.findAll());
+		}catch (ExceptionDTO e) {
+			LOGGER.error("[getCategoryEntity()]", e);
+			category.setEntity(new ArrayList<>());
+		}finally {
+			category.setRenderizar(false);
+		}
+		return category.getEntity();
 	}
 	
 	public List<Buy> getBuyEntity(){
@@ -113,6 +134,14 @@ public class DataTableBean implements Serializable{
 
 	public void setProvider(DataTableApp<Provider> provider) {
 		this.provider = provider;
+	}
+
+	public DataTableApp<Category> getCategory() {
+		return category;
+	}
+
+	public void setCategory(DataTableApp<Category> category) {
+		this.category = category;
 	}
 
 	public static Logger getLogger() {
