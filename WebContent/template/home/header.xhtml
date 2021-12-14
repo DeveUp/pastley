@@ -84,7 +84,7 @@
 									<ui:repeat var="b"
 										value="#{menu.menuI.levelII.get(varStatu.index)}">
 										<p:commandLink>
-											<p:graphicImage library="img" name="header/#{b.entity.image}" />
+											<p:graphicImage value="#{b.entity.image}" />
 										</p:commandLink>
 									</ui:repeat>
 								</h:panelGroup>

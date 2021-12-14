@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import com.pastley.controller.request.CategoryRequest;
 import com.pastley.controller.request.ProductRequest;
+import com.pastley.models.component.ItemComponent;
 import com.pastley.models.component.MenuIComponent;
 import com.pastley.models.component.impl.MenuIComponentImpl;
 import com.pastley.models.dto.ExceptionDTO;
@@ -58,6 +59,14 @@ public class MenuBean implements Serializable {
 	public void initMenuI() {
 		menuI = new MenuIComponent<>();
 		MenuIComponentImpl.fill(menuI);
+		categories.stream().forEach(category ->{
+			menuI.getLevel().add(new ItemComponent<>(category, null, "fas fa-angle-right"));
+			List<ItemComponent<Product>> products= new ArrayList<>();
+			category.getProducts().stream().forEach(product -> {
+				products.add(new ItemComponent<Product>(product, null, null));
+			});
+			menuI.getLevelII().add(products);
+		});
 	}
 
 	public List<Category> getCategories() {
