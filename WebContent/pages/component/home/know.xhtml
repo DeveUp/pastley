@@ -12,26 +12,14 @@
 					styleClass="lsy-interface-know__content-info lsy-option-active">
 					<h:panelGroup layout="block" styleClass="lsy-interface-know__col">
 						<h1 class="lsy-txt-title">¿Quienes Somos?</h1>
-						<p>Lorem Ipsum is simply dummy text of the printing and
-							typesetting industry. Lorem Ipsum has been the industry's
-							standard dummy text ever since the 1500s, when an unknown printer
-							took a galley of type and scrambled it to make a type specimen
-							book. It has survived not only five centuries, but also the leap
-							into electronic typesetting, remaining essentially unchanged. It
-							was popularised in the 1960s with the release of Letraset sheets
-							containing Lorem Ipsum passages, and more recently with desktop
-							publishing software like Aldus PageMaker including versions of
-							Lorem Ipsum.</p>
-						<p>Lorem Ipsum is simply dummy text of the printing and
-							typesetting industry. Lorem Ipsum has been the industry's
-							standard dummy text ever since the 1500s, when an unknown printer
-							took a galley of type and scrambled it to make a type specimen
-							book. It has survived not only five centuries, but also the leap
-							into electronic typesetting, remaining essentially unchanged. It
-							was popularised in the 1960s with the release of Letraset sheets
-							containing Lorem Ipsum passages, and more recently with desktop
-							publishing software like Aldus PageMaker including versions of
-							Lorem Ipsum.</p>
+						<p>
+							<h:outputText value="#{company.company.desciption}"
+								rendered="#{company.company.desciption != null}" />
+						</p>
+						<p>
+							<h:outputText value="#{company.company.aboutUs}"
+								rendered="#{company.company.aboutUs != null}" />
+						</p>
 					</h:panelGroup>
 					<h:panelGroup layout="block" styleClass="lsy-interface-know__col">
 						<p:graphicImage library="img" name="header/category.png"
@@ -43,16 +31,7 @@
 					<h:panelGroup layout="block"
 						styleClass="lsy-interface-know__col lsy-interface-know__col-padding">
 						<h1 class="lsy-txt-title">Vision</h1>
-						<p>Lorem Ipsum is simply dummy text of the printing and
-							typesetting industry. Lorem Ipsum has been the industry's
-							standard dummy text ever since the 1500s, when an unknown printer
-							took a galley of type and scrambled it to make a type specimen
-							book. It has survived not only five centuries, but also the leap
-							into electronic typesetting, remaining essentially unchanged. It
-							was popularised in the 1960s with the release of Letraset sheets
-							containing Lorem Ipsum passages, and more recently with desktop
-							publishing software like Aldus PageMaker including versions of
-							Lorem Ipsum.</p>
+						<p> <h:outputText value="#{company.company.vision}"/> </p>
 					</h:panelGroup>
 				</h:panelGroup>
 				<h:panelGroup layout="block"
@@ -60,26 +39,7 @@
 					<h:panelGroup layout="block"
 						styleClass="lsy-interface-know__col lsy-interface-know__col-padding">
 						<h1 class="lsy-txt-title">Mision</h1>
-						<p>Lorem Ipsum is simply dummy text of the printing and
-							typesetting industry. Lorem Ipsum has been the industry's
-							standard dummy text ever since the 1500s, when an unknown printer
-							took a galley of type and scrambled it to make a type specimen
-							book. It has survived not only five centuries, but also the leap
-							into electronic typesetting, remaining essentially unchanged. It
-							was popularised in the 1960s with the release of Letraset sheets
-							containing Lorem Ipsum passages, and more recently with desktop
-							publishing software like Aldus PageMaker including versions of
-							Lorem Ipsum.</p>
-						<p>Lorem Ipsum is simply dummy text of the printing and
-							typesetting industry. Lorem Ipsum has been the industry's
-							standard dummy text ever since the 1500s, when an unknown printer
-							took a galley of type and scrambled it to make a type specimen
-							book. It has survived not only five centuries, but also the leap
-							into electronic typesetting, remaining essentially unchanged. It
-							was popularised in the 1960s with the release of Letraset sheets
-							containing Lorem Ipsum passages, and more recently with desktop
-							publishing software like Aldus PageMaker including versions of
-							Lorem Ipsum.</p>
+						<p> <h:outputText value="#{company.company.mission}"/> </p>
 					</h:panelGroup>
 
 				</h:panelGroup>

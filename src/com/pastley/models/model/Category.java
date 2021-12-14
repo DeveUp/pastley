@@ -3,6 +3,7 @@ package com.pastley.models.model;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.List;
 
 import com.pastley.util.PastleyDate;
 
@@ -22,6 +23,8 @@ public class Category implements Serializable{
     private boolean statu;
 	private String dateRegister;
 	private String dateUpdate;
+	
+	private List<Product> products;
 
 	public LocalDate getDateWithoutTime() {
 		PastleyDate date = new PastleyDate();
@@ -102,6 +105,14 @@ public class Category implements Serializable{
 
 	public void setDateUpdate(String dateUpdate) {
 		this.dateUpdate = dateUpdate;
+	}
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
 
 	public static long getSerialversionuid() {

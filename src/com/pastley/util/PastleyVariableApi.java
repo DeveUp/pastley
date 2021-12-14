@@ -23,6 +23,7 @@ public class PastleyVariableApi {
 	public static final String PASTLEY_API_REQUEST_ALL = "/";
 	public static final String PASTLEY_API_REQUEST_ALL_FIND_STATU = "/all/find/statu/{statu}";
 	public static final String PASTLEY_API_REQUEST_ALL_FIND_SUPPLIES = "/all/find/supplies/{supplies}";
+	public static final String PASTLEY_API_REQUEST_ALL_FIND_CATEGORY = "/all/find/category/{idCategory}";
 	public static final String PASTLEY_API_REQUEST_RANGE_ALL_FIND_DATE_REGISTER = "/range/all/find/date/register/{start}/{end}";
 	public static final String PASTLEY_API_REQUEST_CREATE = "/";
 	public static final String PASTLEY_API_REQUEST_UPDATE_STATU = "/update/statu/{id}";

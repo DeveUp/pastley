@@ -40,6 +40,11 @@ public class ProductRequest implements Serializable{
 		return findAll(aux.replace("{statu}", String.valueOf(statu)));
 	}
 	
+	public List<Product> findByIdCategoryAll(Long idCategory) throws ExceptionDTO {
+		String aux = path + PastleyVariableApi.PASTLEY_API_REQUEST_ALL_FIND_CATEGORY;
+		return findAll(aux.replace("{idCategory}", String.valueOf(idCategory)));
+	}
+	
 	public List<Product> findBySuppliesAll(boolean supplies) throws ExceptionDTO {
 		String aux = path + PastleyVariableApi.PASTLEY_API_REQUEST_ALL_FIND_SUPPLIES;
 		return findAll(aux.replace("{supplies}", String.valueOf(supplies)));
