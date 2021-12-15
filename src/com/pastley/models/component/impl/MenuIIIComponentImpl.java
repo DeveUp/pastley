@@ -68,8 +68,8 @@ public class MenuIIIComponentImpl {
 	public static void fillCompany(MenuIIIComponent menu) {
 		menu.getItems().add(new ItemIIComponent<>(new BadgeComponent("admi", "lsy-bg-c-warning"), true,
 				PastleyVariable.PASTLEY_MENU_TYPE_COMPANY, null, null));
-		menu.getItems().add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_TYPE_COMPANY_INFO, null,
-				PastleyVariable.PASTLEY_ICON_INFO));
+		menu.getItems().add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_TYPE_COMPANY_INFO,
+				"pages/company/index.xhtml", PastleyVariable.PASTLEY_ICON_INFO));
 		// PQR
 		List<ItemIIComponent<String>> pqr = new ArrayList<>();
 		pqr.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY, null,

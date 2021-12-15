@@ -46,7 +46,6 @@ public class JSONConvert {
 	/*
 	 * CONVERT MICROSERVICE PRODUCT
 	 */
-
 	public static Category category(JSONObject object, Category value) {
 		if (!PastleyValidate.isObject(object))
 			return value;
@@ -58,7 +57,7 @@ public class JSONConvert {
 		category.setDateUpdate(validateString(object.get("dateUpdate"), null));
 		return category;
 	}
-	
+
 	public static Product product(JSONObject object, Product value) {
 		if (!PastleyValidate.isObject(object))
 			return value;
@@ -82,11 +81,10 @@ public class JSONConvert {
 		product.setCategory(category((JSONObject) object.get("category"), new Category()));
 		return product;
 	}
-	
+
 	/*
 	 * CONVERT MICROSERVICE SALE
 	 */
-	
 	public static Provider provider(JSONObject object, Provider value) {
 		if (!PastleyValidate.isObject(object))
 			return value;
@@ -143,8 +141,8 @@ public class JSONConvert {
 		Sale sale = new Sale();
 
 		sale.setId(validateLong(object.get("id"), 0L));
-		sale.setIdCoustomer(validateLong(object.get("idCoustomer"),  null));
-		sale.setIdMethodPay(validateLong(object.get("idMethodPay"),  null));
+		sale.setIdCoustomer(validateLong(object.get("idCoustomer"), null));
+		sale.setIdMethodPay(validateLong(object.get("idMethodPay"), null));
 		sale.setIva(validateString(object.get("iva"), null));
 		sale.setTotalNet(validateBigInteger(object.get("totalNet"), BigInteger.ZERO));
 		sale.setTotalGross(validateBigInteger(object.get("totalGross"), BigInteger.ZERO));
@@ -154,23 +152,23 @@ public class JSONConvert {
 
 		return sale;
 	}
-	
+
 	public static SaleDetail saleDetail(JSONObject object, SaleDetail value) {
 		if (!PastleyValidate.isObject(object))
 			return value;
 		SaleDetail saleDetail = new SaleDetail();
 
 		saleDetail.setId(validateLong(object.get("id"), 0L));
-		saleDetail.setIdSale(validateLong(object.get("idSale"),  null));
+		saleDetail.setIdSale(validateLong(object.get("idSale"), null));
 
 		return saleDetail;
 	}
-	
+
 	public static MethodPay methodPay(JSONObject object, MethodPay value) {
 		if (!PastleyValidate.isObject(object))
 			return value;
 		MethodPay methodPay = new MethodPay();
-		
+
 		methodPay.setId(validateLong(object.get("id"), 0L));
 		methodPay.setName(validateString(object.get("name"), null));
 		methodPay.setStatu(validateBoolean(object.get("statu"), false));
@@ -179,15 +177,15 @@ public class JSONConvert {
 
 		return methodPay;
 	}
-	
+
 	public static Cart cart(JSONObject object, Cart value) {
 		if (!PastleyValidate.isObject(object))
 			return value;
 		Cart cart = new Cart();
 
 		cart.setId(validateLong(object.get("id"), 0L));
-		cart.setIdProduct(validateLong(object.get("idProduct"),  null));
-		cart.setIdCustomer(validateLong(object.get("idCustomer"),  null));
+		cart.setIdProduct(validateLong(object.get("idProduct"), null));
+		cart.setIdCustomer(validateLong(object.get("idCustomer"), null));
 		cart.setDiscount(validateString(object.get("discount"), null));
 		cart.setVat(validateString(object.get("vat"), null));
 		cart.setCount(validateInt(object.get("count"), 0));
@@ -198,20 +196,20 @@ public class JSONConvert {
 		cart.setStatu(validateBoolean(object.get("statu"), false));
 		cart.setDateRegister(validateString(object.get("dateRegister"), null));
 		cart.setDateUpdate(validateString(object.get("dateUpdate"), null));
-		
+
 		return cart;
 	}
-	
-	/* 
-	 * CONVERT MICROSERVICE USER 
-	 * */
+
+	/*
+	 * CONVERT MICROSERVICE USER
+	 */
 	public static Person person(JSONObject object, Person value) {
 		if (!PastleyValidate.isObject(object))
 			return value;
 		Person person = new Person();
-		
+
 		person.setId(validateLong(object.get("id"), 0L));
-		person.setDocument(validateLong(object.get("document"),  null));
+		person.setDocument(validateLong(object.get("document"), null));
 		person.setName(validateString(object.get("name"), null));
 		person.setSubname(validateString(object.get("submane"), null));
 		person.setPhone(validateString(object.get("phone"), null));
@@ -223,13 +221,12 @@ public class JSONConvert {
 		person.setTypeDocument(typeDocument((JSONObject) object.get("typeDocument"), new TypeDocument()));
 		return person;
 	}
-	
-	
+
 	public static User user(JSONObject object, User value) {
 		if (!PastleyValidate.isObject(object))
 			return value;
 		User user = new User();
-		
+
 		user.setId(validateLong(object.get("id"), 0L));
 		user.setNickname(validateString(object.get("nickname"), null));
 		user.setPoints(validateLong(object.get("points"), null));
@@ -239,19 +236,19 @@ public class JSONConvert {
 		user.setStatu(validateBoolean(object.get("statu"), false));
 		user.setSession(validateBoolean(object.get("session"), false));
 		user.setDateRegister(validateString(object.get("dateRegister"), null));
-		user.setDateUpdate(validateString(object.get("dateUpdate"), null));		
+		user.setDateUpdate(validateString(object.get("dateUpdate"), null));
 		user.setDateLastDate(validateString(object.get("dateLastDate"), null));
 		user.setDateSession(validateString(object.get("dateSession"), null));
 		user.setPerson(person((JSONObject) object.get("person"), new Person()));
-			
+
 		return user;
 	}
-	
+
 	public static Role role(JSONObject object, Role value) {
 		if (!PastleyValidate.isObject(object))
 			return value;
 		Role role = new Role();
-		
+
 		role.setId(validateLong(object.get("id"), 0L));
 		role.setName(validateString(object.get("name"), null));
 		role.setDescription(validateString(object.get("description"), null));
@@ -259,16 +256,15 @@ public class JSONConvert {
 		role.setSession(validateBoolean(object.get("session"), false));
 		role.setDateRegister(validateString(object.get("dateRegister"), null));
 		role.setDateUpdate(validateString(object.get("dateUpdate"), null));
-		
+
 		return role;
 	}
-	
-	
+
 	public static TypeDocument typeDocument(JSONObject object, TypeDocument value) {
 		if (!PastleyValidate.isObject(object))
 			return value;
 		TypeDocument typeDocument = new TypeDocument();
-		
+
 		typeDocument.setId(validateLong(object.get("id"), 0L));
 		typeDocument.setName(validateString(object.get("name"), null));
 		typeDocument.setStatu(validateBoolean(object.get("statu"), false));
@@ -277,60 +273,59 @@ public class JSONConvert {
 
 		return typeDocument;
 	}
-	
-	
-	/* CONVERT MICROSERVICE CONTACT 
-     * Company
-	 * */
-	
+
+	/*
+	 * CONVERT MICROSERVICE CONTACT
+	 **/
+
 	public static TypePQR typePQR(JSONObject object, TypePQR value) {
 		if (!PastleyValidate.isObject(object))
 			return value;
 		TypePQR typePQR = new TypePQR();
-		
+
 		typePQR.setId(validateLong(object.get("id"), 0L));
 		typePQR.setName(validateString(object.get("name"), null));
 		typePQR.setDescription(validateString(object.get("description"), null));
 		typePQR.setStatu(validateBoolean(object.get("statu"), false));
 		typePQR.setDateRegister(validateString(object.get("dateRegister"), null));
 		typePQR.setDateUpdate(validateString(object.get("dateUpdate"), null));
-		
+
 		return typePQR;
 	}
-	
+
 	public static Contact contact(JSONObject object, Contact value) {
 		if (!PastleyValidate.isObject(object))
 			return value;
 		Contact contact = new Contact();
-		
+
 		contact.setId(validateLong(object.get("id"), 0L));
 		contact.setMessage(validateString(object.get("message"), null));
 		contact.setStatu(validateBoolean(object.get("statu"), false));
 		contact.setDateRegister(validateString(object.get("dateRegister"), null));
 		contact.setDateUpdate(validateString(object.get("dateUpdate"), null));
 		contact.setIdUser(validateLong(object.get("idUser"), null));
-		
+
 		return contact;
 	}
-	
+
 	public static ContactResponse contactResponse(JSONObject object, ContactResponse value) {
 		if (!PastleyValidate.isObject(object))
 			return value;
 		ContactResponse contactResponse = new ContactResponse();
-		
+
 		contactResponse.setId(validateLong(object.get("id"), 0L));
 		contactResponse.setResponse(validateString(object.get("response"), null));
 		contactResponse.setDateRegister(validateString(object.get("dateRegister"), null));
 		contactResponse.setDateUpdate(validateString(object.get("dateUpdate"), null));
-		
+
 		return contactResponse;
 	}
-	
+
 	public static Company company(JSONObject object, Company value) {
 		if (!PastleyValidate.isObject(object))
 			return value;
 		Company company = new Company();
-		
+
 		company.setId(validateLong(object.get("id"), 0L));
 		company.setName(validateString(object.get("name"), null));
 		company.setEmail(validateString(object.get("email"), null));
@@ -340,19 +335,19 @@ public class JSONConvert {
 		company.setMission(validateString(object.get("mission"), null));
 		company.setVision(validateString(object.get("vision"), null));
 		company.setAboutUs(validateString(object.get("aboutUs"), null));
-		//company.setSize(validateInteger(object.get("size"), BigInteger.ZERO));
+		// company.setSize(validateInteger(object.get("size"), BigInteger.ZERO));
 		company.setButdget(validateBigInteger(object.get("butdget"), BigInteger.ZERO));
 		company.setLogo(validateString(object.get("logo"), null));
 		company.setStatu(validateBoolean(object.get("statu"), false));
 		company.setSendSalesMail(validateBoolean(object.get("sendSalesMail"), false));
 		company.setAlertStock(validateBoolean(object.get("alertStock"), false));
-		//company.setAlertMinStock(validateInteger(object.get("alertMinStock"), BigInteger.ZERO));
+		// company.setAlertMinStock(validateInteger(object.get("alertMinStock"),
+		// BigInteger.ZERO));
 		company.setDateRegister(validateString(object.get("dateRegister"), null));
 		company.setDateUpdate(validateString(object.get("dateUpdate"), null));
-		
+
 		return company;
 	}
-	
 
 	private static Long validateLong(Object object, Long value) {
 		return PastleyValidate.isObject(object) ? Long.parseLong(String.valueOf(object)) : value;
