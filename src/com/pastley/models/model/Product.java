@@ -29,6 +29,7 @@ public class Product implements Serializable{
 	private String dimension;
 	private String image;
 	private boolean statu;
+	private boolean supplies;
 	private String description;
 	private String ingredients;
 	private String discount;
@@ -200,6 +201,14 @@ public class Product implements Serializable{
 
 	public void setFlavor(String flavor) {
 		this.flavor = flavor;
+	}
+
+	public boolean isSupplies() {
+		return supplies;
+	}
+
+	public void setSupplies(boolean supplies) {
+		this.supplies = supplies;
 	}
 
 	public BigInteger getPriceVat() {

@@ -21,57 +21,25 @@ public class BuyRequest implements Serializable{
 
 	private String path = PastleyVariableApi.PASTLEY_API_MICROSERVICE_BUY_SERVICE_BUY;
 	
-	/**
-	 * 
-	 * @param id
-	 * @param value
-	 * @return
-	 * @throws ExceptionDTO
-	 */
 	public Buy findById(Long id, Buy value) throws ExceptionDTO {
 		String aux = path + PastleyVariableApi.PASTLEY_API_REQUEST_FIND_ID;
 		return find(aux.replace("{id}", String.valueOf(id)), value);
 	}
-	
-	/**
-	 * 
-	 * @param name
-	 * @param value
-	 * @return
-	 * @throws ExceptionDTO
-	 */
+
 	public Buy findByName(String name, Buy value) throws ExceptionDTO {
 		String aux = path + PastleyVariableApi.PASTLEY_API_REQUEST_FIND_NAME;
 		return find(aux.replace("{name}", name), value);
 	}
 	
-	/**
-	 * 
-	 * @return
-	 * @throws ExceptionDTO
-	 */
 	public List<Buy> findAll() throws ExceptionDTO {
 		return findAll(path + PastleyVariableApi.PASTLEY_API_REQUEST_ALL);
 	}
 
-	/**
-	 * 
-	 * @param statu
-	 * @return
-	 * @throws ExceptionDTO
-	 */
 	public List<Buy> findByStatuAll(boolean statu) throws ExceptionDTO {
 		String aux = path + PastleyVariableApi.PASTLEY_API_REQUEST_ALL_FIND_STATU;
 		return findAll(aux.replace("{statu}", String.valueOf(statu)));
 	}
 	
-	/**
-	 * 
-	 * @param start
-	 * @param end
-	 * @return
-	 * @throws ExceptionDTO
-	 */
 	public List<Buy> findByRangeDateRegister(String start, String end) throws ExceptionDTO{
 		String aux = path + PastleyVariableApi.PASTLEY_API_REQUEST_RANGE_ALL_FIND_DATE_REGISTER;
 		aux = aux.replace("{start}", String.valueOf(start));
@@ -88,34 +56,16 @@ public class BuyRequest implements Serializable{
 		return buy;
 	}
 	
-	/**
-	 * 
-	 * @param path
-	 * @param value
-	 * @return
-	 * @throws ExceptionDTO
-	 */
 	public Buy find(String path, Buy value) throws ExceptionDTO {
 		RequestController<JSONObject> request = new RequestController<>();
 		return JSONConvert.buy(request.get(path, null), value);
 	}
 
-	/**
-	 * 
-	 * @param path
-	 * @return
-	 * @throws ExceptionDTO
-	 */
 	public List<Buy> findAll(String path) throws ExceptionDTO {
 		RequestController<List<JSONObject>> request = new RequestController<>();
 		return BuyRequest.toAll(request.get(path, null));
 	}
 
-	/**
-	 * 
-	 * @param list
-	 * @return
-	 */
 	public static List<Buy> toAll(List<JSONObject> list) {
 		List<Buy> categories = new ArrayList<Buy>();
 		if (PastleyValidate.isList(list)) {
@@ -137,5 +87,4 @@ public class BuyRequest implements Serializable{
 	public void setPath(String path) {
 		this.path = path;
 	}
-
 }

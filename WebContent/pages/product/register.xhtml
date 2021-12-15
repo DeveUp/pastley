@@ -25,7 +25,7 @@
 										<h:outputText value=" *" styleClass="lsy-c-danger" />
 									</p:outputLabel>
 									<p:inputText id="nombre-producto" maxlength="100"
-										value="#{product.product.name}" />
+										value="#{productView.product.name}" />
 								</h:panelGroup>
 							</h:panelGroup>
 							<h:panelGroup layout="block"
@@ -36,7 +36,7 @@
 										<h:outputText value=" *" styleClass="lsy-c-danger" />
 									</p:outputLabel>
 									<p:inputNumber id="stock-producto" decimalPlaces="0"
-										minValue="0" value="#{product.product.stock}" />
+										minValue="0" value="#{productView.product.stock}" />
 								</h:panelGroup>
 								<h:panelGroup layout="block"
 									styleClass="p-field p-col-12 p-md-4">
@@ -44,7 +44,7 @@
 										<h:outputText value=" *" styleClass="lsy-c-danger" />
 									</p:outputLabel>
 									<p:inputNumber id="stockMinimo-producto" decimalPlaces="0"
-										minValue="0" value="#{product.product.stockMin}" />
+										minValue="0" value="#{productView.product.stockMin}" />
 								</h:panelGroup>
 							</h:panelGroup>
 							<h:panelGroup layout="block"
@@ -55,7 +55,7 @@
 										<h:outputText value=" *" styleClass="lsy-c-danger" />
 									</p:outputLabel>
 									<p:inputText id="precio-producto"
-										value="#{product.product.price}">
+										value="#{productView.product.price}">
 									</p:inputText>
 								</h:panelGroup>
 								<h:panelGroup layout="block" styleClass="p-grid p-md-6">
@@ -65,7 +65,7 @@
 											<h:outputText value=" *" styleClass="lsy-c-danger" />
 										</p:outputLabel>
 										<p:inputText id="iva-producto" maxlength="3"
-											value="#{product.product.vat}" />
+											value="#{productView.product.vat}" />
 									</h:panelGroup>
 									<h:panelGroup layout="block"
 										styleClass="p-field p-col-12 p-md-12 p-lg-6">
@@ -73,7 +73,7 @@
 											<h:outputText value=" *" styleClass="lsy-c-danger" />
 										</p:outputLabel>
 										<p:inputText id="descuento-producto" maxlength="3"
-											value="#{product.product.discount}" />
+											value="#{productView.product.discount}" />
 									</h:panelGroup>
 								</h:panelGroup>
 							</h:panelGroup>
@@ -85,7 +85,7 @@
 										<h:outputText value=" *" styleClass="lsy-c-danger" />
 									</p:outputLabel>
 									<p:inputText id="dimension-producto" maxlength="100"
-										value="#{product.product.dimension}" />
+										value="#{productView.product.dimension}" />
 								</h:panelGroup>
 							</h:panelGroup>
 						</h:panelGroup>
@@ -98,7 +98,7 @@
 								<h:panelGroup layout="block" styleClass="p-field p-col">
 									<p:outputLabel for="imagen-producto" value="URL:" />
 									<p:inputText id="imagen-producto" maxlength="100"
-										value="#{product.product.image}">
+										value="#{productView.product.image}">
 										<p:ajax update="lsy-update-2" event="change" />
 									</p:inputText>
 								</h:panelGroup>
@@ -110,9 +110,9 @@
 									styleClass="lsy-image-container-large">
 									<p:graphicImage library="img" name="header/product.jpg"
 										cache="false"
-										rendered="#{product.product.image == null or fn:length(product.product.image) == 0}" />
-									<p:graphicImage value="#{product.product.image}" cache="false"
-										rendered="#{product.product.image != null and fn:length(product.product.image) gt 0}" />
+										rendered="#{productView.product.image == null or fn:length(productView.product.image) == 0}" />
+									<p:graphicImage value="#{productView.product.image}" cache="false"
+										rendered="#{productView.product.image != null and fn:length(productView.product.image) gt 0}" />
 								</h:panelGroup>
 							</h:panelGroup>
 						</h:panelGroup>
@@ -126,7 +126,7 @@
 									<h:outputText value=" *" styleClass="lsy-c-danger" />
 								</h:outputLabel>
 								<p:selectOneMenu id="categoria-producto"
-									value="#{product.product.category.id}" filter="true"
+									value="#{productView.product.category.id}" filter="true"
 									filterMatchMode="startsWith">
 									<f:selectItem itemLabel="Seleccione" itemValue="" />
 									<f:selectItems value="#{selection.category}" />
@@ -141,7 +141,7 @@
 							<h:panelGroup layout="block" styleClass="p-field p-col-12 p-md">
 								<p:outputLabel for="descripcion-producto" value="Descripción:" />
 								<p:inputTextarea id="descripcion-producto" maxlength="400"
-									value="#{product.product.description}" />
+									value="#{productView.product.description}" />
 							</h:panelGroup>
 						</h:panelGroup>
 						<h:panelGroup layout="block"
@@ -149,7 +149,7 @@
 							<h:panelGroup layout="block" styleClass="p-field p-col-12 p-md">
 								<p:outputLabel for="sabor-producto" value="Sabor:" />
 								<p:inputTextarea id="sabor-producto" maxlength="400"
-									value="#{product.product.flavor}" />
+									value="#{productView.product.flavor}" />
 							</h:panelGroup>
 						</h:panelGroup>
 						<h:panelGroup layout="block"
@@ -157,14 +157,14 @@
 							<h:panelGroup layout="block" styleClass="p-field p-col-12 p-md">
 								<p:outputLabel for="ingredientes-producto" value="Ingredientes:" />
 								<p:inputTextarea id="ingredientes-producto" maxlength="400"
-									value="#{product.product.ingredients}" />
+									value="#{productView.product.ingredients}" />
 							</h:panelGroup>
 						</h:panelGroup>
 					</p:tab>
 				</p:tabView>
-				<h:panelGroup layout="block"
+				<h:panelGroup layout="block" 
 					styleClass="p-d-flex p-jc-center p-ai-center p-mt-5 p-mb-3">
-					<p:commandButton icon="pi pi-plus" value="Registrar" action="#{product.create()}"
+					<p:commandButton icon="pi pi-plus" value="Registrar" action="#{productView.create()}"
 						update="@(.lsy-alert)"
 						styleClass="lsy-button lsy-bg-c-success" title="Registrar" />
 				</h:panelGroup>
