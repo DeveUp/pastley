@@ -7,15 +7,18 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import com.pastley.models.app.AlertApp;
 import com.pastley.models.app.CrudApp;
+import com.pastley.models.model.MethodPay;
 
 @ManagedBean(name = "methodPayView")
 @ViewScoped
-public class MethodPay implements Serializable{
+public class MethodPayBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	private CrudApp<MethodPay> crud;
+	private AlertApp alert;
 	
 	@ManagedProperty("#{table}")
 	private DataTableBean tableBean;
@@ -23,10 +26,17 @@ public class MethodPay implements Serializable{
 	@PostConstruct
 	public void init() {
 		initCrud();
+		alert = new AlertApp();
 	}
 	
 	public void initCrud() {
-		this.crud = new CrudApp<>();
+		this.crud = new CrudApp<>(tableBean.getMethodPay(), "lsy-table", "metodo de pago", "selecionado");
+	}
+	
+	public void update() {
+		if(crud == null)
+			initCrud();
+		crud.setTable(this.tableBean.getMethodPay());
 	}
 
 	public CrudApp<MethodPay> getCrud() {
@@ -35,6 +45,22 @@ public class MethodPay implements Serializable{
 
 	public void setCrud(CrudApp<MethodPay> crud) {
 		this.crud = crud;
+	}
+
+	public AlertApp getAlert() {
+		return alert;
+	}
+
+	public void setAlert(AlertApp alert) {
+		this.alert = alert;
+	}
+
+	public DataTableBean getTableBean() {
+		return tableBean;
+	}
+
+	public void setTableBean(DataTableBean tableBean) {
+		this.tableBean = tableBean;
 	}
 
 	public static long getSerialversionuid() {
