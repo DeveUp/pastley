@@ -15,7 +15,11 @@ import com.pastley.controller.request.CategoryRequest;
 import com.pastley.controller.request.ProductRequest;
 import com.pastley.models.component.ItemComponent;
 import com.pastley.models.component.MenuIComponent;
+import com.pastley.models.component.MenuIIComponent;
+import com.pastley.models.component.MenuIIIComponent;
 import com.pastley.models.component.impl.MenuIComponentImpl;
+import com.pastley.models.component.impl.MenuIIComponentImpl;
+import com.pastley.models.component.impl.MenuIIIComponentImpl;
 import com.pastley.models.dto.ExceptionDTO;
 import com.pastley.models.model.Category;
 import com.pastley.models.model.Product;
@@ -30,11 +34,16 @@ public class MenuBean implements Serializable {
 	private List<Category> categories;
 	
 	private MenuIComponent<Category, Product> menuI;
+	
+	private MenuIIComponent menuII;
+	private MenuIIIComponent menuIII;
 
 	@PostConstruct
 	public void init() {
 		initCategory();
 		initMenuI();
+		initMenuII();
+		initMenuIII();
 	}
 
 	public void initCategory() {
@@ -68,6 +77,16 @@ public class MenuBean implements Serializable {
 			menuI.getLevelII().add(products);
 		});
 	}
+	
+	public void initMenuII() {
+		menuII = new MenuIIComponent();
+		MenuIIComponentImpl.fillItems(menuII);
+	}
+	
+	public void initMenuIII() {
+		menuIII = new MenuIIIComponent();
+		MenuIIIComponentImpl.fillItems(menuIII);
+	}
 
 	public List<Category> getCategories() {
 		return categories;
@@ -77,12 +96,28 @@ public class MenuBean implements Serializable {
 		this.categories = categories;
 	}
 	
+	public MenuIIComponent getMenuII() {
+		return menuII;
+	}
+
+	public void setMenuII(MenuIIComponent menuII) {
+		this.menuII = menuII;
+	}
+
 	public MenuIComponent<Category, Product> getMenuI() {
 		return menuI;
 	}
 
 	public void setMenuI(MenuIComponent<Category, Product> menuI) {
 		this.menuI = menuI;
+	}
+
+	public MenuIIIComponent getMenuIII() {
+		return menuIII;
+	}
+
+	public void setMenuIII(MenuIIIComponent menuIII) {
+		this.menuIII = menuIII;
 	}
 
 	public static Logger getLogger() {
