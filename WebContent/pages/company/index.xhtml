@@ -1,0 +1,199 @@
+<ui:composition template="../../template/template-role.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="tmp-section">
+		<h:panelGroup layout="block" styleClass="lsy-interface-container"
+			style="min-height: 100vh">
+			<h:panelGroup layout="block" style="height: 100%"
+				styleClass="lsy-interface-container-padding">
+				<p:accordionPanel multiple="true" widgetVar="multiple"
+					styleClass="lsy-accordion-panel" id="lsy-accordion-panel">
+					<p:tab title="Información">
+						<p:staticMessage severity="info" summary="" styleClass="p-p-3"
+							detail="Todos los campos son obligatorios." />
+						<h:panelGroup layout="block"
+							styleClass="ui-fluid p-formgrid p-grid p-jc-between p-mt-2 p-mb-2">
+							<h:panelGroup layout="block"
+								styleClass="p-field p-col p-md-6 p-col-12">
+								<h:outputLabel for="id" value="ID:" />
+								<p:inputText value="#{company.company.id}" id="id"
+									disabled="true" />
+							</h:panelGroup>
+							<h:panelGroup layout="block"
+								styleClass="p-field p-md-6 p-col-12 p-d-flex p-jc-center p-jc-md-end">
+								<h:panelGroup layout="block" id="lsy-update-logo"
+									styleClass="lsy-image-container-large lsy-update-logo"
+									style="width:200px;height: 200px">
+									<p:graphicImage value="#{company.company.logo}" />
+								</h:panelGroup>
+							</h:panelGroup>
+						</h:panelGroup>
+						<h:panelGroup layout="block"
+							styleClass="ui-fluid p-formgrid p-grid p-jc-center">
+							<h:panelGroup layout="block" styleClass="p-field p-col p-md-12">
+								<h:outputLabel value="Nombre:" for="nombre">
+									<h:outputText value=" *" styleClass="lsy-c-danger" />
+								</h:outputLabel>
+								<p:inputText value="#{company.company.name}" id="nombre" />
+							</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="p-field p-col p-md-12">
+								<h:outputLabel value="Logo:" for="url-image">
+									<h:outputText value=" *" styleClass="lsy-c-danger" />
+								</h:outputLabel>
+								<p:inputText value="#{company.company.logo}" id="url-image">
+									<p:ajax update="lsy-update-logo" event="change" />
+								</p:inputText>
+							</h:panelGroup>
+						</h:panelGroup>
+						<h:panelGroup layout="block"
+							styleClass="ui-fluid p-formgrid p-grid p-jc-star">
+							<h:panelGroup layout="block" styleClass="p-field p-col p-md">
+								<h:outputLabel value="Direccion:" for="direccion">
+									<h:outputText value=" *" styleClass="lsy-c-danger" />
+								</h:outputLabel>
+								<p:inputText value="#{company.company.address}" id="direccion" />
+							</h:panelGroup>
+						</h:panelGroup>
+						<h:panelGroup layout="block"
+							styleClass="ui-fluid p-formgrid p-grid p-jc-between">
+							<h:panelGroup layout="block" styleClass="p-field p-col-12 p-md-4">
+								<h:outputLabel value="Fecha Registro:" for="fecha-inicio">
+									<h:outputText value=" *" styleClass="lsy-c-danger" />
+								</h:outputLabel>
+								<p:calendar id="fecha-inicio" required="true"
+									yearRange="c-100:c" navigator="true" pattern="mm/dd/yyyy"
+									locale="de" value="#{company.company.dateRegister}"
+									disabled="true" />
+							</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="p-field p-col-12 p-md-4">
+								<h:outputLabel value="Fecha Actualización:" for="fecha-registro">
+									<h:outputText value=" *" styleClass="lsy-c-danger" />
+								</h:outputLabel>
+								<p:calendar id="fecha-registro" required="true" disabled="true"
+									yearRange="c-100:c" navigator="true" pattern="mm/dd/yyyy"
+									locale="de" value="#{company.company.dateUpdate}" />
+							</h:panelGroup>
+						</h:panelGroup>
+						<p:staticMessage severity="WARN" summary=""
+							styleClass="p-p-3 p-mb-2"
+							detail="Deben ser enteros positivos, este presupuesto es el que permite realizar las compras a los proveedores." />
+						<h:panelGroup layout="block"
+							styleClass="ui-fluid p-formgrid p-grid p-jc-between">
+							<h:panelGroup layout="block" styleClass="p-field p-col-12">
+								<h:outputLabel value="Presupuesto:" for="presupuesto">
+									<h:outputText value=" *" styleClass="lsy-c-danger" />
+								</h:outputLabel>
+								<p:inputNumber value="#{company.company.butdget}"
+									id="presupuesto" minValue="0" decimalPlaces="0" />
+							</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="p-field p-col-12">
+								<h:outputLabel value="Cantidad:" for="cantidad">
+									<h:outputText value=" *" styleClass="lsy-c-danger" />
+								</h:outputLabel>
+								<p:inputNumber value="#{company.company.size}" id="cantidad"
+									minValue="0" decimalPlaces="0" maxValue="100" />
+							</h:panelGroup>
+						</h:panelGroup>
+					</p:tab>
+					<p:tab title="Descripción">
+						<h:panelGroup layout="block" styleClass="p-p-2">
+							<p:staticMessage severity="info" summary="" styleClass="p-p-3"
+								detail="La descripción se muestra en la parte del login y el pie pagina." />
+							<h:panelGroup layout="block"
+								styleClass="ui-fluid p-formgrid p-grid p-mt-3">
+								<h:panelGroup layout="block" styleClass="p-field p-col-12">
+									<h:outputLabel value="Descripción:" for="descripcion" />
+									<p:inputTextarea value="#{company.company.desciption}"
+										id="descripcion"></p:inputTextarea>
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup layout="block"
+								styleClass="ui-fluid p-formgrid p-grid p-jc-between">
+								<h:panelGroup layout="block" styleClass="p-field p-col p-md">
+									<h:outputLabel value="¿Quienes Somos?" for="quienes_somos">
+										<h:outputText value=" *" styleClass="lsy-c-danger" />
+									</h:outputLabel>
+									<p:inputTextarea value="#{company.company.aboutUs}"
+										id="quienes_somos" />
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup layout="block"
+								styleClass="p-mb-2 ui-fluid p-formgrid p-grid p-jc-between">
+								<h:panelGroup layout="block" styleClass="p-field p-col p-md">
+									<h:outputLabel value="Misión:" for="mision">
+										<h:outputText value=" *" styleClass="lsy-c-danger" />
+									</h:outputLabel>
+									<p:inputTextarea value="#{company.company.mission}" id="mision" />
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup layout="block"
+								styleClass="ui-fluid p-formgrid p-grid p-jc-between">
+								<h:panelGroup layout="block" styleClass="p-field p-col p-md">
+									<h:outputLabel value="Visión:" for="vision">
+										<h:outputText value=" *" styleClass="lsy-c-danger" />
+									</h:outputLabel>
+									<p:inputTextarea value="#{company.company.vision}" id="vision" />
+								</h:panelGroup>
+							</h:panelGroup>
+						</h:panelGroup>
+					</p:tab>
+					<p:tab title="Alerta">
+						<p:staticMessage severity="info" summary=""
+							styleClass="p-p-3 p-mb-3"
+							detail="Estas configuraciones son para las alertas del sistema." />
+						<h:panelGroup layout="block"
+							styleClass="ui-fluid p-formgrid p-grid">
+							<h:panelGroup layout="block" styleClass="p-field p-col-12 p-md">
+								<p:selectBooleanCheckbox
+									value="#{company.company.alertMinStock}" styleClass="p-d-block"
+									itemLabel="Alerta stock minimo" />
+							</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="p-field p-col-12 p-md">
+								<p:selectBooleanCheckbox value="#{company.company.alertStock}"
+									styleClass="p-d-block" itemLabel="Alerta stock" />
+							</h:panelGroup>
+						</h:panelGroup>
+					</p:tab>
+					<p:tab title="Email">
+						<h:panelGroup layout="block" styleClass="p-p-2">
+							<p:staticMessage severity="info" summary="" styleClass="p-p-3"
+								detail="Este es el email encargado de enviar los correos de la empresa." />
+							<h:panelGroup layout="block" styleClass="p-mt-2 p-mb-2">
+								<h:panelGroup layout="block"
+									styleClass="ui-fluid p-formgrid p-grid">
+									<h:panelGroup layout="block" styleClass="p-field p-col-12 p-md">
+										<p:outputLabel for="app-email" value="Email:">
+											<h:outputText value=" *" styleClass="lsy-c-danger" />
+										</p:outputLabel>
+										<p:inputText value="#{company.company.email}" id="app-email"
+											maxlength="100" />
+									</h:panelGroup>
+								</h:panelGroup>
+								<h:panelGroup layout="block"
+									styleClass="ui-fluid p-formgrid p-grid">
+									<h:panelGroup layout="blcok" styleClass="p-field p-col-12 p-md">
+										<p:outputLabel for="app-clave" value="Clave:">
+											<h:outputText value=" *" styleClass="lsy-c-danger" />
+										</p:outputLabel>
+										<p:inputText value="#{company.company.password}"
+											id="app-clave" maxlength="100" />
+									</h:panelGroup>
+								</h:panelGroup>
+							</h:panelGroup>
+						</h:panelGroup>
+					</p:tab>
+				</p:accordionPanel>
+				<h:panelGroup layout="block"
+					styleClass="p-d-flex p-jc-end p-ai-center p-mt-4 p-mb-4">
+					<p:commandButton value="Actualizar" icon="fa fa-fw fa-edit"
+						action="#{company.update()}" title="Actualizar" update="@(.lsy-alert)"
+						styleClass="lsy-button lsy-bg-c-info" />
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

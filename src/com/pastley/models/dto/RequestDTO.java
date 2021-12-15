@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 import com.pastley.models.model.Buy;
 import com.pastley.models.model.BuyDetail;
 import com.pastley.models.model.Category;
+import com.pastley.models.model.Company;
 import com.pastley.models.model.Product;
 import com.pastley.models.model.Provider;
 import com.pastley.util.PastleyValidate;
@@ -15,6 +16,30 @@ import com.pastley.util.PastleyValidate;
 public class RequestDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
+	@SuppressWarnings("unchecked")
+	public JSONObject company(Company company) {
+		JSONObject object = new JSONObject();
+		object.put("id", company.getId());
+		object.put("name", company.getName());
+		object.put("email", company.getEmail());
+		object.put("password", company.getPassword());
+		object.put("address", company.getAddress());
+		object.put("desciption", company.getDesciption());
+		object.put("mission", company.getMission());
+		object.put("vision", company.getVision());
+		object.put("aboutUs", company.getAboutUs());
+		object.put("size", company.getSize());
+		object.put("butdget", company.getButdget());
+		object.put("logo", company.getLogo());
+		object.put("statu", company.isStatu());
+		object.put("sendSalesMail", company.isSendSalesMail());
+		object.put("alertStock", company.isAlertStock());
+		object.put("alertMinStock", company.isAlertMinStock());
+		object.put("dateRegister", company.getDateRegister());
+		object.put("dateUpdate", company.getDateUpdate());
+		return object;
+	}
 
 	@SuppressWarnings("unchecked")
 	public JSONObject product(Product product) {

@@ -22,16 +22,17 @@ public class Company implements Serializable{
 	private boolean statu;
 	private boolean sendSalesMail;
 	private boolean alertStock;
-	private Integer alertMinStock;
+	private boolean alertMinStock;
 	private String dateRegister;
 	private String dateUpdate;
 	
 	
-	/**
-	
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 
 	@Override
@@ -43,9 +44,14 @@ public class Company implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Company other = (Company) obj;
-		return Objects.equals(id, other.id);
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
-**/
+
 	@Override
 	public String toString() {
 		return "Company [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", address="
@@ -145,12 +151,15 @@ public class Company implements Serializable{
 	public void setAlertStock(boolean alertStock) {
 		this.alertStock = alertStock;
 	}
-	public Integer getAlertMinStock() {
+	
+	public boolean isAlertMinStock() {
 		return alertMinStock;
 	}
-	public void setAlertMinStock(Integer alertMinStock) {
+
+	public void setAlertMinStock(boolean alertMinStock) {
 		this.alertMinStock = alertMinStock;
 	}
+
 	public String getDateRegister() {
 		return dateRegister;
 	}

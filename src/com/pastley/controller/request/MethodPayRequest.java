@@ -20,57 +20,25 @@ public class MethodPayRequest implements Serializable{
 
 	private String path = PastleyVariableApi.PASTLEY_API_MICROSERVICE_SALE_SERVICE_METHOD;
 
-	/**
-	 * 
-	 * @param id
-	 * @param value
-	 * @return
-	 * @throws ExceptionDTO
-	 */
 	public MethodPay findById(Long id, MethodPay value) throws ExceptionDTO {
 		String aux = path + PastleyVariableApi.PASTLEY_API_REQUEST_FIND_ID;
 		return find(aux.replace("{id}", String.valueOf(id)), value);
 	}
 	
-	/**
-	 * 
-	 * @param name
-	 * @param value
-	 * @return
-	 * @throws ExceptionDTO
-	 */
 	public MethodPay findByName(String name, MethodPay value) throws ExceptionDTO {
 		String aux = path + PastleyVariableApi.PASTLEY_API_REQUEST_FIND_NAME;
 		return find(aux.replace("{name}", name), value);
 	}
 
-	/**
-	 * 
-	 * @return
-	 * @throws ExceptionDTO
-	 */
 	public List<MethodPay> findAll() throws ExceptionDTO {
 		return findAll(path + PastleyVariableApi.PASTLEY_API_REQUEST_ALL);
 	}
 
-	/**
-	 * 
-	 * @param statu
-	 * @return
-	 * @throws ExceptionDTO
-	 */
 	public List<MethodPay> findByStatuAll(boolean statu) throws ExceptionDTO {
 		String aux = path + PastleyVariableApi.PASTLEY_API_REQUEST_ALL_FIND_STATU;
 		return findAll(aux.replace("{statu}", String.valueOf(statu)));
 	}
 	
-	/**
-	 * 
-	 * @param start
-	 * @param end
-	 * @return
-	 * @throws ExceptionDTO
-	 */
 	public List<MethodPay> findByRangeDateRegister(String start, String end) throws ExceptionDTO{
 		String aux = path + PastleyVariableApi.PASTLEY_API_REQUEST_RANGE_ALL_FIND_DATE_REGISTER;
 		aux = aux.replace("{start}", String.valueOf(start));
@@ -78,34 +46,16 @@ public class MethodPayRequest implements Serializable{
 		return findAll(aux);
 	}
 	
-	/**
-	 * 
-	 * @param path
-	 * @param value
-	 * @return
-	 * @throws ExceptionDTO
-	 */
 	public MethodPay find(String path, MethodPay value) throws ExceptionDTO {
 		RequestController<JSONObject> request = new RequestController<>();
 		return JSONConvert.methodPay(request.get(path, null), value);
 	}
 
-	/**
-	 * 
-	 * @param path
-	 * @return
-	 * @throws ExceptionDTO
-	 */
 	public List<MethodPay> findAll(String path) throws ExceptionDTO {
 		RequestController<List<JSONObject>> request = new RequestController<>();
 		return MethodPayRequest.toAll(request.get(path, null));
 	}
 
-	/**
-	 * 
-	 * @param list
-	 * @return
-	 */
 	public static List<MethodPay> toAll(List<JSONObject> list) {
 		List<MethodPay> categories = new ArrayList<MethodPay>();
 		if (PastleyValidate.isList(list)) {
