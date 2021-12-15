@@ -10,6 +10,7 @@ import com.pastley.controller.RequestController;
 import com.pastley.models.dto.ExceptionDTO;
 import com.pastley.models.dto.InitDTO;
 import com.pastley.models.dto.JSONConvert;
+import com.pastley.models.dto.RequestDTO;
 import com.pastley.models.model.Product;
 import com.pastley.util.PastleyValidate;
 import com.pastley.util.PastleyVariableApi;
@@ -55,6 +56,15 @@ public class ProductRequest implements Serializable{
 		aux = aux.replace("{start}", String.valueOf(start));
 		aux = aux.replace("{end}", String.valueOf(end));
 		return findAll(aux);
+	}
+	
+	public Product create(Product product) throws ExceptionDTO{
+		RequestController<JSONObject> request = new RequestController<>();
+		String aux = path + PastleyVariableApi.PASTLEY_API_REQUEST_CREATE;
+		RequestDTO dto = new RequestDTO();
+		JSONObject object = dto.product(product);
+		product = JSONConvert.product(request.post(aux, object), null);
+		return product;
 	}
 	
 	public Product find(String path, Product value) throws ExceptionDTO {

@@ -132,4 +132,10 @@ public class PastleyValidate {
 	public static boolean bigIntegerHigherEqualZero(BigInteger a) {
 		return (a != null && a.compareTo(BigInteger.ZERO) >= 0);
 	}
+	
+	public static String getFace(String attribute) {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+		return params.get(attribute);
+	}
 }

@@ -84,7 +84,6 @@ public class DataTableBean implements Serializable{
 			return product.getEntity();
 		ProductRequest request = new ProductRequest();
 		try {
-			System.out.println(request.findAll());
 			product = new DataTableApp<>(request.findAll());
 		} catch (ExceptionDTO e) {
 			LOGGER.error("[getProductEntity()]", e);

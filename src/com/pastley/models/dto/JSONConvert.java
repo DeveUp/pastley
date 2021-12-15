@@ -15,7 +15,6 @@ import com.pastley.models.model.MethodPay;
 import com.pastley.models.model.Person;
 import com.pastley.models.model.Product;
 import com.pastley.models.model.Provider;
-import com.pastley.models.model.ProviderProduct;
 import com.pastley.models.model.Role;
 import com.pastley.models.model.Sale;
 import com.pastley.models.model.SaleDetail;
@@ -73,6 +72,7 @@ public class JSONConvert {
 		product.setDimension(validateString(object.get("dimension"), null));
 		product.setImage(validateString(object.get("image"), null));
 		product.setStatu(validateBoolean(object.get("statu"), false));
+		product.setSupplies(validateBoolean(object.get("supplies"), false));
 		product.setDescription(validateString(object.get("description"), null));
 		product.setIngredients(validateString(object.get("ingredients"), null));
 		product.setDiscount(validateString(object.get("discount"), null));
@@ -137,21 +137,6 @@ public class JSONConvert {
 		return buyDetail;
 	}
 
-	
-
-	public static ProviderProduct product(JSONObject object, ProviderProduct value) {
-		if (!PastleyValidate.isObject(object))
-			return value;
-		ProviderProduct providerProduct = new ProviderProduct();
-		providerProduct.setProduct(validateLong(object.get("product"), 0L));
-		providerProduct.setProvider(validateLong(object.get("provider"), 0L));
-		return providerProduct;
-	}
-	
-	
-	/* 
-	 * CONVERT MICROSERVICE BUY 
-	 * */
 	public static Sale sale(JSONObject object, Sale value) {
 		if (!PastleyValidate.isObject(object))
 			return value;

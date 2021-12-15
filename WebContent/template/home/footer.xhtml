@@ -13,6 +13,9 @@
 					<h1 class="lsy-txt-title p-text-lg-left p-text-center">Sobre
 						Nosotros</h1>
 					<p class="lsy-txt-paragraph">
+						<h:outputText value="#{company.company.desciption}"/>
+					</p>
+					<p class="lsy-txt-paragraph">
 						<h:outputText value="#{company.company.aboutUs}"/>
 					</p>
 				</h:panelGroup>
@@ -20,8 +23,8 @@
 					styleClass="lsy-container p-lg-3 p-md-6 p-col-12">
 					<h1 class="lsy-txt-title p-text-lg-left p-text-center">Categorias</h1>
 					<ul>
-						<ui:repeat var="a" value="#{menu.categories}">
-							<li><p:commandLink value="#{a.name}"
+						<ui:repeat var="a" value="#{home.footer.categories}">
+							<li><p:commandLink value="#{a.entity.name}"
 									styleClass="lsy-link" /></li>
 						</ui:repeat>
 					</ul>
