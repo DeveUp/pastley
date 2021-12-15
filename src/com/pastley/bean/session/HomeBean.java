@@ -1,4 +1,4 @@
-package com.pasley.bean.session;
+package com.pastley.bean.session;
 
 import java.io.Serializable;
 

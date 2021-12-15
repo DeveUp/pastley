@@ -19,6 +19,7 @@ public class MenuIIIComponentImpl {
 		fillMaintenance(menu);
 		fillCompany(menu);
 		fillSale(menu);
+		fillBuy(menu);
 	}
 
 	public static void fillMaintenance(MenuIIIComponent menu) {
@@ -113,5 +114,16 @@ public class MenuIIIComponentImpl {
 				PastleyVariable.PASTLEY_ICON_STATISTICS));
 		menu.getItems().add(new ItemIIComponent<>(new BadgeComponent("info", "lsy-bg-c-info"), false,
 				PastleyVariable.PASTLEY_MENU_NAME_MONTH, null, PastleyVariable.PASTLEY_ICON_MONTH));
+	}
+
+	public static void fillBuy(MenuIIIComponent menu) {
+		menu.getItems().add(new ItemIIComponent<>(new BadgeComponent("salidas", "lsy-bg-c-danger"), true,
+				PastleyVariable.PASTLEY_MENU_TYPE_BUY, null, null));
+		menu.getItems().add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY,
+				"pages/buy/all.xhtml", PastleyVariable.PASTLEY_ICON_HISTORY));
+		menu.getItems().add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_REGISTER,
+				"pages/buy/register.xhtml", PastleyVariable.PASTLEY_ICON_REGISTER));
+		menu.getItems().add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_STATISTICS,
+				"pages/buy/index.xhtml", PastleyVariable.PASTLEY_ICON_STATISTICS));
 	}
 }

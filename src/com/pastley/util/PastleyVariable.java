@@ -34,6 +34,7 @@ public class PastleyVariable {
 	public static final String PASTLEY_MENU_TYPE_COMPANY_INFO = "Informacion";
 
 	public static final String PASTLEY_MENU_TYPE_SALE = "Venta";
+	public static final String PASTLEY_MENU_TYPE_BUY = "Buy";
 	public static final String PASTLEY_MENU_TYPE_CONTACT = "Contacto";
 	public static final String PASTLEY_MENU_TYPE_CUSTOMER = "Cliente";
 	public static final String PASTLEY_MENU_TYPE_CASHIER = "Cajero";
