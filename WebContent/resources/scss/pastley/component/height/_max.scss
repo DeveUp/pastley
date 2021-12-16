@@ -1,0 +1,15 @@
+@each $key, $value in getMap($VAR-LSY-DIMENSION, (width)) {
+	.lsy-h-max-#{$key}{
+       max-height: #{$value} !important;
+    }
+}
+
+@each $key-media, $value-media in getMap($VAR-LSY-DIMENSION, (media)) {
+	@media screen and (min-width: #{nth($value-media, 1)}) {
+		@each $key, $value in getMap($VAR-LSY-DIMENSION, (width)) {
+			.lsy-h-#{$key-media}-max-#{$key}{
+       			max-height: #{$value} !important;
+    		}
+		}
+	}
+}

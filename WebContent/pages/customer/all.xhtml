@@ -65,7 +65,8 @@
 						<p:inputText id="globalFilter" onkeyup="PF('lsy-table').filter()"
 							style="width:11rem" placeholder="Buscar" />
 						<p:commandButton icon="fa fa-fw fa-brush" title="Filtrar"
-							update="@(.lsy-table)" action="#{table.customer.toggleGlobalFilter()}"
+							update="@(.lsy-table)"
+							action="#{table.customer.toggleGlobalFilter()}"
 							styleClass="lsy-button-icon lsy-bg-c-warning p-ml-2" />
 					</h:panelGroup>
 					<p:outputPanel layout="block"
@@ -80,12 +81,109 @@
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
 				<p:ajax event="rowUnselect" listener="#{customerView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
-				<p:ajax event="rowSelectCheckbox" listener="#{customerView.update()}"
+				<p:ajax event="rowSelectCheckbox"
+					listener="#{customerView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
-				<p:ajax event="rowUnselectCheckbox" listener="#{customerView.update()}"
+				<p:ajax event="rowUnselectCheckbox"
+					listener="#{customerView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
 				<p:ajax event="toggleSelect" listener="#{customerView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
+				<p:column selectionMode="multiple" exportable="false"
+					style="width:40px"></p:column>
+				<p:column headerText="ID" footerText="ID" styleClass="p-text-center"
+					filterBy="#{a.id}" sortBy="#{a.id}">
+					<p:rowToggler />
+					<h:outputText value="#{a.id}"
+						styleClass="pastley-class scrjk-statu-text-dark" />
+				</p:column>
+				<p:column headerText="Documento" footerText="Documento"
+					styleClass="p-text-center" filterBy="#{a.person.document}"
+					sortBy="#{a.person.document}">
+					<h:outputText value="#{a.person.document}" />
+				</p:column>
+				<p:column headerText="Nombre" footerText="Nombre"
+					styleClass="p-text-center"
+					filterBy="#{a.person.name} #{a.person.subname}"
+					sortBy="#{a.person.name} #{a.person.subname}"
+					filterMatchMode="contains">
+					<h:outputText value="#{a.person.name} #{a.person.subname}"
+						styleClass="pastley-class scrjk-statu-text-dark" />
+				</p:column>
+				<p:column headerText="Fecha" footerText="Fecha"
+					field="dateWithoutTime" styleClass="p-text-center"
+					filterMatchMode="range">
+					<f:facet name="filter">
+						<p:datePicker selectionMode="range"
+							onchange="PF('.lsy-table').filter()" />
+					</f:facet>
+					<p:calendar value="#{a.dateRegister}" locale="de"
+						pattern="dd/MM/yyyy hh:mm:ss" disabled="true" />
+				</p:column>
+				<p:column headerText="Estado" footerText="Estado"
+					styleClass="p-text-center" field="statu" filterMatchMode="exact">
+					<f:facet name="filter">
+						<p:selectOneMenu onchange="PF('lsy-table').filter()">
+							<f:selectItem itemLabel="Todos" itemValue="#{null}"
+								noSelectionOption="true" />
+							<f:selectItem itemLabel="Activo" itemValue="true" />
+							<f:selectItem itemLabel="Bloqueado" itemValue="false" />
+						</p:selectOneMenu>
+					</f:facet>
+					<p:commandButton value="#{a.statu ? 'Activo' : 'Bloqueado'}"
+						styleClass="lsy-button
+						#{a.statu ? 'lsy-bg-c-success' :  'lsy-bg-c-danger'}"
+						action="#{category.update(a.id)}"
+						update="lsy-table, @(.lsy-alert)">
+					</p:commandButton>
+				</p:column>
+				<p:rowExpansion>
+					<h:panelGroup layout="block" styleClass="p-p-3">
+						<p:fieldset legend="Información" toggleable="true"
+							toggleSpeed="500">
+							<h:panelGroup layout="block"
+								styleClass="ui-fluid p-formgrid p-grid p-jc-between">
+								<h:panelGroup layout="block"
+									styleClass="p-field p-col p-md-4 p-jc-center">
+									<h:panelGroup layout="block"
+										styleClass="pastley-image-role-edit"
+										id="pastley-image-role-edit">
+										<p:graphicImage cache="false" library="img" name="user.png"
+											rendered="#{a.persona.foto == null}" />
+										<p:graphicImage cache="false" value="#{image.person}"
+											rendered="#{a.persona.foto != null}">
+											<f:param name="#{variable.ID_PERSON}"
+												value="#{a.persona.documento}" />
+										</p:graphicImage>
+									</h:panelGroup>
+								</h:panelGroup>
+								<h:panelGroup layout="block" styleClass="p-field p-col p-md-4">
+									<h:panelGroup layout="block"
+										styleClass="ui-fluid p-formgrid p-grid">
+										<h:panelGroup layout="block" styleClass="p-field p-col">
+											<p:outputLabel for="proveedor-documento-type"
+												value="Tipo Documento:">
+												<h:outputText value=" *" styleClass="scrjk-statu-text-error" />
+											</p:outputLabel>
+											<p:inputText id="proveedor-documento-type" disabled="true"
+												value="#{a.persona.tipoDocumento.nombre}" />
+										</h:panelGroup>
+									</h:panelGroup>
+									<h:panelGroup layout="block"
+										styleClass="ui-fluid p-formgrid p-grid">
+										<h:panelGroup layout="block" styleClass="p-field p-col">
+											<p:outputLabel for="proveedor-documento" value="Documento:">
+												<h:outputText value=" *" styleClass="scrjk-statu-text-error" />
+											</p:outputLabel>
+											<p:inputText id="proveedor-documento" disabled="true"
+												value="#{a.persona.documento}" />
+										</h:panelGroup>
+									</h:panelGroup>
+								</h:panelGroup>
+							</h:panelGroup>
+						</p:fieldset>
+					</h:panelGroup>
+				</p:rowExpansion>
 			</p:dataTable>
 			<h:panelGroup layout="block"
 				styleClass="lsy-table-actions-bottom p-mb-6"

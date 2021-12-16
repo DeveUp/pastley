@@ -25,28 +25,28 @@
 						title="Actualizar"
 						styleClass="lsy-button lsy-bg-c-info lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-0 p-ml-md-2"
 						onclick="PF('lsy-table').clearFilters()"
-						action="#{methodPayView.crud.sync()}"
+						action="#{typePqrView.crud.sync()}"
 						update="@(.lsy-table), @(.lsy-alert)" />
 					<p:commandButton icon="fa fa-fw fa-brush" value="Limpiar"
 						title="Limpiar Filtros"
 						styleClass="lsy-button lsy-bg-c-warning lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2"
 						onclick="PF('lsy-table').clearFilters()"
-						action="#{methodPayView.crud.clearFilter()}"
+						action="#{typePqrView.crud.clearFilter()}"
 						update="@(.lsy-table), @(.lsy-alert)" />
-					<p:commandButton value="#{methodPayView.crud.messageDeleteCrud}"
+					<p:commandButton value="#{typePqrView.crud.messageDeleteCrud}"
 						icon="pi pi-trash"
 						styleClass="lsy-button lsy-bg-c-danger lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2"
-						disabled="#{fn:length(methodPayView.crud.table.select) gt 0 ? 'false' : 'true'}"
+						disabled="#{fn:length(typePqrView.crud.table.select) gt 0 ? 'false' : 'true'}"
 						update="@(.lsy-table), @(.lsy-alert)">
 						<p:confirm header="Confirmación:"
-							message="¿Quieres eliminar #{fn:length(methodPayView.crud.table.select)} metodos de pago?"
+							message="¿Quieres eliminar #{fn:length(typePqrView.crud.table.select)} tipo de pqrs?"
 							icon="pi pi-exclamation-triangle" />
 					</p:commandButton>
 				</h:panelGroup>
 				<p:separator styleClass="p-mb-4" />
 			</h:panelGroup>
 
-			<p:dataTable var="a" value="#{table.methodPayEntity}"
+			<p:dataTable var="a" value="#{table.typePqrEntity}"
 				widgetVar="lsy-table" id="lsy-table" styleClass="lsy-table"
 				paginator="true"
 				emptyMessage="No se encontro ningun metodo de pago." rows="20"
@@ -56,10 +56,10 @@
 							   	   {PreviousPageLink}    {CurrentPageReport} 
 							       {NextPageLink}        {LastPageLink}"
 				rowsPerPageTemplate="5,10,15,20,50,100"
-				globalFilterOnly="#{table.methodPay.globalFilterOnly}"
-				selection="#{table.methodPay.select}"
-				filterBy="#{table.methodPay.filterBy}"
-				filteredValue="#{table.methodPay.filter}">
+				globalFilterOnly="#{table.typePqr.globalFilterOnly}"
+				selection="#{table.typePqr.select}"
+				filterBy="#{table.typePqr.filterBy}"
+				filteredValue="#{table.typePqr.filter}">
 				<f:facet name="header">
 					<h:panelGroup layout="block"
 						styleClass="p-d-flex p-jc-end p-ac-center">
@@ -67,28 +67,28 @@
 							style="width:11rem" placeholder="Buscar" />
 						<p:commandButton icon="fa fa-fw fa-brush" title="Filtrar"
 							update="@(.lsy-table)"
-							action="#{table.methodPay.toggleGlobalFilter()}"
+							action="#{table.typePqr.toggleGlobalFilter()}"
 							styleClass="lsy-button-icon lsy-bg-c-warning p-ml-2" />
 					</h:panelGroup>
 					<p:outputPanel layout="block"
 						styleClass="p-d-flex p-jc-center p-ac-center p-flex-column p-p-3">
-						<h2 class="lsy-txt-subtitle p-mb-0 p-text-center">Metodo Pago</h2>
-						<h5 class="p-text-center">(#{table.methodPayEntity == null ?
-							'0' : fn:length(table.methodPayEntity)} resultados).</h5>
+						<h2 class="lsy-txt-subtitle p-mb-0 p-text-center">Tipo de PQRS</h2>
+						<h5 class="p-text-center">(#{table.typePqrEntity == null ?
+							'0' : fn:length(table.typePqrEntity)} resultados).</h5>
 					</p:outputPanel>
 				</f:facet>
 
-				<p:ajax event="rowSelect" listener="#{methodPayView.update()}"
+				<p:ajax event="rowSelect" listener="#{typePqrView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
-				<p:ajax event="rowUnselect" listener="#{methodPayView.update()}"
+				<p:ajax event="rowUnselect" listener="#{typePqrView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
 				<p:ajax event="rowSelectCheckbox"
-					listener="#{methodPayView.update()}"
+					listener="#{typePqrView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
 				<p:ajax event="rowUnselectCheckbox"
-					listener="#{methodPayView.update()}"
+					listener="#{typePqrView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
-				<p:ajax event="toggleSelect" listener="#{methodPayView.update()}"
+				<p:ajax event="toggleSelect" listener="#{typePqrView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
 
 				<p:column selectionMode="multiple" exportable="false"
@@ -143,21 +143,21 @@
 						title="Actualizar"
 						styleClass="lsy-button lsy-bg-c-info lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-0 p-ml-md-2"
 						onclick="PF('lsy-table').clearFilters()"
-						action="#{methodPayView.crud.sync()}"
+						action="#{typePqrView.crud.sync()}"
 						update="@(.lsy-table), @(.lsy-alert)" />
 					<p:commandButton icon="fa fa-fw fa-brush" value="Limpiar"
 						title="Limpiar Filtros"
 						styleClass="lsy-button lsy-bg-c-warning lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2"
 						onclick="PF('lsy-table').clearFilters()"
-						action="#{methodPayView.crud.clearFilter()}"
+						action="#{typePqrView.crud.clearFilter()}"
 						update="@(.lsy-table), @(.lsy-alert)" />
-					<p:commandButton value="#{methodPayView.crud.messageDeleteCrud}"
+					<p:commandButton value="#{typePqrView.crud.messageDeleteCrud}"
 						icon="pi pi-trash"
 						styleClass="lsy-button lsy-bg-c-danger lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2"
-						disabled="#{fn:length(methodPayView.crud.table.select) gt 0 ? 'false' : 'true'}"
+						disabled="#{fn:length(typePqrView.crud.table.select) gt 0 ? 'false' : 'true'}"
 						update="@(.lsy-table), @(.lsy-alert)">
 						<p:confirm header="Confirmación:"
-							message="¿Quieres eliminar #{fn:length(methodPayView.crud.table.select)} metodos de pago?"
+							message="¿Quieres eliminar #{fn:length(typePqrView.crud.table.select)} tipo de pqrs?"
 							icon="pi pi-exclamation-triangle" />
 					</p:commandButton>
 				</h:panelGroup>

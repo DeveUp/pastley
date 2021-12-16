@@ -75,7 +75,7 @@ public class MenuIIIComponentImpl {
 		pqr.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY, "pages/pqr/all.xhtml",
 				PastleyVariable.PASTLEY_ICON_HISTORY));
 		pqr.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_STATISTICS,
-				"pages/cashier/index.xhtml", PastleyVariable.PASTLEY_ICON_STATISTICS));
+				"pages/pqr/index.xhtml", PastleyVariable.PASTLEY_ICON_STATISTICS));
 		menu.getItems().add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_TYPE_PQR, null,
 				PastleyVariable.PASTLEY_ICON_TYPE_PQR, pqr));
 		// Contact
@@ -102,14 +102,14 @@ public class MenuIIIComponentImpl {
 		menu.getItems().add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_TYPE_METHOD_PAY, null,
 				PastleyVariable.PASTLEY_ICON_TYPE_METHOD_PAY, method));
 		// Other
-		menu.getItems().add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY, null,
-				PastleyVariable.PASTLEY_ICON_HISTORY));
-		menu.getItems().add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_REGISTER, null,
-				PastleyVariable.PASTLEY_ICON_REGISTER));
-		menu.getItems().add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_STATISTICS, null,
-				PastleyVariable.PASTLEY_ICON_STATISTICS));
+		menu.getItems().add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY,
+				"pages/sale/all.xhtml", PastleyVariable.PASTLEY_ICON_HISTORY));
+		menu.getItems().add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_REGISTER,
+				"pages/sale/register.xhtml", PastleyVariable.PASTLEY_ICON_REGISTER));
+		menu.getItems().add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_STATISTICS,
+				"pages/sale/index.xhtml", PastleyVariable.PASTLEY_ICON_STATISTICS));
 		menu.getItems().add(new ItemIIComponent<>(new BadgeComponent("info", "lsy-bg-c-info"), false,
-				PastleyVariable.PASTLEY_MENU_NAME_MONTH, null, PastleyVariable.PASTLEY_ICON_MONTH));
+				PastleyVariable.PASTLEY_MENU_NAME_MONTH, "pages/sale/month.xhtml", PastleyVariable.PASTLEY_ICON_MONTH));
 	}
 
 	public static void fillBuy(MenuIIIComponent menu) {
