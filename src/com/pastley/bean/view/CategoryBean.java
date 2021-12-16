@@ -25,6 +25,12 @@ public class CategoryBean {
 	public void initCrud() {
 		this.crud = new CrudApp<>(tableBean.getCategory(), "lsy-table", "categoria", "selecionada");
 	}
+	
+	public void update() {
+		if (crud == null)
+			initCrud();
+		crud.setTable(this.tableBean.getCategory());
+	}
 
 	public CrudApp<Category> getCrud() {
 		return crud;

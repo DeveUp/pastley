@@ -37,9 +37,6 @@ public class BuyBean implements Serializable {
 	private String dateZone;
 	private PastleyDate date = new PastleyDate();
 
-	public BuyBean() {
-	}
-
 	@PostConstruct
 	public void init() {
 		buy = InitDTO.buy(true);

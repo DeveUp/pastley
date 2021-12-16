@@ -2,6 +2,10 @@ package com.pastley.models.model;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.text.ParseException;
+import java.time.LocalDate;
+
+import com.pastley.util.PastleyDate;
 
 public class Company implements Serializable{
 
@@ -59,6 +63,15 @@ public class Company implements Serializable{
 				+ aboutUs + ", size=" + size + ", butdget=" + butdget + ", logo=" + logo + ", statu=" + statu
 				+ ", sendSalesMail=" + sendSalesMail + ", alertStock=" + alertStock + ", alertMinStock=" + alertMinStock
 				+ ", dateRegister=" + dateRegister + ", dateUpdate=" + dateUpdate + "]";
+	}
+	
+	public LocalDate getDateWithoutTime() {
+		PastleyDate date = new PastleyDate();
+		try {
+			return PastleyDate.convertToLocalDate(date.convertToDate(dateRegister));
+		} catch (ParseException e) {
+			return LocalDate.now();
+		}
 	}
 	
 	public Long getId() {

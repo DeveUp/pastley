@@ -1,6 +1,10 @@
 package com.pastley.models.model;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.time.LocalDate;
+
+import com.pastley.util.PastleyDate;
 
 public class Role implements Serializable {
 
@@ -14,19 +18,44 @@ public class Role implements Serializable {
 	private String dateRegister;
 	private String dateUpdate;
 
-	/**
-	 * @Override public int hashCode() { return Objects.hash(id); }
-	 * 
-	 * @Override public boolean equals(Object obj) { if (this == obj) return true;
-	 *           if (obj == null) return false; if (getClass() != obj.getClass())
-	 *           return false; Role other = (Role) obj; return Objects.equals(id,
-	 *           other.id); }
-	 **/
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Role other = (Role) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
 
 	@Override
 	public String toString() {
 		return "Role [id=" + id + ", name=" + name + ", description=" + description + ", statu=" + statu + ", session="
 				+ session + ", dateRegister=" + dateRegister + ", dateUpdate=" + dateUpdate + "]";
+	}
+	
+	public LocalDate getDateWithoutTime() {
+		PastleyDate date = new PastleyDate();
+		try {
+			return PastleyDate.convertToLocalDate(date.convertToDate(dateRegister));
+		} catch (ParseException e) {
+			return LocalDate.now();
+		}
 	}
 
 	public Long getId() {
