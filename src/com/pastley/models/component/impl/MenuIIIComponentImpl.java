@@ -27,22 +27,22 @@ public class MenuIIIComponentImpl {
 				.add(new ItemIIComponent<>(null, true, PastleyVariable.PASTLEY_MENU_TYPE_MAINTENANCE, null, null));
 		// Customer
 		List<ItemIIComponent<String>> customer = new ArrayList<>();
-		customer.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY, null,
-				PastleyVariable.PASTLEY_ICON_HISTORY));
-		customer.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_STATISTICS, null,
-				PastleyVariable.PASTLEY_ICON_STATISTICS));
+		customer.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY,
+				"pages/customer/all.xhtml", PastleyVariable.PASTLEY_ICON_HISTORY));
+		customer.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_STATISTICS,
+				"pages/cashier/index.xhtml", PastleyVariable.PASTLEY_ICON_STATISTICS));
 		menu.getItems()
 				.add(new ItemIIComponent<>(new BadgeComponent("admi", "lsy-bg-c-warning"), false,
 						PastleyVariable.PASTLEY_MENU_TYPE_CUSTOMER, null, PastleyVariable.PASTLEY_ICON_TYPE_CUSTOMER,
 						customer));
 		// Cashier
 		List<ItemIIComponent<String>> cashier = new ArrayList<>();
-		cashier.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY, null,
-				PastleyVariable.PASTLEY_ICON_HISTORY));
-		cashier.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_REGISTER, null,
-				PastleyVariable.PASTLEY_ICON_REGISTER));
-		cashier.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_STATISTICS, null,
-				PastleyVariable.PASTLEY_ICON_STATISTICS));
+		cashier.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY,
+				"pages/cashier/all.xhtml", PastleyVariable.PASTLEY_ICON_HISTORY));
+		cashier.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_REGISTER,
+				"pages/cashier/register.xhtml", PastleyVariable.PASTLEY_ICON_REGISTER));
+		cashier.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_STATISTICS,
+				"pages/cashier/index.xhtml", PastleyVariable.PASTLEY_ICON_STATISTICS));
 		menu.getItems().add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_TYPE_CASHIER, null,
 				PastleyVariable.PASTLEY_ICON_TYPE_CASHIER, cashier));
 		// Product
@@ -72,22 +72,20 @@ public class MenuIIIComponentImpl {
 				"pages/company/index.xhtml", PastleyVariable.PASTLEY_ICON_INFO));
 		// PQR
 		List<ItemIIComponent<String>> pqr = new ArrayList<>();
-		pqr.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY, null,
+		pqr.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY, "pages/pqr/all.xhtml",
 				PastleyVariable.PASTLEY_ICON_HISTORY));
-		pqr.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_REGISTER, null,
-				PastleyVariable.PASTLEY_ICON_REGISTER));
-		pqr.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_STATISTICS, null,
-				PastleyVariable.PASTLEY_ICON_STATISTICS));
+		pqr.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_STATISTICS,
+				"pages/cashier/index.xhtml", PastleyVariable.PASTLEY_ICON_STATISTICS));
 		menu.getItems().add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_TYPE_PQR, null,
 				PastleyVariable.PASTLEY_ICON_TYPE_PQR, pqr));
 		// Contact
 		List<ItemIIComponent<String>> contact = new ArrayList<>();
-		contact.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY, null,
-				PastleyVariable.PASTLEY_ICON_HISTORY));
-		contact.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_RESPONSE, null,
-				PastleyVariable.PASTLEY_ICON_RESPONSE));
-		contact.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_STATISTICS, null,
-				PastleyVariable.PASTLEY_ICON_STATISTICS));
+		contact.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY,
+				"pages/contact/all.xhtml", PastleyVariable.PASTLEY_ICON_HISTORY));
+		contact.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_RESPONSE,
+				"pages/contact/response.xhtml", PastleyVariable.PASTLEY_ICON_RESPONSE));
+		contact.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_STATISTICS,
+				"pages/contact/index.xhtml", PastleyVariable.PASTLEY_ICON_STATISTICS));
 		menu.getItems().add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_TYPE_CONTACT, null,
 				PastleyVariable.PASTLEY_ICON_TYPE_CONTACT, contact));
 	}
@@ -97,12 +95,10 @@ public class MenuIIIComponentImpl {
 				PastleyVariable.PASTLEY_MENU_TYPE_SALE, null, null));
 		// Method
 		List<ItemIIComponent<String>> method = new ArrayList<>();
-		method.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY, null,
-				PastleyVariable.PASTLEY_ICON_HISTORY));
-		method.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_REGISTER,
-				"pages/method/register.xhtml", PastleyVariable.PASTLEY_ICON_REGISTER));
-		method.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_STATISTICS, null,
-				PastleyVariable.PASTLEY_ICON_STATISTICS));
+		method.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_HISTORY,
+				"pages/method/all.xhtml", PastleyVariable.PASTLEY_ICON_HISTORY));
+		method.add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_NAME_STATISTICS,
+				"pages/method/index.xhtml", PastleyVariable.PASTLEY_ICON_STATISTICS));
 		menu.getItems().add(new ItemIIComponent<>(null, false, PastleyVariable.PASTLEY_MENU_TYPE_METHOD_PAY, null,
 				PastleyVariable.PASTLEY_ICON_TYPE_METHOD_PAY, method));
 		// Other

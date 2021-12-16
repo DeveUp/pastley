@@ -278,7 +278,7 @@ public class DataTableBean implements Serializable {
 		return provider.getEntity();
 	}
 
-	public DataTableApp<Buy> getBuy() {
+	public DataTableApp<Buy> cashier() {
 		return buy;
 	}
 
@@ -368,6 +368,10 @@ public class DataTableBean implements Serializable {
 
 	public void setSale(DataTableApp<Sale> sale) {
 		this.sale = sale;
+	}
+
+	public DataTableApp<Buy> getBuy() {
+		return buy;
 	}
 
 	public DataTableApp<Contact> getContact() {
