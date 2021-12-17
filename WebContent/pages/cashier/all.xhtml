@@ -33,7 +33,7 @@
 						onclick="PF('lsy-table').clearFilters()"
 						action="#{cashierView.crud.clearFilter()}"
 						update="@(.lsy-table), @(.lsy-alert)" />
-					<p:commandButton value="#{categoryView.crud.messageDeleteCrud}"
+					<p:commandButton value="#{cashierView.crud.messageDeleteCrud}"
 						icon="pi pi-trash"
 						styleClass="lsy-button lsy-bg-c-danger lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2"
 						disabled="#{fn:length(cashierView.crud.table.select) gt 0 ? 'false' : 'true'}"
@@ -76,16 +76,151 @@
 					</p:outputPanel>
 				</f:facet>
 
-				<p:ajax event="rowSelect" listener="#{buyView.update()}"
+				<p:ajax event="rowSelect" listener="#{cashierView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
-				<p:ajax event="rowUnselect" listener="#{buyView.update()}"
+				<p:ajax event="rowUnselect" listener="#{cashierView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
-				<p:ajax event="rowSelectCheckbox" listener="#{buyView.update()}"
+				<p:ajax event="rowSelectCheckbox" listener="#{cashierView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
-				<p:ajax event="rowUnselectCheckbox" listener="#{buyView.update()}"
+				<p:ajax event="rowUnselectCheckbox" listener="#{cashierView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
-				<p:ajax event="toggleSelect" listener="#{buyView.update()}"
+				<p:ajax event="toggleSelect" listener="#{cashierView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
+				<p:column selectionMode="multiple" exportable="false"
+					style="width:40px"></p:column>
+				<p:column headerText="ID" footerText="ID" styleClass="p-text-center"
+					filterBy="#{a.id}" sortBy="#{a.id}">
+					<p:rowToggler />
+					<h:outputText value="#{a.id}"
+						styleClass="pastley-class scrjk-statu-text-dark" />
+				</p:column>
+				<p:column headerText="Documento" footerText="Documento"
+					styleClass="p-text-center" filterBy="#{a.person.document}"
+					sortBy="#{a.person.document}">
+					<h:outputText value="#{a.person.document}" />
+				</p:column>
+				<p:column headerText="Apodo" footerText="Apodo"
+					styleClass="p-text-center" filterBy="#{a.nickname}"
+					sortBy="#{a.person.nickname}">
+					<h:outputText value="#{a.nickname}" />
+				</p:column>
+				<p:column headerText="Nombre" footerText="Nombre"
+					styleClass="p-text-center"
+					filterBy="#{a.person.name} #{a.person.subname}"
+					sortBy="#{a.person.name} #{a.person.subname}"
+					filterMatchMode="contains">
+					<h:outputText value="#{a.person.name} #{a.person.subname}"
+						styleClass="pastley-class scrjk-statu-text-dark" />
+				</p:column>
+				<p:column headerText="Fecha" footerText="Fecha"
+					field="dateWithoutTime" styleClass="p-text-center"
+					filterMatchMode="range">
+					<f:facet name="filter">
+						<p:datePicker selectionMode="range"
+							onchange="PF('.lsy-table').filter()" />
+					</f:facet>
+					<p:calendar value="#{a.dateRegister}" locale="de"
+						pattern="dd/MM/yyyy hh:mm:ss" disabled="true" />
+				</p:column>
+				<p:column headerText="Estado" footerText="Estado"
+					styleClass="p-text-center" field="statu" filterMatchMode="exact">
+					<f:facet name="filter">
+						<p:selectOneMenu onchange="PF('lsy-table').filter()">
+							<f:selectItem itemLabel="Todos" itemValue="#{null}"
+								noSelectionOption="true" />
+							<f:selectItem itemLabel="Activo" itemValue="true" />
+							<f:selectItem itemLabel="Bloqueado" itemValue="false" />
+						</p:selectOneMenu>
+					</f:facet>
+					<p:commandButton value="#{a.statu ? 'Activo' : 'Bloqueado'}"
+						styleClass="lsy-button
+						#{a.statu ? 'lsy-bg-c-success' :  'lsy-bg-c-danger'}"
+						action="#{category.update(a.id)}"
+						update="lsy-table, @(.lsy-alert)">
+					</p:commandButton>
+				</p:column>
+				<p:rowExpansion>
+					<h:panelGroup layout="block" styleClass="p-p-3">
+						<p:fieldset legend="Información" toggleable="true"
+							toggleSpeed="500">
+							<h:panelGroup layout="block"
+								styleClass="ui-fluid p-formgrid p-grid p-jc-between">
+								<h:panelGroup layout="block"
+									styleClass="p-field p-col p-md-4 p-jc-center">
+									<h:panelGroup layout="block"
+										styleClass="lsy-image-container-large-2">
+										<p:graphicImage cache="false" library="img" name="user.png" />
+									</h:panelGroup>
+								</h:panelGroup>
+								<h:panelGroup layout="block" styleClass="p-field p-col p-md-4">
+									<h:panelGroup layout="block"
+										styleClass="ui-fluid p-formgrid p-grid">
+										<h:panelGroup layout="block" styleClass="p-field p-col">
+											<p:outputLabel value="Tipo Documento:">
+												<h:outputText value=" *" styleClass="lsy-c-danger" />
+											</p:outputLabel>
+											<p:inputText disabled="true"
+												value="#{a.person.typeDocument.name}" />
+										</h:panelGroup>
+									</h:panelGroup>
+									<h:panelGroup layout="block"
+										styleClass="ui-fluid p-formgrid p-grid">
+										<h:panelGroup layout="block" styleClass="p-field p-col">
+											<p:outputLabel value="Documento:">
+												<h:outputText value=" *" styleClass="lsy-c-danger" />
+											</p:outputLabel>
+											<p:inputText disabled="true" value="#{a.person.document}" />
+										</h:panelGroup>
+									</h:panelGroup>
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup layout="block"
+								styleClass="ui-fluid p-formgrid p-grid">
+								<h:panelGroup layout="block" styleClass="p-field p-col">
+									<p:outputLabel value="Nombre:">
+										<h:outputText value=" *" styleClass="lsy-c-danger" />
+									</p:outputLabel>
+									<p:inputText value="#{a.person.name} #{a.person.subname}"
+										disabled="true" />
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup layout="block"
+								styleClass="ui-fluid p-formgrid p-grid">
+								<h:panelGroup layout="block" styleClass="p-field p-col">
+									<p:outputLabel value="Email:">
+										<h:outputText value=" *" styleClass="lsy-c-danger" />
+									</p:outputLabel>
+									<p:inputText value="#{a.person.email}" disabled="true" />
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup layout="block"
+								styleClass="ui-fluid p-formgrid p-grid">
+								<h:panelGroup layout="block" styleClass="p-field p-col">
+									<p:outputLabel value="Apodo:">
+										<h:outputText value=" *" styleClass="lsy-c-danger" />
+									</p:outputLabel>
+									<p:inputText value="#{a.nickname}" disabled="true" />
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup layout="block"
+								styleClass="ui-fluid p-formgrid p-grid p-jc-between">
+								<h:panelGroup layout="block" styleClass="p-field p-col p-md-5">
+									<p:outputLabel value="Dirección:">
+										<h:outputText value=" *" styleClass="lsy-c-danger" />
+									</p:outputLabel>
+									<p:inputText value="#{a.person.address}" disabled="true" />
+								</h:panelGroup>
+								<h:panelGroup layout="block" styleClass="p-field p-col p-md-4">
+									<p:outputLabel value="Telefono:">
+										<h:outputText value=" *" styleClass="lsy-c-danger" />
+									</p:outputLabel>
+									<p:inputMask maxlength="13" value="#{a.person.phone}"
+										disabled="true" mask="999-9999-999" />
+								</h:panelGroup>
+							</h:panelGroup>
+						</p:fieldset>
+					</h:panelGroup>
+				</p:rowExpansion>
 			</p:dataTable>
 			<h:panelGroup layout="block"
 				styleClass="lsy-table-actions-bottom p-mb-6"
@@ -108,7 +243,7 @@
 						onclick="PF('lsy-table').clearFilters()"
 						action="#{cashierView.crud.clearFilter()}"
 						update="@(.lsy-table), @(.lsy-alert)" />
-					<p:commandButton value="#{categoryView.crud.messageDeleteCrud}"
+					<p:commandButton value="#{cashierView.crud.messageDeleteCrud}"
 						icon="pi pi-trash"
 						styleClass="lsy-button lsy-bg-c-danger lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2"
 						disabled="#{fn:length(cashierView.crud.table.select) gt 0 ? 'false' : 'true'}"

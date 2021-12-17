@@ -1,0 +1,54 @@
+<ui:composition template="../../template/template-role.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="tmp-section">
+		<ui:decorate template="component/header.xhtml">
+			<ui:define name="tmp-section-component-header-subtitle--header">Estadistica</ui:define>
+		</ui:decorate>
+		<h:panelGroup layout="block" styleClass="p-p-3">
+			<p:fieldset legend="Estadistica" toggleable="true" toggleSpeed="500">
+				<p:tabView>
+					<p:tab title="Rango de Fecha">
+						<h:panelGroup layout="block">
+							<p:fieldset legend="Fecha" toggleable="true" toggleSpeed="500">
+								<h:panelGroup layout="block"
+									styleClass="ui-fluid p-formgrid p-grid p-mt-4 p-jc-between p-ai-center">
+									<h:panelGroup layout="block"
+										styleClass="p-field p-col p-lg-4 p-md-12 p-col-12">
+										<p:outputLabel for="fecha-inicio" value="Fecha Inicio:" />
+										<p:calendar id="fecha-inicio" pattern="MM/dd/yyyy HH:mm:ss" />
+									</h:panelGroup>
+									<h:panelGroup layout="block"
+										styleClass="p-field p-col p-lg-4 p-md-12 p-col-12">
+										<p:outputLabel for="fecha-fin" value="Fecha Fin:" />
+										<p:calendar id="fecha-fin" pattern="MM/dd/yyyy HH:mm:ss" />
+									</h:panelGroup>
+								</h:panelGroup>
+								<h:panelGroup layout="block">
+									<p:separator styleClass="p-mt-3 p-mb-3" />
+									<h:panelGroup layout="block"
+										styleClass="p-d-flex p-jc-start p-ac-center p-mb-3">
+										<p:commandButton title="Consultar" value="Consultar"
+											icon="fa fa-fw fa-search" styleClass="lsy-bg-c-success lsy-button">
+										</p:commandButton>
+										<p:commandButton title="Limpiar" value="Limpiar"
+											icon="fa fa-fw fa-brush" styleClass="p-ml-2 lsy-bg-c-danger lsy-button">
+										</p:commandButton>
+									</h:panelGroup>
+									<p:separator styleClass="p-mt-3 p-mb-3" />
+								</h:panelGroup>
+							</p:fieldset>
+						</h:panelGroup>
+
+					</p:tab>
+					<p:tab title="Ventas">
+					</p:tab>
+				</p:tabView>
+			</p:fieldset>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

@@ -34,6 +34,7 @@ import com.pastley.models.model.Sale;
 import com.pastley.models.model.TypeDocument;
 import com.pastley.models.model.TypePQR;
 import com.pastley.models.model.User;
+import com.pastley.util.PastleyVariable;
 import com.pastley.models.model.MethodPay;
 
 @ManagedBean(name = "table")
@@ -131,7 +132,7 @@ public class DataTableBean implements Serializable {
 			return cashier.getEntity();
 		UserRequest userRequest = new UserRequest();
 		try {
-			cashier = new DataTableApp<>(userRequest.findAll());
+			cashier = new DataTableApp<>(userRequest.findByRoleAll(PastleyVariable.PASTLEY_USER_CASHIER_ID));
 		} catch (ExceptionDTO e) {
 			LOGGER.error("[getCashierEntity()]", e);
 			cashier.setEntity(new ArrayList<>());
@@ -148,7 +149,7 @@ public class DataTableBean implements Serializable {
 			return customer.getEntity();
 		UserRequest userRequest = new UserRequest();
 		try {
-			customer = new DataTableApp<>(userRequest.findAll());
+			customer = new DataTableApp<>(userRequest.findByRoleAll(PastleyVariable.PASTLEY_USER_CUSTOMER_ID));
 		} catch (ExceptionDTO e) {
 			LOGGER.error("[getCustomerEntity()]", e);
 			customer.setEntity(new ArrayList<>());

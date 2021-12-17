@@ -12,6 +12,11 @@ public class PastleyVariable {
 	/* APP */
 	public static final String PASTLEY_APP_NAME = "Pastley";
 	
+	/* Users */
+	public static final Long PASTLEY_USER_ADMINISTRATOR_ID = 1L;
+	public static final Long PASTLEY_USER_CASHIER_ID = 2L;
+	public static final Long PASTLEY_USER_CUSTOMER_ID = 3L;
+	
 	/* ARRAY */
 	public static final char[] PASTLEY_ARRAY_NUMBER = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 	public static final String[] PASTLEY_ARRAY_DATE = { "January", "February", "March", "April", "May", "June", "July",

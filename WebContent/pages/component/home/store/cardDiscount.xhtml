@@ -1,0 +1,95 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<h:panelGroup layout="block"
+		styleClass="p-mt-4 p-mb-4 p-d-flex  p-flex-wrap p-ai-center p-p-2
+		p-jc-center p-jc-lg-between ">
+		<h1 class="lsy-txt-title">Productos en Promociones</h1>
+		<ui:repeat var="a" value="#{product.discount}">
+			<h:panelGroup layout="block" styleClass="lsy-card__product p-m-3">
+				<button class="lsy-button lsy-card__product-close" type="button">X</button>
+				<h:panelGroup layout="block"
+					styleClass="lsy-card__product-description">
+					<h:panelGroup layout="block"
+						styleClass="lsy-card__product-description-title">
+						<h1 class="lsy-txt-title">
+							<h:outputText value="#{a.name}" />
+						</h1>
+						<h:panelGroup layout="block"
+							styleClass="lsy-card__product-description-title-small">
+							<label>ID: <span><h:outputText value="#{a.id}" /></span></label>
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup layout="block"
+						styleClass="lsy-card__product-description-price">
+						<h:outputLabel value="Precio:">
+							<h:outputText styleClass="lsy-span" value="#{a.price}">
+								<f:convertNumber currencySymbol="$" type="currency" />
+							</h:outputText>
+						</h:outputLabel>
+						<h:outputLabel value="Neto:">
+							<h:outputText styleClass="lsy-span"
+								value="#{a.calculateSubTotalNet}">
+								<f:convertNumber currencySymbol="$" type="currency" />
+							</h:outputText>
+						</h:outputLabel>
+						<h:outputLabel value="Descuento:">
+							<h:outputText styleClass="lsy-span" value="#{a.priceDiscount}">
+								<f:convertNumber currencySymbol="$" type="currency" />
+							</h:outputText>
+
+						</h:outputLabel>
+						<h:outputLabel value="Antes:">
+							<h:outputText styleClass="lsy-span"
+								value="#{a.calculateSubtotalGross}">
+								<f:convertNumber currencySymbol="$" type="currency" />
+							</h:outputText>
+						</h:outputLabel>
+						<h:outputLabel value="Descuento:">
+							<h:outputText styleClass="lsy-span" value="#{a.discount}%" />
+						</h:outputLabel>
+						<h:outputLabel value="Bruto:">
+							<h:outputText styleClass="lsy-span"
+								value="#{a.calculateSubtotalGross}">
+								<f:convertNumber currencySymbol="$" type="currency" />
+							</h:outputText>
+						</h:outputLabel>
+						<h:outputLabel value="Neto:">
+							<h:outputText styleClass="lsy-span"
+								value="#{a.calculateSubTotalNet}">
+								<f:convertNumber currencySymbol="$" type="currency" />
+							</h:outputText>
+						</h:outputLabel>
+					</h:panelGroup>
+					<h:panelGroup layout="block"
+						styleClass="lsy-card__product-description-other">
+						<h:outputLabel value="Dimensión:">
+							<h:outputText styleClass="lsy-span" value="#{a.dimension}" />
+						</h:outputLabel>
+						<h:outputLabel value="Stock:">
+							<h:outputText styleClass="lsy-span" value="#{a.stock}" />
+						</h:outputLabel>
+					</h:panelGroup>
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" styleClass="lsy-card__product-button">
+					<p:commandButton action="#{cart.add(a)}" styleClass="lsy-button"
+						value="Añadir"  rendered="#{a.stock > 0}"/>
+					<p:commandButton class="lsy-button lsy-card__product-button-open"
+						value="Ver" />
+					<p:commandButton class="lsy-button lsy-card__product-button-large"
+						value="Cambiar" />
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" styleClass="lsy-card__product-image">
+					<p:graphicImage cache="false" value="#{a.image}" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+		</ui:repeat>
+
+	</h:panelGroup>
+</ui:composition>

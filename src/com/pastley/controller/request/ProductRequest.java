@@ -35,6 +35,11 @@ public class ProductRequest implements Serializable{
 	public List<Product> findAll() throws ExceptionDTO {
 		return findAll(path + PastleyVariableApi.PASTLEY_API_REQUEST_ALL);
 	}
+	
+	public List<Product> findByDiscountAll() throws ExceptionDTO {
+		String aux = path + PastleyVariableApi.PASTLEY_API_REQUEST_ALL_FIND_DISCOUNT;
+		return findAll(aux);
+	}
 
 	public List<Product> findByStatuAll(boolean statu) throws ExceptionDTO {
 		String aux = path + PastleyVariableApi.PASTLEY_API_REQUEST_ALL_FIND_STATU;
