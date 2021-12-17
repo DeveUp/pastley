@@ -20,6 +20,23 @@ Acontinuación se muestra la paleta de colores que se uso en el software
 ## Lenguajes Y herramientas de programación
 ![Frontend](https://i.ibb.co/L66ZpHh/Front.png)
 
+## Interfaz
+
+<div>
+     <img src="https://github.com/DeveUp/pastley/blob/master/WebContent/resources/img/output/01.png?raw=true">
+     <img src="https://github.com/DeveUp/pastley/blob/master/WebContent/resources/img/output/02.png?raw=true">
+     <img src="https://github.com/DeveUp/pastley/blob/master/WebContent/resources/img/output/03.png?raw=true">
+     <img src="https://github.com/DeveUp/pastley/blob/master/WebContent/resources/img/output/04.png?raw=true">
+     <img src="https://github.com/DeveUp/pastley/blob/master/WebContent/resources/img/output/05.png?raw=true">
+     <img src="https://github.com/DeveUp/pastley/blob/master/WebContent/resources/img/output/06.png?raw=true">
+     <img src="https://github.com/DeveUp/pastley/blob/master/WebContent/resources/img/output/07.png?raw=true">
+     <img src="https://github.com/DeveUp/pastley/blob/master/WebContent/resources/img/output/08.png?raw=true">
+     <img src="https://github.com/DeveUp/pastley/blob/master/WebContent/resources/img/output/09.png?raw=true">
+     <img src="https://github.com/DeveUp/pastley/blob/master/WebContent/resources/img/output/10.png?raw=true">
+     <img src="https://github.com/DeveUp/pastley/blob/master/WebContent/resources/img/output/11.png?raw=true">
+     <img src="https://github.com/DeveUp/pastley/blob/master/WebContent/resources/img/output/12.png?raw=true">
+     <img src="https://github.com/DeveUp/pastley/blob/master/WebContent/resources/img/output/13.png?raw=true">
+</div>
    
 ## Autores
 
