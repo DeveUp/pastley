@@ -33,7 +33,7 @@
 						onclick="PF('lsy-table').clearFilters()"
 						action="#{methodPayView.crud.clearFilter()}"
 						update="@(.lsy-table), @(.lsy-alert)" />
-					<p:commandButton value="#{categoryView.crud.messageDeleteCrud}"
+					<p:commandButton value="#{methodPayView.crud.messageDeleteCrud}"
 						icon="pi pi-trash"
 						styleClass="lsy-button lsy-bg-c-danger lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2"
 						disabled="#{fn:length(methodPayView.crud.table.select) gt 0 ? 'false' : 'true'}"
@@ -151,7 +151,7 @@
 						onclick="PF('lsy-table').clearFilters()"
 						action="#{methodPayView.crud.clearFilter()}"
 						update="@(.lsy-table), @(.lsy-alert)" />
-					<p:commandButton value="#{categoryView.crud.messageDeleteCrud}"
+					<p:commandButton value="#{methodPayView.crud.messageDeleteCrud}"
 						icon="pi pi-trash"
 						styleClass="lsy-button lsy-bg-c-danger lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2"
 						disabled="#{fn:length(methodPayView.crud.table.select) gt 0 ? 'false' : 'true'}"

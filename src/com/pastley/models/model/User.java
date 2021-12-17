@@ -1,6 +1,10 @@
 package com.pastley.models.model;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.time.LocalDate;
+
+import com.pastley.util.PastleyDate;
 
 public class User implements Serializable {
 
@@ -19,23 +23,50 @@ public class User implements Serializable {
 	private String dateLastDate;
 	private String dateSession;
 	private Person person;
+	
+	private LocalDate dateWithoutTime;
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
 
-	/**
-	 * 
-	 * @Override public int hashCode() { return Objects.hash(ip); }
-	 * @Override public boolean equals(Object obj) { if (this == obj) return true;
-	 *           if (obj == null) return false; if (getClass() != obj.getClass())
-	 *           return false; User other = (User) obj; return Objects.equals(ip,
-	 *           other.ip); }
-	 **/
-	
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", nickname=" + nickname + ", points=" + points + ", password=" + password + ", ip="
 				+ ip + ", lastPassword=" + lastPassword + ", statu=" + statu + ", session=" + session
 				+ ", dateRegister=" + dateRegister + ", dateUpdate=" + dateUpdate + ", dateLastDate=" + dateLastDate
 				+ ", dateSession=" + dateSession + ", person=" + person + "]";
+	}
+	
+	public LocalDate getDateWithoutTime() {
+		dateWithoutTime = LocalDate.now();
+		PastleyDate date = new PastleyDate();
+		try {
+			dateWithoutTime = PastleyDate.convertToLocalDate(date.convertToDate(dateRegister));
+		} catch (ParseException e) {
+		}
+		return dateWithoutTime;
 	}
 
 	public Long getId() {
@@ -56,6 +87,10 @@ public class User implements Serializable {
 
 	public Long getPoints() {
 		return points;
+	}
+
+	public void setDateWithoutTime(LocalDate dateWithoutTime) {
+		this.dateWithoutTime = dateWithoutTime;
 	}
 
 	public void setPoints(Long points) {

@@ -45,3 +45,9 @@
 		}
 	}
 }
+
+.lsy-image-container-large-2{
+	@extend .lsy-image-container-large;
+	width: 200px !important;
+	height: 200px !important;
+}

@@ -4,15 +4,48 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-	<h:panelGroup layout="block" styleClass="lsy-interface-store">
+	<h:panelGroup layout="block" styleClass="lsy-interface-store"
+		id="lsy-interface-store">
 		<h:panelGroup layout="block" styleClass="lsy-interface-store__top">
-			<h:outputText styleClass="lsy-span" value="Showing 1–9 of 48 results"/>
-			<h:panelGroup layout="block" styleClass="lsy-interface-store__top-button">
-				<p:commandButton styleClass="lsy-button-icon" icon="fa fa-grip-vertical"/>
-				<p:commandButton styleClass="lsy-button-icon p-ml-2" icon="fa fa-grip-horizontal"/>
+			<h:outputText styleClass="lsy-span"
+				value="Se encontraron #{product.products == null ? 'No se ha encontrado ningun resultado.' : fn:length(product.products)} productos." />
+			<h:panelGroup layout="block"
+				styleClass="lsy-interface-store__top-button">
+				<p:commandButton styleClass="lsy-button-icon"
+					icon="fa fa-grip-vertical" />
+				<p:commandButton styleClass="lsy-button-icon p-ml-2"
+					icon="fa fa-grip-horizontal" />
 			</h:panelGroup>
 		</h:panelGroup>
 		<h:panelGroup layout="block" styleClass="lsy-interface-store__left">
+			<h:panelGroup layout="block">
+				<h1 class="lsy-txt-title">Cargar:</h1>
+				<h:panelGroup layout="block"
+					styleClass="p-d-flex p-jc-center p-ai-center">
+					<p:commandButton
+						styleClass="lsy-button lsy-bg-c-warning p-mr-2 lsy-w-100per"
+						action="#{cart.filterProduct()}" value="Cargar"
+						icon="fas fa-filter"
+						update="@(.lsy-alert), @(.lsy-interface-store)" />
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block">
+				<h1 class="lsy-txt-title">Buscar:</h1>
+				<h:panelGroup layout="block"
+					styleClass="lsy-w-80 p-d-flex p-jc-center p-ai-center">
+					<p:inputText value="#{cart.key}" />
+				</h:panelGroup>
+				<h:panelGroup layout="block"
+					styleClass="p-d-flex p-jc-end p-ai-center">
+					<p:commandButton styleClass="lsy-button lsy-bg-c-success p-mr-2"
+						action="#{cart.filterByKey()}" value="Buscar" icon="fas fa-filter"
+						update="@(.lsy-alert), @(.lsy-interface-store)" />
+					<p:commandButton icon="fa fa-fw fa-trash" title="Limpiar."
+						update="@(.lsy-alert), @(.lsy-interface-store)"
+						rendered="#{cart.filterKey}" action="#{cart.clearFilter(2)}"
+						styleClass="lsy-button-icon lsy-bg-c-warning" />
+				</h:panelGroup>
+			</h:panelGroup>
 			<h:panelGroup layout="block">
 				<h1 class="lsy-txt-title">Carrito</h1>
 				<div id="cart">
@@ -20,6 +53,45 @@
 				</div>
 			</h:panelGroup>
 			<ui:include src="store/category.xhtml"></ui:include>
+			<h:panelGroup layout="block" styleClass="p-pb-4 p-mb-4">
+				<h1 class="lsy-txt-title">Precio</h1>
+				<h:panelGroup layout="block"
+					styleClass="p-d-flex p-jc-end p-ai-center">
+					<p:commandButton icon="fa fa-fw fa-filter" title="Filtrar."
+						action="#{cart.filterRangePrice()}"
+						update="@(.lsy-alert), @(.lsy-interface-store)"
+						styleClass="lsy-button-icon lsy-bg-c-success" />
+					<p:commandButton icon="fa fa-fw fa-trash" title="Limpiar."
+						action="#{cart.clearFilter(3)}"
+						update="@(.lsy-alert), @(.lsy-interface-store)"
+						rendered="#{cart.filterRangePrice}"
+						styleClass="lsy-button-icon lsy-bg-c-warning" />
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="p-p-3">
+					<h:panelGroup layout="block" id="displayRange">
+						<h:panelGroup layout="block" rendered="#{cart.filterRangePrice}">
+							<h:outputText value="Desde:" styleClass="p-mr-1"/>
+							<h:outputText value="#{cart.priceMin}"
+								styleClass="lsy-bc-c-info lsy-badge p-mr-1">
+								<f:convertNumber currencySymbol="$" type="currency" />
+							</h:outputText>
+						</h:panelGroup>
+						<h:panelGroup layout="block" rendered="#{cart.filterRangePrice}">
+							<h:outputText value="Hasta:" styleClass="p-mr-1"/>
+							<h:outputText value="#{cart.priceMax}"
+								styleClass="lsy-bc-c-info lsy-badge">
+								<f:convertNumber currencySymbol="$" type="currency" />
+							</h:outputText>
+						</h:panelGroup>
+					</h:panelGroup>
+					<p:slider for="price-min,price-max" display="displayRange"
+						styleClass="p-mt-3" range="true" maxValue="999999999" minValue="0"
+						displayTemplate="Desde {min} Hasta {max}">
+					</p:slider>
+					<h:inputHidden id="price-min" value="#{cart.priceMin}" />
+					<h:inputHidden id="price-max" value="#{cart.priceMax}" />
+				</h:panelGroup>
+			</h:panelGroup>
 		</h:panelGroup>
 		<h:panelGroup layout="block" styleClass="lsy-interface-store__center">
 			<ui:include src="store/card.xhtml"></ui:include>

@@ -25,40 +25,41 @@
 						title="Actualizar"
 						styleClass="lsy-button lsy-bg-c-info lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-0 p-ml-md-2"
 						onclick="PF('lsy-table').clearFilters()"
-						action="#{customerView.crud.sync()}"
+						action="#{contactView.crud.sync()}"
 						update="@(.lsy-table), @(.lsy-alert)" />
 					<p:commandButton icon="fa fa-fw fa-brush" value="Limpiar"
 						title="Limpiar Filtros"
 						styleClass="lsy-button lsy-bg-c-warning lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2"
 						onclick="PF('lsy-table').clearFilters()"
-						action="#{customerView.crud.clearFilter()}"
+						action="#{contactView.crud.clearFilter()}"
 						update="@(.lsy-table), @(.lsy-alert)" />
-					<p:commandButton value="#{customerView.crud.messageDeleteCrud}"
+					<p:commandButton value="#{contactView.crud.messageDeleteCrud}"
 						icon="pi pi-trash"
 						styleClass="lsy-button lsy-bg-c-danger lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2"
-						disabled="#{fn:length(customerView.crud.table.select) gt 0 ? 'false' : 'true'}"
+						disabled="#{fn:length(contactView.crud.table.select) gt 0 ? 'false' : 'true'}"
 						update="@(.lsy-table), @(.lsy-alert)">
 						<p:confirm header="Confirmación:"
-							message="¿Quieres eliminar #{fn:length(customerView.crud.table.select)} clientes?"
+							message="¿Quieres eliminar #{fn:length(contactView.crud.table.select)} contacto?"
 							icon="pi pi-exclamation-triangle" />
 					</p:commandButton>
 				</h:panelGroup>
 				<p:separator styleClass="p-mb-4" />
 			</h:panelGroup>
 
-			<p:dataTable var="a" value="#{table.customerEntity}"
+			<p:dataTable var="a" value="#{table.contactEntity}"
 				widgetVar="lsy-table" id="lsy-table" styleClass="lsy-table"
-				paginator="true" emptyMessage="No se encontro ningun cliente."
-				rows="20" scrollWidth="auto" rowKey="#{a.id}" rowSelectMode="add"
+				paginator="true"
+				emptyMessage="No se encontro ningun contacto." rows="20"
+				scrollWidth="auto" rowKey="#{a.id}" rowSelectMode="add"
 				scrollable="true" stripedRows="true"
 				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} 
 							   	   {PreviousPageLink}    {CurrentPageReport} 
 							       {NextPageLink}        {LastPageLink}"
 				rowsPerPageTemplate="5,10,15,20,50,100"
-				globalFilterOnly="#{table.customer.globalFilterOnly}"
-				selection="#{table.customer.select}"
-				filterBy="#{table.customer.filterBy}"
-				filteredValue="#{table.customer.filter}">
+				globalFilterOnly="#{table.contact.globalFilterOnly}"
+				selection="#{table.contact.select}"
+				filterBy="#{table.contact.filterBy}"
+				filteredValue="#{table.contact.filter}">
 				<f:facet name="header">
 					<h:panelGroup layout="block"
 						styleClass="p-d-flex p-jc-end p-ac-center">
@@ -66,54 +67,36 @@
 							style="width:11rem" placeholder="Buscar" />
 						<p:commandButton icon="fa fa-fw fa-brush" title="Filtrar"
 							update="@(.lsy-table)"
-							action="#{table.customer.toggleGlobalFilter()}"
+							action="#{table.contact.toggleGlobalFilter()}"
 							styleClass="lsy-button-icon lsy-bg-c-warning p-ml-2" />
 					</h:panelGroup>
 					<p:outputPanel layout="block"
 						styleClass="p-d-flex p-jc-center p-ac-center p-flex-column p-p-3">
-						<h2 class="lsy-txt-subtitle p-mb-0 p-text-center">Cliente</h2>
-						<h5 class="p-text-center">(#{table.customerEntity == null ?
-							'0' : fn:length(table.customerEntity)} resultados).</h5>
+						<h2 class="lsy-txt-subtitle p-mb-0 p-text-center">Contacto</h2>
+						<h5 class="p-text-center">(#{table.contactEntity == null ?
+							'0' : fn:length(table.contactEntity)} resultados).</h5>
 					</p:outputPanel>
 				</f:facet>
 
-				<p:ajax event="rowSelect" listener="#{customerView.update()}"
+				<p:ajax event="rowSelect" listener="#{contactView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
-				<p:ajax event="rowUnselect" listener="#{customerView.update()}"
+				<p:ajax event="rowUnselect" listener="#{contactView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
 				<p:ajax event="rowSelectCheckbox"
-					listener="#{customerView.update()}"
+					listener="#{contactView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
 				<p:ajax event="rowUnselectCheckbox"
-					listener="#{customerView.update()}"
+					listener="#{contactView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
-				<p:ajax event="toggleSelect" listener="#{customerView.update()}"
+				<p:ajax event="toggleSelect" listener="#{contactView.update()}"
 					update="@(.lsy-table), @(.lsy-alert), @(.lsy-table-actions-top), @(.lsy-table-actions-bottom)" />
+
 				<p:column selectionMode="multiple" exportable="false"
-					style="width:40px"></p:column>
+					style="width:40px">
+				</p:column>
 				<p:column headerText="ID" footerText="ID" styleClass="p-text-center"
 					filterBy="#{a.id}" sortBy="#{a.id}">
-					<p:rowToggler />
-					<h:outputText value="#{a.id}"
-						styleClass="pastley-class scrjk-statu-text-dark" />
-				</p:column>
-				<p:column headerText="Documento" footerText="Documento"
-					styleClass="p-text-center" filterBy="#{a.person.document}"
-					sortBy="#{a.person.document}">
-					<h:outputText value="#{a.person.document}" />
-				</p:column>
-				<p:column headerText="Apodo" footerText="Apodo"
-					styleClass="p-text-center" filterBy="#{a.nickname}"
-					sortBy="#{a.person.nickname}">
-					<h:outputText value="#{a.nickname}" />
-				</p:column>
-				<p:column headerText="Nombre" footerText="Nombre"
-					styleClass="p-text-center"
-					filterBy="#{a.person.name} #{a.person.subname}"
-					sortBy="#{a.person.name} #{a.person.subname}"
-					filterMatchMode="contains">
-					<h:outputText value="#{a.person.name} #{a.person.subname}"
-						styleClass="pastley-class scrjk-statu-text-dark" />
+					<h:outputText value="#{a.id}" />
 				</p:column>
 				<p:column headerText="Fecha" footerText="Fecha"
 					field="dateWithoutTime" styleClass="p-text-center"
@@ -142,88 +125,6 @@
 						update="lsy-table, @(.lsy-alert)">
 					</p:commandButton>
 				</p:column>
-				<p:rowExpansion>
-					<h:panelGroup layout="block" styleClass="p-p-3">
-						<p:fieldset legend="Información" toggleable="true"
-							toggleSpeed="500">
-							<h:panelGroup layout="block"
-								styleClass="ui-fluid p-formgrid p-grid p-jc-between">
-								<h:panelGroup layout="block"
-									styleClass="p-field p-col p-md-4 p-jc-center">
-									<h:panelGroup layout="block"
-										styleClass="lsy-image-container-large-2">
-										<p:graphicImage cache="false" library="img" name="user.png" />
-									</h:panelGroup>
-								</h:panelGroup>
-								<h:panelGroup layout="block" styleClass="p-field p-col p-md-4">
-									<h:panelGroup layout="block"
-										styleClass="ui-fluid p-formgrid p-grid">
-										<h:panelGroup layout="block" styleClass="p-field p-col">
-											<p:outputLabel value="Tipo Documento:">
-												<h:outputText value=" *" styleClass="lsy-c-danger" />
-											</p:outputLabel>
-											<p:inputText disabled="true"
-												value="#{a.person.typeDocument.name}" />
-										</h:panelGroup>
-									</h:panelGroup>
-									<h:panelGroup layout="block"
-										styleClass="ui-fluid p-formgrid p-grid">
-										<h:panelGroup layout="block" styleClass="p-field p-col">
-											<p:outputLabel value="Documento:">
-												<h:outputText value=" *" styleClass="lsy-c-danger" />
-											</p:outputLabel>
-											<p:inputText disabled="true" value="#{a.person.document}" />
-										</h:panelGroup>
-									</h:panelGroup>
-								</h:panelGroup>
-							</h:panelGroup>
-							<h:panelGroup layout="block"
-								styleClass="ui-fluid p-formgrid p-grid">
-								<h:panelGroup layout="block" styleClass="p-field p-col">
-									<p:outputLabel value="Nombre:">
-										<h:outputText value=" *" styleClass="lsy-c-danger" />
-									</p:outputLabel>
-									<p:inputText value="#{a.person.name} #{a.person.subname}" disabled="true" />
-								</h:panelGroup>
-							</h:panelGroup>
-							<h:panelGroup layout="block"
-								styleClass="ui-fluid p-formgrid p-grid">
-								<h:panelGroup layout="block" styleClass="p-field p-col">
-									<p:outputLabel value="Email:">
-										<h:outputText value=" *" styleClass="lsy-c-danger" />
-									</p:outputLabel>
-									<p:inputText value="#{a.person.email}" disabled="true" />
-								</h:panelGroup>
-							</h:panelGroup>
-							<h:panelGroup layout="block"
-								styleClass="ui-fluid p-formgrid p-grid">
-								<h:panelGroup layout="block" styleClass="p-field p-col">
-									<p:outputLabel value="Apodo:">
-										<h:outputText value=" *" styleClass="lsy-c-danger" />
-									</p:outputLabel>
-									<p:inputText value="#{a.nickname}" disabled="true" />
-								</h:panelGroup>
-							</h:panelGroup>
-							<h:panelGroup layout="block"
-								styleClass="ui-fluid p-formgrid p-grid p-jc-between">
-								<h:panelGroup layout="block" styleClass="p-field p-col p-md-5">
-									<p:outputLabel value="Dirección:">
-										<h:outputText value=" *" styleClass="lsy-c-danger" />
-									</p:outputLabel>
-									<p:inputText value="#{a.person.address}" disabled="true" />
-								</h:panelGroup>
-								<h:panelGroup layout="block" styleClass="p-field p-col p-md-4">
-									<p:outputLabel value="Telefono:">
-										<h:outputText value=" *" styleClass="lsy-c-danger" />
-									</p:outputLabel>
-									<p:inputMask maxlength="13"
-										value="#{a.person.phone}" disabled="true"
-										mask="999-9999-999" />
-								</h:panelGroup>
-							</h:panelGroup>
-						</p:fieldset>
-					</h:panelGroup>
-				</p:rowExpansion>
 			</p:dataTable>
 			<h:panelGroup layout="block"
 				styleClass="lsy-table-actions-bottom p-mb-6"
@@ -238,21 +139,21 @@
 						title="Actualizar"
 						styleClass="lsy-button lsy-bg-c-info lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-0 p-ml-md-2"
 						onclick="PF('lsy-table').clearFilters()"
-						action="#{customerView.crud.sync()}"
+						action="#{contactView.crud.sync()}"
 						update="@(.lsy-table), @(.lsy-alert)" />
 					<p:commandButton icon="fa fa-fw fa-brush" value="Limpiar"
 						title="Limpiar Filtros"
 						styleClass="lsy-button lsy-bg-c-warning lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2"
 						onclick="PF('lsy-table').clearFilters()"
-						action="#{customerView.crud.clearFilter()}"
+						action="#{contactView.crud.clearFilter()}"
 						update="@(.lsy-table), @(.lsy-alert)" />
-					<p:commandButton value="#{customerView.crud.messageDeleteCrud}"
+					<p:commandButton value="#{contactView.crud.messageDeleteCrud}"
 						icon="pi pi-trash"
 						styleClass="lsy-button lsy-bg-c-danger lsy-w-100per lsy-w-md-auto p-mt-2 p-mb-2 p-ml-0 p-ml-md-2"
-						disabled="#{fn:length(customerView.crud.table.select) gt 0 ? 'false' : 'true'}"
+						disabled="#{fn:length(contactView.crud.table.select) gt 0 ? 'false' : 'true'}"
 						update="@(.lsy-table), @(.lsy-alert)">
 						<p:confirm header="Confirmación:"
-							message="¿Quieres eliminar #{fn:length(customerView.crud.table.select)} clientes?"
+							message="¿Quieres eliminar #{fn:length(contactView.crud.table.select)} contacto?"
 							icon="pi pi-exclamation-triangle" />
 					</p:commandButton>
 				</h:panelGroup>

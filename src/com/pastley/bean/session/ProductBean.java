@@ -23,19 +23,33 @@ public class ProductBean implements Serializable {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProductBean.class);
 
 	private List<Product> products;
+	private List<Product> discount;
 
 	@PostConstruct
 	public void init() {
 		initProduct();
+		initProductDiscount();
 	}
 
 	public void initProduct() {
+		System.out.println("Consultando Produtos..");
 		ProductRequest productRequest = new ProductRequest();
 		try {
 			products = productRequest.findBySuppliesAll(false);
 		} catch (ExceptionDTO e) {
 			products = new ArrayList<>();
 			LOGGER.error("[initProduct()]", e);
+		}
+	}
+	
+	public void initProductDiscount() {
+		System.out.println("Consultando Produtos discount..");
+		ProductRequest productRequest = new ProductRequest();
+		try {
+			discount = productRequest.findByDiscountAll();
+		} catch (ExceptionDTO e) {
+			discount = new ArrayList<>();
+			LOGGER.error("[initProductDiscount()]", e);
 		}
 	}
 
@@ -45,5 +59,21 @@ public class ProductBean implements Serializable {
 
 	public void setProducts(List<Product> products) {
 		this.products = products;
+	}
+
+	public List<Product> getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(List<Product> discount) {
+		this.discount = discount;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public static Logger getLogger() {
+		return LOGGER;
 	}
 }
